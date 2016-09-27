@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Indexx.SiteMaster" %>
+﻿﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Indexx.SiteMaster" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,6 +26,23 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
+      <script src="js/jquery.min.js"></script>
+      <script src="js/webflow.js"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+
+            jQuery("#closeSession").click(function () {
+                var button = document.getElementById("cerrarsession");
+
+                button.click();
+            });
+
+        });
+
+    </script>
+
   </head>
 
   <body class="nav-md">
@@ -58,16 +75,29 @@
               <div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-edit"></i> Gestion y Control <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-edit"></i> Adquisiones<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-wrench"></i> Mantenimiento <span class="fa fa-chevron-down"></span></a>
+                   <li><a><i class="fa fa-file-excel-o"></i> Almacen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"></a> </li>
+                      <li><a class="opcion1"></a> </li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                    </ul>
+                        </li>
+                  <li><a><i class="fa fa-file-excel-o"></i> Estadisticos <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -75,9 +105,9 @@
                       <li><a href="#"> </a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-file-excel-o"></i> Reportes y Consultas <span class="fa fa-chevron-down"></span></a>
+                    <li><a><i class="fa fa-file-excel-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"> </a></li>
+                      <li><a Class="Opcion8"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -90,7 +120,7 @@
                   </li>
                   <li><a><i class="fa fa-lock"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"> </a></li>
+                      <li><a Class=""> </a></li>
                       <li><a href="#"> </a></li>
                     </ul>
                   </li>
@@ -98,8 +128,9 @@
               </div>
 
             </div>
-            <!-- /sidebar menu -->
 
+              
+              <!-- contenido de la clase Wrapper -->
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
@@ -256,18 +287,25 @@
 				  
                 </div>
                 <!-- End to do list -->
-                
-                <!-- start of weather widget -->
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  
-				  <div class="x_panel">
-                    
-                    <div class="x_content">
-                    </div>
-					
-                  </div>
 
-                </div>
+                  <!-- contenido de la clase Wrapper -->
+            <div class="content-wrapper">
+                <!-- Contenido de la pagina -->
+                <section class="content-header">
+                    <h1>
+                    <small> </small>
+                    </h1>
+                    
+                    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+
+                    </asp:ContentPlaceHolder>
+                </section>
+
+
+
+                <div class='control-sidebar-bg'></div>
+            </div>
+
                 <!-- end of weather widget -->
               </div>
 			  
@@ -583,4 +621,3 @@
     <!-- /gauge.js -->
   </body>
 </html>
-

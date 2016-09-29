@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using DAO;
 
 namespace Indexx.pages
 {    
@@ -11,7 +12,12 @@ namespace Indexx.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //this.txtniombre = 
 
         }
+        //DAO.Class1 docla = new DAO.Class1 
+
+        
+        
     }
 }

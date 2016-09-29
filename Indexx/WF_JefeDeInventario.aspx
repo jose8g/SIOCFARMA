@@ -9,22 +9,11 @@
     <form runat="server">
         <asp:ScriptManager ID="ScriptManager2" runat="server">
         </asp:ScriptManager>
-
+        
+    
 
         <div id="ContentOrdenCompra" style="display:;">
             <uc1:WF_OrdenCompra runat="server" id="WF_OrdenCompra" />
-            <br />
-            <br />
-            <asp:Label runat="server"></asp:Label> <asp:TextBox runat="server"></asp:TextBox>
-            <br />
-            <asp:Label runat="server"></asp:Label> <asp:TextBox runat="server"></asp:TextBox>
-            <br />
-            <asp:Label runat="server"></asp:Label> <asp:TextBox runat="server"></asp:TextBox>
         </div>
-
-        <asp:DataGrid runat="server">
-
-        </asp:DataGrid>
     </form>
-    
 </asp:Content>

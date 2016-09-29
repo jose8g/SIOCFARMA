@@ -77,7 +77,7 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-edit"></i> Adquisiones<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"> </a></li>
+                      <li><a href="#">Orden Comprax</a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                     </ul>
@@ -108,7 +108,7 @@
                     <li><a><i class="fa fa-file-excel-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a Class="Opcion8"> </a></li>
-                      <li><a href="#"> </a></li>
+                      <li><a href="#"></a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>

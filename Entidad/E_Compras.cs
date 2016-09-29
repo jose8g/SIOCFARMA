@@ -32,12 +32,12 @@ namespace Entidad
             set { PrecioCan = value; }
         }
 
-        private double PreTotal;
+        private double Descuento;
 
-        public double PreTotal1
+        public double Descuento1
         {
-            get { return PreTotal; }
-            set { PreTotal = value; }
+            get { return Descuento; }
+            set { Descuento = value; }
         }
 
         private double Total;

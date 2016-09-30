@@ -2,7 +2,23 @@
 
     <br />
     <asp:TextBox ID="txtniombre" runat="server"></asp:TextBox>
-
-    <asp:DataGrid runat="server" ID="tableCompras">
-
-    </asp:DataGrid>
+    <asp:GridView runat="server" ID="dgvComprasList" CssClass="gridview bordered"  OnRowCommand="getItems"
+            AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
+        <Columns>
+                <asp:BoundField DataField="IdCompra"      HeaderText="Id" Visible="false"/>
+                <asp:BoundField DataField="NumCotizacion" HeaderText="N° Cotización" />
+                <asp:BoundField DataField="Cantidad"      HeaderText="Cantidad" />
+                <asp:BoundField DataField="PrecioCan"     HeaderText ="Precio" />
+                <asp:BoundField DataField="Descuento"     HeaderText="Descuento" />
+                <asp:BoundField DataField="Total"         HeaderText="Total" />
+                <asp:BoundField DataField="estado"        HeaderText="Estado" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnVerItems" runat="server" 
+                                    CommandName="verItems" 
+                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                    Text="Ver" />
+                    </ItemTemplate> 
+                </asp:TemplateField>
+            </Columns>
+    </asp:GridView>

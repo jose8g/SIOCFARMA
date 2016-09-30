@@ -12,7 +12,7 @@ namespace DAO
         {
             get
             {
-                return "data source=(local);initial catalog=BD_SIOCFARMA; integrated security=SSPI; ";
+                return "Data Source=USER\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
             }
         }
     }

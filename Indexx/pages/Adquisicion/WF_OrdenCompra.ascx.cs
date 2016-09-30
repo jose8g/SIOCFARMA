@@ -14,17 +14,32 @@ namespace Indexx.pages
         protected void Page_Load(object sender, EventArgs e)
         {
             //this.txtniombre = 
+            if (!Page.IsPostBack)
+            {
+                buildTableCompras();
+            }
+        }
 
+        protected void gvOrdenCompra_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvComprasList.PageIndex = e.NewPageIndex;
         }
 
         public void buildTableCompras() {
             DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
-            DataSet table = daoCompras.ConsultarCompras();
+            dgvComprasList.DataSource = daoCompras.ConsultarCompras();
+            dgvComprasList.DataBind();
             
         }
-        //DAO.Class1 docla = new DAO.Class1 
 
-        
+        public void getItems(Object sender , GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "verItems")
+            {
+                int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompra"].ToString());
+            }
+        }
+
         
     }
 }

@@ -15,7 +15,7 @@ namespace DAO
         private SqlDataAdapter mDa;
         private DataSet mDs;
         SqlConnection con = new SqlConnection(ConexionBD.CadenaConexion);
-        public DataSet ConsultarCompras()
+        public DataTable ConsultarCompras()
         {
             try
             {

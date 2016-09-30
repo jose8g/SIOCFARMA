@@ -17,7 +17,24 @@
                         <asp:Button ID="btnVerItems" runat="server" 
                                     CommandName="verItems" 
                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                    Text="Ver" />
+                                    Text="Ver"/>
+                    </ItemTemplate> 
+                </asp:TemplateField>
+            </Columns>
+    </asp:GridView>
+
+    <asp:GridView runat="server" ID="dgvProductosList" CssClass="gridview bordered"
+            AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
+        <Columns>
+                <asp:BoundField DataField="Nombre"      HeaderText="Cantidad" />
+                <asp:BoundField DataField="PrecioVenta"     HeaderText ="Precio" />
+                <asp:BoundField DataField="Estado"     HeaderText="Descuento" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnVerItems" runat="server" 
+                                    CommandName="verItems" 
+                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                    Text="Ver"/>
                     </ItemTemplate> 
                 </asp:TemplateField>
             </Columns>

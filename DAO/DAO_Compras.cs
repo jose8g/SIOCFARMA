@@ -33,6 +33,26 @@ namespace DAO
             }
 
         }
+
+        public DataTable GetProductosByCompra(int idCompra)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_listProductosByCompra", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdCompra", idCompra);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
     }
 }
 

@@ -36,7 +36,10 @@ namespace Indexx.pages
         {
             if (e.CommandName == "verItems")
             {
+                DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
                 int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompra"].ToString());
+                dgvProductosList.DataSource = daoCompras.GetProductosByCompra(2);
+                dgvProductosList.DataBind();
             }
         }
 

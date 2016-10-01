@@ -7,63 +7,54 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Indexx {
+namespace Indexx.pages.Ventas {
     
     
-    public partial class Formulario_web1 {
+    public partial class WF_GestionarOrdenPedido {
         
         /// <summary>
-        /// ScriptManager2 control.
+        /// gridGestionarPedidoPendiente control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager2;
+        protected global::System.Web.UI.WebControls.GridView gridGestionarPedidoPendiente;
         
         /// <summary>
-        /// WF_GestionarOrdenPedido control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_GestionarOrdenPedido WF_GestionarOrdenPedido;
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
-        /// WF_CrearOrdenPedido control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_CrearOrdenPedido WF_CrearOrdenPedido;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// WF_EditarOrdenPedido control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_EditarOrdenPedido WF_EditarOrdenPedido;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// WF_EliminarOrdenPedido control.
+        /// Button4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_EliminarOrdenPedido WF_EliminarOrdenPedido;
-        
-        /// <summary>
-        /// WF_ConsultarOrdenPedido control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_ConsultarOrdenPedido WF_ConsultarOrdenPedido;
+        protected global::System.Web.UI.WebControls.Button Button4;
     }
 }

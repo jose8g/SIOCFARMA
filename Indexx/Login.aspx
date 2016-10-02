@@ -78,14 +78,14 @@
                 <input type="password" class="form-control" placeholder="Contraseña" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="index.html">Crear</a>
+                <a class="btn btn-default submit" href="WF_JefeDeInventario">Iniciar Sesión</a>
               </div>
 
               <div class="clearfix"></div>
 
               <div class="separator">
                 <p class="change_link">¿Ya eres miembro?
-                  <a href="#signin" class="to_register"> Iniciar sesión </a>
+                  <a href="#signin" class="to_register"> Crear </a>
                 </p>
 
                 <div class="clearfix"></div>

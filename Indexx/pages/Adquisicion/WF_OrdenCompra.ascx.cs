@@ -12,9 +12,10 @@ namespace Indexx.pages
 {    
     public partial class WF_OrdenCompra  : System.Web.UI.UserControl 
     {
+        DAO.DAO_Compras daoCompras;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //this.txtniombre = 
+            daoCompras = new DAO.DAO_Compras();
             if (!Page.IsPostBack)
             {
                 buildTableCompras();
@@ -28,7 +29,6 @@ namespace Indexx.pages
         }
 
         public void buildTableCompras() {
-            DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
             dgvComprasList.DataSource = daoCompras.ConsultarCompras();
             dgvComprasList.DataBind();
             
@@ -40,10 +40,10 @@ namespace Indexx.pages
             {
                 if (e.CommandName == "verItems")
                 {
-                    DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
                     int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompras"].ToString());
                     dgvProductosList.DataSource = daoCompras.GetProductosByCompra(idCompra);
                     dgvProductosList.DataBind();
+                    dgvProductosList.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -54,11 +54,28 @@ namespace Indexx.pages
 
         public void buildListCotizacion()
         {
-            DAO.DAO_Compras daoCompras   = new DAO.DAO_Compras();
             ddlCotizacion.DataSource     = daoCompras.GetCotizacionesCreadas();
             ddlCotizacion.DataTextField  = "FechaRegistro";
             ddlCotizacion.DataValueField = "IdCotizacion";
             ddlCotizacion.DataBind();
         }
+        protected void itemSelected(object sender, EventArgs e)
+        {
+            int idCotizacion                = ddlCotizacion.SelectedIndex;
+            dgvProductCotizacion.DataSource = daoCompras.GetProductosByCotizacion(idCotizacion);
+            dgvProductCotizacion.DataBind();
+            contentCotizacionProd.Visible = true;
+            dgvProductosList.Visible = false;
+        }
+        protected void insertCompra(object sender, EventArgs e)
+        {
+            int idCotizacion                = ddlCotizacion.SelectedIndex;
+            dgvProductCotizacion.DataSource = daoCompras.InsertCompraByCotizacion(idCotizacion);
+            dgvProductCotizacion.DataBind();
+            contentCotizacionProd.Visible   = false;
+            dgvProductosList.Visible        = false;
+        }
+
     }
 }
+

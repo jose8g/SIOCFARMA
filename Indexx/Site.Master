@@ -77,15 +77,15 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-edit"></i> Adquisiones<span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#">Orden Comprax</a></li>
-                      <li><a href="#"> </a></li>
-                      <li><a href="#"> </a></li>
+                      <li><a class="opcion1">Orden Compra</a> </li>
+                      <li><a class="opcion2">Cotizacion</a></li>
+                      <li><a class="opcion3"> </a> </li>
                     </ul>
                   </li>
                    <li><a><i class="fa fa-file-excel-o"></i> Almacen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a class="opcion1"></a> </li>
-                      <li><a href="#"> </a></li>
+                      <li><a class="opcion4"> </a> </li>
+                      <li><a class="opcion5"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>

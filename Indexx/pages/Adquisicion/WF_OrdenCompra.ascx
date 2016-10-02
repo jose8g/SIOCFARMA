@@ -2,7 +2,7 @@
 
     <br />
     <br />
-        <asp:DropDownList ID="ddlCotizacion" Width="150px" runat="server">
+        <asp:DropDownList ID="ddlCotizacion" Width="150px" runat="server" AutoPostBack="True" onselectedindexchanged="itemSelected">
 
         </asp:DropDownList>
     <br />
@@ -45,10 +45,26 @@
     <br />
     <br />
     <asp:GridView runat="server" ID="dgvProductosList" CssClass="gridview bordered"
-            AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
+            AutoGenerateColumns="False">
         <Columns>
-                <asp:BoundField DataField="Nombre"      HeaderText="Cantidad" />
-                <asp:BoundField DataField="PrecioVenta"     HeaderText ="Precio" />
-                <asp:BoundField DataField="Estado"     HeaderText="Descuento" />
+                <asp:BoundField DataField="Nombre"      HeaderText = "Nombre"    />
+                <asp:BoundField DataField="PrecioVenta" HeaderText = "Precio"    />
+                <asp:BoundField DataField="Cantidad"    HeaderText = "Cantidad"  />
+                <asp:BoundField DataField="Estado"      HeaderText = "Descuento" />
             </Columns>
     </asp:GridView>
+    
+    <br />
+    <br />
+    <div ID="contentCotizacionProd" runat="server" visible="false">
+        <asp:GridView runat="server" ID="dgvProductCotizacion" CssClass="gridview bordered"
+                AutoGenerateColumns="False">
+            <Columns>
+                    <asp:BoundField DataField="NombreItem"  HeaderText = "Nombre"    />
+                    <asp:BoundField DataField="NombreTipo"  HeaderText = "Precio"    />
+                    <asp:BoundField DataField="PrecioVenta" HeaderText = "Cantidad"  />
+                    <asp:BoundField DataField="Cantidad"    HeaderText = "Descuento" />
+                </Columns>
+        </asp:GridView>
+        <asp:Button runat="server" Text="Agregar Compra" onclick="insertCompra"/>
+    </div>

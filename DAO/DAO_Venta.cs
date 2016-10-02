@@ -10,10 +10,13 @@ using Entidad;
 
 namespace DAO
 {
-    public class E_Venta
+    public class DAO_Venta
     {
+        private SqlCommand mCm;
+        private SqlDataAdapter mDa;
+        private DataSet mDs; 
         SqlConnection conexion;
-        public E_Venta()
+        public DAO_Venta()
         {
             conexion = new SqlConnection(ConexionBD.CadenaConexion);
         }
@@ -35,6 +38,24 @@ namespace DAO
             conexion.Open();
             comando.ExecuteNonQuery();
             conexion.Close();
+        }
+
+        public DataTable getItemsByNombre(string Nombre)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemByNombre", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }

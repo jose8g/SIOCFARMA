@@ -4,6 +4,7 @@
     .auto-style1 {
         width: 100%;
     }
+    .bordered {}
 </style>
 <body>
     <table class="auto-style1">
@@ -14,8 +15,31 @@
     </table>
     <br />
 
-    <asp:Button ID="Button1" runat="server" Text="Buscar Productos"/>
+    <asp:Button ID="Button1" runat="server" Text="Buscar Productos" OnClick="getItemsByNombre"/>
     <br />
+
+    <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered" 
+            AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
+            DataKeyNames="IdItem,Nombre"
+            OnRowCommand="gvItems_RowComand"
+            AllowPaging="True" PageSize="8" Height="161px" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" >
+            <Columns>
+                <asp:BoundField DataField="IdItem" HeaderText="IdItem" Visible="false" />
+                <asp:BoundField DataField="Nombre"     HeaderText="Titulo" />
+                <asp:TemplateField HeaderText="AgregarProducto">
+                    <ItemTemplate>
+                        <asp:Button ID="btnAgregarProducto" runat="server" 
+                                    CommandName="agregarItems" 
+                                    formnovalidate=""
+                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                    Text="Agregar"/>
+                    </ItemTemplate> 
+                </asp:TemplateField>
+            </Columns>
+                <EditRowStyle BorderColor="Black" BorderStyle="Solid" Font-Size="Larger" HorizontalAlign="Center" VerticalAlign="Middle" />
+                <HeaderStyle BorderColor="Black" BorderStyle="Solid" ForeColor="Black" HorizontalAlign="Center" />
+                <SortedDescendingCellStyle BorderColor="blue" BorderStyle="Solid" ForeColor="blue"  HorizontalAlign="Center" VerticalAlign="Middle"/>
+    </asp:GridView>
 
     &nbsp;<table class="auto-style1">
         <tr>

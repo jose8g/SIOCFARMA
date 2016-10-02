@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
+using System.Collections;
 
 namespace Indexx.pages
 {    
@@ -17,6 +18,7 @@ namespace Indexx.pages
             if (!Page.IsPostBack)
             {
                 buildTableCompras();
+                buildListCotizacion();
             }
         }
 
@@ -50,6 +52,13 @@ namespace Indexx.pages
             }
         }
 
-        
+        public void buildListCotizacion()
+        {
+            DAO.DAO_Compras daoCompras   = new DAO.DAO_Compras();
+            ddlCotizacion.DataSource     = daoCompras.GetCotizacionesCreadas();
+            ddlCotizacion.DataTextField  = "FechaRegistro";
+            ddlCotizacion.DataValueField = "IdCotizacion";
+            ddlCotizacion.DataBind();
+        }
     }
 }

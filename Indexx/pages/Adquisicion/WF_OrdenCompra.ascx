@@ -1,6 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_OrdenCompra.ascx.cs" Inherits="Indexx.pages.WF_OrdenCompra" %>
 
     <br />
+    <br />
+        <asp:DropDownList ID="ddlCotizacion" Width="150px" runat="server">
+
+        </asp:DropDownList>
+    <br />
 <!-- <div class="right_col" role="main">
     <div class="row">
         <div class="col-sm-12">

@@ -13,6 +13,15 @@ namespace Indexx.pages {
     public partial class WF_OrdenCompra {
         
         /// <summary>
+        /// ddlCotizacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCotizacion;
+        
+        /// <summary>
         /// dgvComprasList control.
         /// </summary>
         /// <remarks>

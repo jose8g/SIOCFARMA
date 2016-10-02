@@ -56,7 +56,6 @@ namespace DAO
 
         public DataTable GetCotizacionesCreadas()
         {
-            ArrayList list = new ArrayList();
             mDa = new SqlDataAdapter("sp_listGetCotizacionesCreadas", con);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
@@ -64,6 +63,24 @@ namespace DAO
             return mDs.Tables[0];
         }
 
+        public DataTable GetProductosByCotizacion(int idCotizacion)
+        {
+            mDa = new SqlDataAdapter("sp_listProductosByCotizacion", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCotizacion", idCotizacion);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable InsertCompraByCotizacion(int idCotizacion){
+            mDa = new SqlDataAdapter("sp_insertCompraByCotizacion", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCotizacion", idCotizacion);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
     }
 }
 

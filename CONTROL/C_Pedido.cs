@@ -11,14 +11,14 @@ namespace CONTROL
 {
     public class C_Pedido
     {
-        D_Pedido objD_Ped;
+        DAO_Pedido objD_Ped;
 
         public C_Pedido()
         {
-            objD_Ped = new D_Pedido();
+            objD_Ped = new DAO_Pedido();
         }
 
-        public DataTable ListarPedidos()
+        /*public DataTable ListarPedidos()
         {
             try
             {
@@ -28,6 +28,6 @@ namespace CONTROL
             {
                 throw ex;
             }
-        }
+        }*/
     }
 }

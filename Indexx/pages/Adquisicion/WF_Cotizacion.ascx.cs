@@ -19,7 +19,7 @@ namespace Indexx.pages.Adquisicion
         {
             if (!Page.IsPostBack)
             {
-                CargarPedidos();
+                //CargarPedidos();
             }
         }
 
@@ -43,11 +43,11 @@ namespace Indexx.pages.Adquisicion
             }
         }
 
-        private void CargarPedidos()
+        /*private void CargarPedidos()
         {
-            DAO.D_Pedido objD_Ped = new D_Pedido();
+            DAO.DAO_Pedido objD_Ped = new DAO_Pedido();
             dgvPedido.DataSource = objD_Ped.ListarPedidos();
             dgvPedido.DataBind();
-        }
+        }*/
     }
 }

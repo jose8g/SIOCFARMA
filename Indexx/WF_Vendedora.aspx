@@ -1,23 +1,24 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WF_Vendedora.aspx.cs" Inherits="Indexx.Formulario_web1" %>
+<%@ Register Src="~/pages/Ventas/WF_Ventas.ascx" TagPrefix="uc1" TagName="WF_Ventas" %>
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
-       <form runat="server">
-       <asp:ScriptManager ID="ScriptManager2" runat="server">
-                                </asp:ScriptManager>
-</form>
-    <script type="text/javascript">
-        jQuery(document).ready(function () {
-            jQuery(".opcion8").text("Orden de Pedidos");
+    <form runat="server">
+    <asp:ScriptManager ID="ScriptManager2" runat="server">
+    </asp:ScriptManager> 
 
-            jQuery(".opcion8").click(function () {
-                jQuery("#ContentOrdenPedidos").fadeIn('slow');
-            })
-        });
+    
+     <script type="text/javascript" >
+         jQuery(document).ready(function () {
+             jQuery(".opcion5").text("Gestionar Venta");
 
-</script>
+             jQuery(".opcion5").click(function () {
+                 jQuery("#ContentGestionarVenta").fadeIn('slow');
+             });
+         });
+	</script>
 
-<div id="ContentOrdenPedido" style="display:;">
-    <uc1:WF_OrdenPedido runat="server" id="WF_OrdenPedido" />
-</div>
-
-    </asp:Content>
+    <div id="ContentGestionarVenta" style="display: block;">
+        <uc1:WF_Ventas runat="server" ID="WF_Ventas" />
+    </div>
+    </form>
+</asp:Content>

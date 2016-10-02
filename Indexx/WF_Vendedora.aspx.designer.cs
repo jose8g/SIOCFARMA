@@ -22,12 +22,21 @@ namespace Indexx {
         protected global::System.Web.UI.ScriptManager ScriptManager2;
         
         /// <summary>
-        /// Control WF_OrdenPedido.
+        /// Control WF_Ventas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
- 
+        protected global::Indexx.pages.Ventas.WF_Ventas WF_Ventas;
+        
+        /// <summary>
+        /// Control WF_Pedidos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Indexx.pages.Ventas.WF_Pedidos WF_Pedidos;
     }
 }

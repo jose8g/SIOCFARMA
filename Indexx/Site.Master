@@ -94,7 +94,7 @@
                         </li>
                   <li><a><i class="fa fa-file-excel-o"></i> Estadisticos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"></a></li>
+                      <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -107,11 +107,11 @@
                   </li>
                     <li><a><i class="fa fa-file-excel-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a Class="Opcion8">Orden de Pedidos</a></li>
-                      <li><a Class="Opcion9"></a></li>
-                      <li><a Class="Opcion10"> </a></li>
-                      <li><a Class="Opcion11"> </a></li>
-                      <li><a Class="Opcion12"> </a></li>
+                      <li><a Class="Opcion5"> </a></li>
+                      <li><a href="#"></a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
+                      <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -278,16 +278,6 @@
               </div>
 			  
               <div class="row">
-
-                <!-- Start to do list -->
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  
-				  <div class="x_panel">
-                  </div>
-				  
-                </div>
-                <!-- End to do list -->
-
                   <!-- contenido de la clase Wrapper -->
             <div class="content-wrapper">
                 <!-- Contenido de la pagina -->

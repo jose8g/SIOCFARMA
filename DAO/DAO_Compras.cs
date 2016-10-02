@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entidad;
 using System.Data;
 using System.Data.SqlClient;
+using System.Collections;
 
 namespace DAO
 {
@@ -51,6 +52,16 @@ namespace DAO
 
             }
 
+        }
+
+        public DataTable GetCotizacionesCreadas()
+        {
+            ArrayList list = new ArrayList();
+            mDa = new SqlDataAdapter("sp_listGetCotizacionesCreadas", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
         }
 
     }

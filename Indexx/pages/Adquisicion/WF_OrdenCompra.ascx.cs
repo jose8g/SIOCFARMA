@@ -32,7 +32,7 @@ namespace Indexx.pages
             
         }
 
-        public void getItems(Object sender , GridViewCommandEventArgs e)
+        public void getItems(object sender , GridViewCommandEventArgs e)
         {
             if (e.CommandName == "verItems")
             {

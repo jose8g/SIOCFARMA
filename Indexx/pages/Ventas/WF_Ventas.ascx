@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_Ventas.ascx.cs" Inherits="Indexx.pages.Ventas.WF_Ventas" %>
-<!DOCTYPE html>
+
 <style type="text/css">
     .auto-style1 {
         width: 100%;

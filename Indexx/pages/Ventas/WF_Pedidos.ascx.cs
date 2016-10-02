@@ -11,7 +11,23 @@ namespace Indexx.pages.Ventas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            mostrarPendientes();
         }
+
+
+        protected void mostrarPendientes()
+        {
+            DAO.DAO_Pedido obj = new DAO.DAO_Pedido();
+
+            gridMostrarPendientes.DataSource=obj.ConsultarPedidosPendientes();
+            gridMostrarPendientes.DataBind();
+            
+        }
+
+        protected void btnRefrescar_Click(object sender, EventArgs e)
+        {
+            mostrarPendientes();
+        }
+
     }
 }

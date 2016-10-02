@@ -18,7 +18,6 @@ namespace Indexx.pages.Ventas
         protected void mostrarPendientes()
         {
             DAO.DAO_Pedido obj = new DAO.DAO_Pedido();
-
             gridMostrarPendientes.DataSource=obj.ConsultarPedidosPendientes();
             gridMostrarPendientes.DataBind();
             
@@ -28,6 +27,31 @@ namespace Indexx.pages.Ventas
         {
             mostrarPendientes();
         }
+
+
+
+
+
+        protected void gvItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvItems.PageIndex = e.NewPageIndex;
+        }
+
+
+        protected void gvItems_RowComand(object sender, GridViewCommandEventArgs e)
+        {
+
+        }
+
+        protected void btnNombre_Click(object sender, EventArgs e)
+        {
+            DAO.DAO_Item obj = new DAO.DAO_Item();
+            dgvItems.DataSource = obj.getItemsByNombre(txtNombre.Value);
+            dgvItems.DataBind();
+        }
+
+
+
 
     }
 }

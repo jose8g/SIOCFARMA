@@ -9,9 +9,9 @@
     
      <script type="text/javascript" >
          jQuery(document).ready(function () {
-             jQuery(".opcion5").text("Gestionar Venta");
+             jQuery(".Opcion5").text("Gestionar Venta");
 
-             jQuery(".opcion5").click(function () {
+             jQuery(".Opcion5").click(function () {
                  jQuery("#ContentGestionarVenta").fadeIn('slow');
              });
          });

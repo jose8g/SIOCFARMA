@@ -19,7 +19,7 @@ namespace Indexx.pages.Ventas
 
         protected void registrar_Click(object sender, EventArgs e)
         {
-            obj.registrar_venta(Text1.Value, DateTime.Now.ToString("MM/dd/yyyy"), Text3.Value, Text4.Value, Text5.Value, Text6.Value);
+            obj.registrar_venta(Text1.Value, DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), Text3.Value, Text4.Value, Text5.Value, Text6.Value);
         }
     }
 }

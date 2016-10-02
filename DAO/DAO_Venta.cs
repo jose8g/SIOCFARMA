@@ -14,7 +14,7 @@ namespace DAO
     {
         private SqlCommand mCm;
         private SqlDataAdapter mDa;
-        private DataSet mDs; 
+        private DataSet mDs;
         SqlConnection conexion;
         public DAO_Venta()
         {

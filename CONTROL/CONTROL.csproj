@@ -40,8 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="C_Pedido.cs" />
     <Compile Include="C_Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DAO\DAO.csproj">
+      <Project>{c01fd64f-800c-4ff8-aa40-719d349852a1}</Project>
+      <Name>DAO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entidad\Entidad.csproj">
+      <Project>{49a687ec-950c-435b-8f77-e14b06c572bf}</Project>
+      <Name>Entidad</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

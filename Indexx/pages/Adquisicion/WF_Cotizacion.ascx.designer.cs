@@ -7,27 +7,18 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Indexx {
+namespace Indexx.pages.Adquisicion {
     
     
-    public partial class Formulario_web1 {
+    public partial class WF_Cotizacion {
         
         /// <summary>
-        /// Control ScriptManager2.
+        /// Control dgvPedido.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager2;
-        
-        /// <summary>
-        /// Control WF_OrdenPedido.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
- 
+        protected global::System.Web.UI.WebControls.GridView dgvPedido;
     }
 }

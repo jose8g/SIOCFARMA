@@ -94,7 +94,7 @@
                         </li>
                   <li><a><i class="fa fa-file-excel-o"></i> Estadisticos <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="#"> </a></li>
+                      <li><a href="#"></a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -107,7 +107,7 @@
                   </li>
                     <li><a><i class="fa fa-file-excel-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a Class="Opcion8"> </a></li>
+                      <li><a Class="Opcion8">Orden de Pedidos</a></li>
                       <li><a Class="Opcion9"></a></li>
                       <li><a Class="Opcion10"> </a></li>
                       <li><a Class="Opcion11"> </a></li>

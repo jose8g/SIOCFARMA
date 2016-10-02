@@ -32,14 +32,21 @@ namespace Indexx.pages
             
         }
 
-        public void getItems(object sender , GridViewCommandEventArgs e)
+        protected void getItems(object sender , GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "verItems")
+            try
             {
-                DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
-                int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompra"].ToString());
-                dgvProductosList.DataSource = daoCompras.GetProductosByCompra(2);
-                dgvProductosList.DataBind();
+                if (e.CommandName == "verItems")
+                {
+                    DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
+                    int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompras"].ToString());
+                    dgvProductosList.DataSource = daoCompras.GetProductosByCompra(idCompra);
+                    dgvProductosList.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
         }
 

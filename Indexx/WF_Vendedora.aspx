@@ -1,15 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WF_Vendedora.aspx.cs" Inherits="Indexx.Formulario_web1" %>
 
-<%@ Register Src="~/pages/Ventas/WF_GestionarOrdenPedido.ascx" TagPrefix="uc1" TagName="WF_GestionarOrdenPedido" %>
-<%@ Register Src="~/pages/Ventas/WF_CrearOrdenPedido.ascx" TagPrefix="uc2" TagName="WF_CrearOrdenPedido" %>
-<%@ Register Src="~/pages/Ventas/WF_EditarOrdenPedido.ascx" TagPrefix="uc3" TagName="WF_EditarOrdenPedido" %>
-<%@ Register Src="~/pages/Ventas/WF_EliminarOrdenPedido.ascx" TagPrefix="uc4" TagName="WF_EliminarOrdenPedido" %>
-<%@ Register Src="~/pages/Ventas/WF_ConsultarOrdenPedido.ascx" TagPrefix="uc5" TagName="WF_ConsultarOrdenPedido" %>
-
-
-
-
-
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
        <form runat="server">
        <asp:ScriptManager ID="ScriptManager2" runat="server">

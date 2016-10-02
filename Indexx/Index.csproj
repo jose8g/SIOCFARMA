@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -166,6 +167,7 @@
     <Content Include="documentation\js\shCore.js" />
     <Content Include="images\cotizar.png" />
     <Content Include="pages\Adquisicion\WF_Cotizacion.ascx" />
+    <Content Include="pages\Adquisicion\WF_GestionarProducto.ascx" />
     <Content Include="pages\Adquisicion\WF_OrdenCompra.ascx" />
     <Content Include="pages\Ventas\WF_Pedidos.ascx" />
     <Content Include="pages\Ventas\WF_Ventas.ascx" />
@@ -173,6 +175,7 @@
     <Content Include="WF_Cliente.aspx" />
     <Content Include="WF_JefeDeInventario.aspx" />
     <Content Include="WF_Administrador.aspx" />
+    <Content Include="WF_JefeDeLogistica.aspx" />
     <Content Include="WF_Vendedora.aspx" />
     <Content Include="gulpfile.js" />
     <Content Include="images\6.jpg" />
@@ -3764,6 +3767,13 @@
     <Compile Include="pages\Adquisicion\WF_Cotizacion.ascx.designer.cs">
       <DependentUpon>WF_Cotizacion.ascx</DependentUpon>
     </Compile>
+    <Compile Include="pages\Adquisicion\WF_GestionarProducto.ascx.cs">
+      <DependentUpon>WF_GestionarProducto.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_GestionarProducto.ascx.designer.cs">
+      <DependentUpon>WF_GestionarProducto.ascx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Adquisicion\WF_OrdenCompra.ascx.cs">
       <DependentUpon>WF_OrdenCompra.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3812,6 +3822,13 @@
     </Compile>
     <Compile Include="WF_Administrador.aspx.designer.cs">
       <DependentUpon>WF_Administrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WF_JefeDeLogistica.aspx.cs">
+      <DependentUpon>WF_JefeDeLogistica.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WF_JefeDeLogistica.aspx.designer.cs">
+      <DependentUpon>WF_JefeDeLogistica.aspx</DependentUpon>
     </Compile>
     <Compile Include="WF_Vendedora.aspx.cs">
       <DependentUpon>WF_Vendedora.aspx</DependentUpon>

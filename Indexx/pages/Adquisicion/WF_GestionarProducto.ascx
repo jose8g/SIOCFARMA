@@ -3,8 +3,6 @@
 
 <body>
     <div>
-        
-        
         <asp:Label ID="Label2" runat="server" Text="Nombre_Item"></asp:Label>
         <br />
          <input runat="server" type="text" id="Nombre"/>
@@ -13,23 +11,20 @@
         <br /> 
         <input runat="server" type="text" id="PrecioVenta"/>
         <br />
-        <asp:Label runat="server" ID="Label4" Text="Estado" AssociatedControlID="es"></asp:Label><br /><br />
-        <asp:DropDownList runat="server" ID="DropDownList2">
+        <asp:Label runat="server" ID="Label4" Text="Estado" AssociatedControlID="ddlEstado"></asp:Label><br /><br />
+        <asp:DropDownList runat="server" ID="ddlEstado">
             <asp:ListItem>0</asp:ListItem>
             <asp:ListItem>1</asp:ListItem>
         </asp:DropDownList>
-        <br /><br />
-        <asp:Label runat="server" ID="lbl1" Text="Tipo_Item" AssociatedControlID="esT"></asp:Label><br /><br />
-        <asp:DropDownList runat="server" ID="DropDownList"></asp:DropDownList>
         <br />
-        
-        
+        <asp:Label runat="server" ID="lbl1" Text="Tipo_Item" AssociatedControlID="ddlTipo"></asp:Label><br /><br />
+        <asp:DropDownList runat="server" ID="ddlTipo"></asp:DropDownList>
         <br />
-        <asp:Label runat="server" ID="Label5" Text="Marca_Item" AssociatedControlID="esM"></asp:Label><br /><br />
-        <asp:DropDownList runat="server" ID="DropDownList1"></asp:DropDownList>
+        <asp:Label runat="server" ID="Label5" Text="Marca_Item" AssociatedControlID="ddlMarca"></asp:Label><br /><br />
+        <asp:DropDownList runat="server" ID="ddlMarca"></asp:DropDownList>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button runat="server" class="button btn-danger"  type="submit" OnServerClick="ser_OnServerClick" >Añadir Marca</button>
         <br />
-        <br />
-        <button runat="server" class="button btn-danger"  type="submit" id="ser" OnServerClick="ser_OnServerClick" >Registrar</button>
-       
+        <button runat="server" class="button btn-danger"  type="submit" OnServerClick="serM_OnServerClick" >Añadir producto</button>
     </div>
 </body>

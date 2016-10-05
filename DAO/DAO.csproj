@@ -42,6 +42,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="ConexionBD.cs" />
     <Compile Include="DAO_Compras.cs" />
+    <Compile Include="DAO_Marca.cs" />
     <Compile Include="DAO_Item.cs" />
     <Compile Include="DAO_Pedido.cs" />
     <Compile Include="DAO_Venta.cs" />

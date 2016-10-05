@@ -17,44 +17,44 @@ namespace Indexx.pages.Adquision
         protected void Page_Load(object sender, EventArgs e)
         {
             obj = new DAO_Item();
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
-                cargarEstado1();
-                cargarEstado2();
+                buildListMarcas();
+                buildListTipo();
+
             }
+
+        }
+
+        protected void serM_OnServerClick(object sender, EventArgs e)
+        {
+            obj.insertarItem(this.Nombre.Value, this.PrecioVenta.Value,this.ddlEstado.SelectedValue, this.ddlTipo.SelectedValue, this.ddlMarca.SelectedValue);
+      
 
         }
 
         protected void ser_OnServerClick(object sender, EventArgs e)
         {
-            obj.insertarItem(this.Nombre.Value, this.PrecioVenta.Value,this.DropDownList2.SelectedValue, this.DropDownList.SelectedValue, this.DropDownList1.SelectedValue);
-      
+            
+
 
         }
+       
 
-        public void cargarEstado1()
+        public void buildListMarcas()
         {
-            //DropDownList.DataSource = //METODOD_Tipo_Item.;
-            DropDownList.DataTextField = "Nombre";
-            DropDownList.DataValueField = "IdTipo";
-            DropDownList.DataBind();
+            ddlMarca.DataSource = obj.getMarcasCreadas();
+            ddlMarca.DataTextField = "Nombre";
+            ddlMarca.DataValueField = "IdMarca";
+            ddlMarca.DataBind();
         }
 
-        public void cargarEstado2()
+        public void buildListTipo()
         {
-            //DropDownList1.DataSource = //METODOD_Marca_Item.;
-            DropDownList.DataTextField = "Nombre";
-            DropDownList.DataValueField = "IdMarca";
-            DropDownList.DataBind();
-        }
-
-        private void cargarTodo()
-        {
-            Label2.Text = objI.Nombre;
-            Label3.Text = objI.PrecioVenta.ToString();
-            Label4.Text = objI.Estado.ToString();
-            lbl1.Text = objI.IdTipo.ToString();
-            Label5.Text = objI.IdMarca.ToString();
+            ddlTipo.DataSource = obj.getTipoItemCreadas();
+            ddlTipo.DataTextField = "Nombre";
+            ddlTipo.DataValueField = "IdTipo";
+            ddlTipo.DataBind();
         }
     }
 }

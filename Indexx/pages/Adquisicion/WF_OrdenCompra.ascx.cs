@@ -9,8 +9,8 @@ using DAO;
 using System.Collections;
 
 namespace Indexx.pages
-{    
-    public partial class WF_OrdenCompra  : System.Web.UI.UserControl 
+{
+    public partial class WF_OrdenCompra  : System.Web.UI.UserControl
     {
         DAO.DAO_Compras daoCompras;
         protected void Page_Load(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace Indexx.pages
         public void buildTableCompras() {
             dgvComprasList.DataSource = daoCompras.ConsultarCompras();
             dgvComprasList.DataBind();
-            
+
         }
 
         protected void getItems(object sender , GridViewCommandEventArgs e)

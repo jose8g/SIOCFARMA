@@ -29,5 +29,14 @@ namespace Indexx {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Indexx.pages.Adquision.WF_GestionarProducto WF_GestionarProducto1;
+        
+        /// <summary>
+        /// WF_GestionarMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Indexx.pages.Adquisicion.WF_GestionarMarca WF_GestionarMarca;
     }
 }

@@ -58,10 +58,11 @@ namespace Indexx.pages
             ddlCotizacion.DataTextField  = "FechaRegistro";
             ddlCotizacion.DataValueField = "IdCotizacion";
             ddlCotizacion.DataBind();
+            ddlCotizacion.Items.Insert(0, new ListItem("Selec. Cotizacion", ""));
         }
         protected void itemSelected(object sender, EventArgs e)
         {
-            int idCotizacion                = ddlCotizacion.SelectedIndex;
+            int idCotizacion                = Convert.ToInt32(ddlCotizacion.SelectedValue);
             dgvProductCotizacion.DataSource = daoCompras.GetProductosByCotizacion(idCotizacion);
             dgvProductCotizacion.DataBind();
             contentCotizacionProd.Visible = true;
@@ -69,11 +70,11 @@ namespace Indexx.pages
         }
         protected void insertCompra(object sender, EventArgs e)
         {
-            int idCotizacion                = ddlCotizacion.SelectedIndex;
-            dgvProductCotizacion.DataSource = daoCompras.InsertCompraByCotizacion(idCotizacion);
-            dgvProductCotizacion.DataBind();
-            contentCotizacionProd.Visible   = false;
-            dgvProductosList.Visible        = false;
+            int idCotizacion              = Convert.ToInt32(ddlCotizacion.SelectedValue);
+            dgvComprasList.DataSource     = daoCompras.InsertCompraByCotizacion(idCotizacion);
+            dgvComprasList.DataBind();
+            contentCotizacionProd.Visible = false;
+            dgvProductosList.Visible      = false;
         }
 
     }

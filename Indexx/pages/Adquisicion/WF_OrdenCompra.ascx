@@ -3,7 +3,7 @@
     <br />
     <br />
         <asp:DropDownList ID="ddlCotizacion" Width="150px" runat="server" AutoPostBack="True" onselectedindexchanged="itemSelected">
-
+            <asp:ListItem>Selec. Cotizacion</asp:ListItem>
         </asp:DropDownList>
     <br />
 <!-- <div class="right_col" role="main">

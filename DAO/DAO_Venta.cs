@@ -55,7 +55,36 @@ namespace DAO
             {
                 throw ex;
             }
+        }
 
+        public void addArrayVenta(string idItem)
+        {
+        }
+
+        public DataTable GetMarcasCreadas()
+        {
+            mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getItemsByMarca(int IdMarca)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemByMarca", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdMarca", IdMarca);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

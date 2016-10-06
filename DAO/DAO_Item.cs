@@ -62,5 +62,29 @@ namespace DAO
             }
 
         }
+
+        public DataTable getMarcasCreadas()
+        {
+            
+                mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            
+
+        }
+
+        public DataTable getTipoItemCreadas()
+        {
+
+            mDa = new SqlDataAdapter("sp_getTipoItem", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
     }
 }

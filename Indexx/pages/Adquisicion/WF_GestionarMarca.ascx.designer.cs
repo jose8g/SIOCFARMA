@@ -7,36 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Indexx {
+namespace Indexx.pages.Adquisicion {
     
     
-    public partial class Formulario_web15 {
+    public partial class WF_GestionarMarca {
         
         /// <summary>
-        /// ScriptManager2 control.
+        /// lbl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager2;
+        protected global::System.Web.UI.WebControls.Label lbl1;
         
         /// <summary>
-        /// WF_GestionarProducto1 control.
+        /// ddlMarca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Adquision.WF_GestionarProducto WF_GestionarProducto1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
         
         /// <summary>
-        /// WF_GestionarMarca control.
+        /// gvDetalleMarca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Adquisicion.WF_GestionarMarca WF_GestionarMarca;
+        protected global::System.Web.UI.WebControls.GridView gvDetalleMarca;
+        
+        /// <summary>
+        /// btnAgregarMarca control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarMarca;
     }
 }

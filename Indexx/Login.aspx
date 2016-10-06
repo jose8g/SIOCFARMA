@@ -41,7 +41,7 @@
                 <input type="password" class="form-control" placeholder="Contraseña" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="WF_Vendedora.aspx">Iniciar sesión</a>
+                <a class="btn btn-default submit" href="WF_JefeDeLogistica.aspx">Iniciar sesión</a>
                 <a class="reset_pass" href="#">¿Olvidaste tu contraseña?</a>
               </div>
 

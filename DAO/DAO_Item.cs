@@ -60,7 +60,22 @@ namespace DAO
             {
                 throw ex;
             }
-
+        }
+        public DataTable ConsultarItemcreado(string Nombre)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("SP_Consultaritemxnombre", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataTable getMarcasCreadas()
@@ -79,6 +94,18 @@ namespace DAO
         {
 
             mDa = new SqlDataAdapter("sp_getTipoItem", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
+
+        public DataTable getComposicionCreadas()
+        {
+
+            mDa = new SqlDataAdapter("sp_getComposicion", conexion);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);

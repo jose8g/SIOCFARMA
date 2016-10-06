@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="ConexionBD.cs" />
+    <Compile Include="DAO_Composicion.cs" />
+    <Compile Include="DAO_ComposicionxItem.cs" />
     <Compile Include="DAO_Compras.cs" />
     <Compile Include="DAO_Marca.cs" />
     <Compile Include="DAO_Item.cs" />

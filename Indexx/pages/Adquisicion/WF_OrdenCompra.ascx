@@ -1,11 +1,46 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_OrdenCompra.ascx.cs" Inherits="Indexx.pages.WF_OrdenCompra" %>
 
-    <br />
-    <br />
-        <asp:DropDownList ID="ddlCotizacion" Width="150px" runat="server" AutoPostBack="True" onselectedindexchanged="itemSelected">
-            <asp:ListItem>Selec. Cotizacion</asp:ListItem>
-        </asp:DropDownList>
-    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Busqueda </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Fecha</label>
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control"></asp:TextBox>
+                            <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Generar Compra </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <label>Cotizaciones Generadas</label>
+                    <asp:DropDownList ID="ddlCotizacion"  CssClass="ddl" runat="server" AutoPostBack="True" onselectedindexchanged="itemSelected">
+                        <asp:ListItem>Selec. Cotizacion</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
@@ -15,39 +50,30 @@
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="close-link"><i class="fa fa-close"></i></a>
-                        </li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView runat="server" ID="dgvComprasList" CssClass="gridview bordered"  OnRowCommand="getItems"
+                    <asp:GridView runat="server" ID="dgvComprasList" CssClass="gridview bordered table"  OnRowCommand="getItems"
                         DataKeyNames="IdCompras,NumCotizacion,Cantidad,PrecioCan,Descuento,Total,estado"
                             AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
                         <Columns>
                                 <asp:BoundField DataField="IdCompras"      HeaderText="Id" Visible="false"/>
-                                <asp:BoundField DataField="NumCotizacion" HeaderText="N° Cotización" />
-                                <asp:BoundField DataField="Cantidad"      HeaderText="Cantidad" />
-                                <asp:BoundField DataField="PrecioCan"     HeaderText ="Precio" />
+                                <asp:BoundField DataField="NumCotizacion" HeaderText="N°"        />
+                                <asp:BoundField DataField="Cantidad"      HeaderText="Cantidad"  />
+                                <asp:BoundField DataField="PrecioCan"     HeaderText ="Precio"   />
                                 <asp:BoundField DataField="Descuento"     HeaderText="Descuento" />
-                                <asp:BoundField DataField="Total"         HeaderText="Total" />
-                                <asp:BoundField DataField="estado"        HeaderText="Estado" />
+                                <asp:BoundField DataField="Total"         HeaderText="Total"     />
+                                <asp:BoundField DataField="estado"        HeaderText="Estado"    />
                                 <asp:TemplateField>
                                     <ItemTemplate>
-                                        <asp:Button ID="btnVerItems" runat="server" 
-                                                    CommandName="verItems" 
-                                                    formnovalidate=""
-                                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                                    Text="Ver"/>
+                                        <div class="text-center">
+                                            <asp:Button ID="btnVerItems" runat="server" 
+                                                        CommandName="verItems" CssClass="btn btn-info btn-xs"
+                                                        formnovalidate=""
+                                                        CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                        Text="Ver Items"/>
+                                        </div>
                                     </ItemTemplate> 
                                 </asp:TemplateField>
                             </Columns>
@@ -61,10 +87,15 @@
         <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Productos Compra<small>Prod.</small></h2>
+                    <h2>Productos Compra </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView runat="server" ID="dgvProductosList" CssClass="gridview bordered"
+                    <asp:GridView runat="server" ID="dgvProductosList" CssClass="gridview bordered table"
                             AutoGenerateColumns="False">
                         <Columns>
                                 <asp:BoundField DataField="Nombre"      HeaderText = "Nombre"    />
@@ -82,11 +113,16 @@
         <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Productos Cotización</h2>
+                    <h2>Productos Cotización </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div ID="contentCotizacionProd" runat="server" visible="false">
-                        <asp:GridView runat="server" ID="dgvProductCotizacion" CssClass="gridview bordered"
+                        <asp:GridView runat="server" ID="dgvProductCotizacion" CssClass="gridview bordered table"
                                 AutoGenerateColumns="False">
                             <Columns>
                                     <asp:BoundField DataField="NombreItem"  HeaderText = "Nombre"    />

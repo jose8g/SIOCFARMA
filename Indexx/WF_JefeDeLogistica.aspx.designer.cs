@@ -37,6 +37,6 @@ namespace Indexx {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Adquisicion.WF_GestionarMarca WF_GestionarMarca;
+        //protected global::Indexx.pages.Adquisicion.WF_GestionarMarca WF_GestionarMarca;
     }
 }

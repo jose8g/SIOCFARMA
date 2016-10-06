@@ -143,6 +143,7 @@
     <Content Include="build\css\custom.min.css" />
     <Content Include="build\js\custom.js" />
     <Content Include="build\js\custom.min.js" />
+    <Content Include="css\bootstrap-select.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\magnific-popup.css" />
     <Content Include="css\style.css" />
@@ -166,6 +167,7 @@
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
     <Content Include="images\cotizar.png" />
+    <Content Include="js\bootstrap-select.js" />
     <Content Include="pages\Adquisicion\WF_Cotizacion.ascx" />
     <Content Include="pages\Adquisicion\WF_GestionarProducto.ascx" />
     <Content Include="pages\Adquisicion\WF_OrdenCompra.ascx" />

@@ -26,9 +26,27 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <!-- Bootstrap Select-->
+    <link href="../css/bootstrap-select.css" rel="stylesheet">
 
+      
+    <style type="text/css">
+        .ddl
+        {
+            border:2px solid #07007F;
+            border-radius:5px;
+            padding:3px;
+            -webkit-appearance: none; 
+            background-image:url('Images/Arrowhead-Down-01.png');
+            background-position:88px;
+            background-repeat:no-repeat;
+            text-indent: 0.01px;
+            width:50%;
+        }
+    </style>
       <script src="js/jquery.min.js"></script>
       <script src="js/webflow.js"></script>
+      <script src="js/bootstrap-select.js"></script>
 
     <script type="text/javascript">
         jQuery(document).ready(function () {

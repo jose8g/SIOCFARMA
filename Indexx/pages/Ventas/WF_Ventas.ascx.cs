@@ -45,19 +45,17 @@ namespace Indexx.pages.Ventas
                 if (e.CommandName == "agregarItems")
                 {
                     int idItem = Convert.ToInt32(dgvItems.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
-                    /*obj.addArrayVenta(idItem.ToString());
-                    
-                    Text8.Value = idItem.ToString();
-                    dgvItems.Visible = true;*/
 
-                    List<string> carrito = (List<string>)Session["venta"];
-                    carrito.Add(idItem.ToString());
-                    
-                    DataTable table = ConvertListToDataTable(carrito);
-                    dgvCarrito.DataSource = table;
-                    dgvCarrito.DataBind();
-                    dgvCarrito.Visible = true;
-                    Session["venta"] = carrito;
+                    if (Session["venta"] == null)
+                    {
+                        int idVenta = obj.registrar_venta();
+                        obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
+                        Session["venta"] = idVenta;
+                    }
+                    else
+                    {
+                        obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());
+                    }
                 }
             }
             catch (Exception ex)
@@ -107,36 +105,6 @@ namespace Indexx.pages.Ventas
             {
                 Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
-        }
-
-        static DataTable ConvertListToDataTable(List<string> list)
-        {
-            // New table.
-            DataTable table = new DataTable();
-
-            // Get max columns.
-            int columns = 0;
-            foreach (var array in list)
-            {
-                if (array.Length > columns)
-                {
-                    columns = array.Length;
-                }
-            }
-
-            // Add columns.
-            for (int i = 0; i < columns; i++)
-            {
-                table.Columns.Add();
-            }
-
-            // Add rows.
-            foreach (var array in list)
-            {
-                table.Rows.Add(array);
-            }
-
-            return table;
         }
     }
 }

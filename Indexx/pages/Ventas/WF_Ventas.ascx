@@ -48,11 +48,10 @@
     </asp:GridView>
             
     <br />
-    <br />
             
-    &nbsp;<p>
+    &nbsp;<!--p>
     <input id="Text8" type="text" runat="server" />
-    </p>
+    </p-->
     
         <p>
             <asp:GridView ID="dgvCarrito" runat="server" CssClass="gridview bordered"

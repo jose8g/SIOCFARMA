@@ -18,7 +18,7 @@ namespace DAO
         private SqlDataAdapter mDa;
         private DataSet mDs;
         SqlConnection conexion;
-      
+
         //Conecta la  BD
         public DAO_Marca()
         {
@@ -27,11 +27,11 @@ namespace DAO
         //*creo las variables necesarias para el insert pdt:que el id se autogenerable para que no s einserte,luego en ves de meter 
         //el coidgo que seleccione y en tu procedure lo guardas  en una variable la cual compara con el id de la tabla  ala qque pertenece
         //asi ya no me tes codigo sin listas xD
- 
-            //
+
+        //
         public void insertarMarca(string NombreM, string Descripcion)
         {
-            SqlCommand comando = new SqlCommand("SP_REGISTRAR_MARCA", conexion);
+            SqlCommand comando = new SqlCommand("SP_InsertarMarca", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
             comando.Parameters.AddWithValue("@Nombre", NombreM);

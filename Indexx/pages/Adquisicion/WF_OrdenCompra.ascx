@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_OrdenCompra.ascx.cs" Inherits="Indexx.pages.WF_OrdenCompra" %>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-6" style="display:none;">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Busqueda </h2>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Generar Compra </h2>

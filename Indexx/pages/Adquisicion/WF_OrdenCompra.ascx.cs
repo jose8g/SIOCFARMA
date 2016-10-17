@@ -71,10 +71,14 @@ namespace Indexx.pages
         protected void insertCompra(object sender, EventArgs e)
         {
             int idCotizacion              = Convert.ToInt32(ddlCotizacion.SelectedValue);
-            dgvComprasList.DataSource     = daoCompras.InsertCompraByCotizacion(idCotizacion);
-            dgvComprasList.DataBind();
-            contentCotizacionProd.Visible = false;
-            dgvProductosList.Visible      = false;
+            if (idCotizacion != null && idCotizacion != 0) {
+                dgvComprasList.DataSource = daoCompras.InsertCompraByCotizacion(idCotizacion);
+                dgvComprasList.DataBind();
+                contentCotizacionProd.Visible = false;
+                dgvProductosList.Visible = false;
+            } else {
+
+            }
         }
 
     }

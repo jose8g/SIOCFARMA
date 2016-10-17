@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="E_ComposicionxItem.cs" />
     <Compile Include="E_Compra.cs" />
     <Compile Include="E_Cotizacion.cs" />
     <Compile Include="E_Item.cs" />

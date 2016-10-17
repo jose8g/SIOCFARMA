@@ -146,6 +146,7 @@
     <Content Include="css\bootstrap-select.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\magnific-popup.css" />
+    <Content Include="css\PoPupAgregarMarca.css" />
     <Content Include="css\style.css" />
     <Content Include="documentation\css\animate.min.css" />
     <Content Include="documentation\css\bootstrap.min.css" />
@@ -168,11 +169,14 @@
     <Content Include="documentation\js\shCore.js" />
     <Content Include="images\cotizar.png" />
     <Content Include="js\bootstrap-select.js" />
+    <Content Include="js\jquery-1.4.1.min.js" />
+    <Content Include="js\PoPupAgregarMarca.js" />
     <Content Include="pages\Adquisicion\WF_Cotizacion.ascx" />
     <Content Include="pages\Adquisicion\WF_GestionarProducto.ascx" />
     <Content Include="pages\Adquisicion\WF_OrdenCompra.ascx" />
     <Content Include="pages\Ventas\WF_Pedidos.ascx" />
     <Content Include="pages\Ventas\WF_Ventas.ascx" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="WF_Cliente.aspx" />
     <Content Include="WF_JefeDeInventario.aspx" />

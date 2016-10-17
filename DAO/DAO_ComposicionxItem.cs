@@ -12,7 +12,7 @@ using Entidad;
 
 namespace DAO
 {
-    public class DAO_Marca
+    public class DAO_ComposicionxItem
     {
         private SqlCommand mCm;
         private SqlDataAdapter mDa;
@@ -20,35 +20,36 @@ namespace DAO
         SqlConnection conexion;
       
         //Conecta la  BD
-        public DAO_Marca()
+        public DAO_ComposicionxItem()
         {
             conexion = new SqlConnection(ConexionBD.CadenaConexion);
         }
-        //*creo las variables necesarias para el insert pdt:que el id se autogenerable para que no s einserte,luego en ves de meter 
-        //el coidgo que seleccione y en tu procedure lo guardas  en una variable la cual compara con el id de la tabla  ala qque pertenece
-        //asi ya no me tes codigo sin listas xD
- 
-            //
-        public void insertarMarca(string NombreM, string Descripcion)
+
+        public void insertarComposicionxItem(string medida, int cantidad,int idItem,int idcomposicion)
         {
-            SqlCommand comando = new SqlCommand("SP_InsertarMarca", conexion);
+            SqlCommand comando = new SqlCommand("SP_InsertarComposicionxitem", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@Nombre", NombreM);
-            comando.Parameters.AddWithValue("@Descripcion", Descripcion);
+            comando.Parameters.AddWithValue("@Medida", medida);
+            comando.Parameters.AddWithValue("@Cantidad", cantidad);
+            comando.Parameters.AddWithValue("@IdItem", idItem);
+            comando.Parameters.AddWithValue("@IdComposicion", idcomposicion);
 
             conexion.Open();
             comando.ExecuteNonQuery();
             conexion.Close();
         }
 
-        public DataTable GetMarcasCreadas()
+        public DataTable getComposicionesxItemCreadas(int iditem)
         {
-            mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+            mDa = new SqlDataAdapter("SP_ConsultarComposicionxIte", conexion);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@idItem", iditem);
             mDs = new DataSet();
             mDa.Fill(mDs);
             return mDs.Tables[0];
         }
+
+
     }
 }

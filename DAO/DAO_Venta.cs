@@ -23,21 +23,18 @@ namespace DAO
 
         //string Insertar = ";
 
-        public void registrar_venta(string idventa, string fecharealizacion, string observacion, string estado, string idvendedor, string idcliente)
+        public int registrar_venta()
         {
             SqlCommand comando = new SqlCommand("sp_registrar_venta", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@IdVenta", idventa);
-            comando.Parameters.AddWithValue("@FechaRealizacion", fecharealizacion);
-            comando.Parameters.AddWithValue("@Observacion", observacion);
-            comando.Parameters.AddWithValue("@Estado", estado);
-            comando.Parameters.AddWithValue("@IdVendedor", idvendedor);
-            comando.Parameters.AddWithValue("@IdCliente", idcliente);
-
+            comando.Parameters.Add("@IdVenta", SqlDbType.Int);
+            comando.Parameters["@IdVenta"].Direction = ParameterDirection.Output;
             conexion.Open();
             comando.ExecuteNonQuery();
             conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@IdVenta"].Value);
         }
 
         public DataTable getItemsByNombre(string Nombre)
@@ -85,6 +82,19 @@ namespace DAO
             {
                 throw ex;
             }
+        }
+
+        public void registarItemXVenta(string IdVenta, string IdItem)
+        {
+            SqlCommand comando = new SqlCommand("sp_registrar_ventaxitem", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdVenta", IdVenta);
+            comando.Parameters.AddWithValue("@IdItem", IdItem);
+
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
         }
     }
 }

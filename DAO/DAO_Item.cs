@@ -18,7 +18,7 @@ namespace DAO
         private SqlDataAdapter mDa;
         private DataSet mDs;
         SqlConnection conexion;
-      
+
         //Conecta la  BD
         public DAO_Item()
         {
@@ -27,8 +27,8 @@ namespace DAO
         //*creo las variables necesarias para el insert pdt:que el id se autogenerable para que no s einserte,luego en ves de meter 
         //el coidgo que seleccione y en tu procedure lo guardas  en una variable la cual compara con el id de la tabla  ala qque pertenece
         //asi ya no me tes codigo sin listas xD
- 
-            //
+
+        //
         public void insertarItem(string Nombre, string PrecioVenta, string Estado, string IdTipo, string IdMarca)
         {
             SqlCommand comando = new SqlCommand("SP_REGISTRAR_ITEM_Marca_Tipo", conexion);
@@ -60,18 +60,33 @@ namespace DAO
             {
                 throw ex;
             }
-
+        }
+        public DataTable ConsultarItemcreado(string Nombre)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("SP_Consultaritemxnombre", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public DataTable getMarcasCreadas()
         {
-            
-                mDa = new SqlDataAdapter("sp_getMarcas", conexion);
-                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                mDs = new DataSet();
-                mDa.Fill(mDs);
-                return mDs.Tables[0];
-            
+
+            mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
 
         }
 
@@ -79,6 +94,18 @@ namespace DAO
         {
 
             mDa = new SqlDataAdapter("sp_getTipoItem", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
+
+        public DataTable getComposicionCreadas()
+        {
+
+            mDa = new SqlDataAdapter("sp_getComposicion", conexion);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);

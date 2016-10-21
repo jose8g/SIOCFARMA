@@ -17,10 +17,10 @@ namespace DAO
         private DataSet mDs;
         SqlConnection con = new SqlConnection(ConexionBD.CadenaConexion);
 
-
+        
         public DataTable ConsultarPedidosPendientes()
         {
-            try
+            /*try
             {
                 mDa = new SqlDataAdapter("sp_listConsultarPedidosPendientes", con);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -33,7 +33,8 @@ namespace DAO
             {
                 throw ex;
 
-            }
+            }*/
+            return null;
 
         }
         

@@ -2,9 +2,6 @@
 <%@ Register Src="~/pages/Ventas/WF_Ventas.ascx" TagPrefix="uc1" TagName="WF_Ventas" %>
 <%@ Register Src="~/pages/Ventas/WF_Pedidos.ascx" TagPrefix="uc2" TagName="WF_Pedidos" %>
 
-
-
-
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server">
@@ -32,7 +29,7 @@
     </div>
 
     <div id="ContentGestionarPedido" style="display:none;">
-            <uc2:WF_Pedidos runat="server" ID="WF_Pedidos1" />
+        <uc2:WF_Pedidos runat="server" ID="WF_Pedidos1" />
     </div>
     </form>
 </asp:Content>

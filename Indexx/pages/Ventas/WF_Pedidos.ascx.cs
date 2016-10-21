@@ -14,7 +14,7 @@ namespace Indexx.pages.Ventas
             mostrarPendientes();
         }
 
-
+        
         protected void mostrarPendientes()
         {
             DAO.DAO_Pedido obj = new DAO.DAO_Pedido();
@@ -22,7 +22,7 @@ namespace Indexx.pages.Ventas
             gridMostrarPendientes.DataBind();
             
         }
-
+        
         protected void btnRefrescar_Click(object sender, EventArgs e)
         {
             mostrarPendientes();

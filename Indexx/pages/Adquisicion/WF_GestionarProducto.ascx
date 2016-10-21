@@ -176,7 +176,7 @@
     </div>
        
         
-   <%--<div id="popAgregarMarca" style=" width: 44%; left: 314px; top: 660px;">
+   <div id="popAgregarMarca" style=" width: 44%; left: 314px; top: 660px;">
         <div id="cerrarpopCotizarServicio">
             X
         </div>
@@ -197,5 +197,5 @@
                        </ContentTemplate>
         </asp:UpdatePanel>     
        
-        </div>--%>
+        </div>
 </body>

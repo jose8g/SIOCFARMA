@@ -17,8 +17,8 @@ namespace Indexx.pages
             //this.txtniombre = 
             if (!Page.IsPostBack)
             {
-                buildTableCompras();
-                buildListCotizacion();
+                //buildTableCompras();
+                //buildListCotizacion();
             }
         }
 
@@ -27,11 +27,12 @@ namespace Indexx.pages
             dgvComprasList.PageIndex = e.NewPageIndex;
         }
 
-        public void buildTableCompras() {
-            DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
-            dgvComprasList.DataSource = daoCompras.ConsultarCompras();
-            dgvComprasList.DataBind();
-            
+        public void buildTableCompras()
+        {
+            //DAO.DAO_Compras daoCompras = new DAO.DAO_Compras();
+            //dgvComprasList.DataSource = daoCompras.ConsultarCompras();
+            //dgvComprasList.DataBind();
+
         }
 
         protected void getItems(object sender , GridViewCommandEventArgs e)

@@ -18,11 +18,11 @@ namespace CONTROL
             objD_Ped = new D_Pedido();
         }
 
-        public DataTable ListarPedidos()
+        public DataTable ListarPedidosxProveedor(int IdProveedor)
         {
             try
             {
-                return objD_Ped.ListarPedidos();
+                return objD_Ped.ListarPedidosxProveedor(IdProveedor);
             }
             catch (Exception ex)
             {

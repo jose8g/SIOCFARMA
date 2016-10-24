@@ -44,14 +44,21 @@ namespace Indexx.pages
                     int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompras"].ToString());
                     dgvProductosList.DataSource = daoCompras.GetProductosByCompra(idCompra);
                     dgvProductosList.DataBind();
-                    dgvProductosList.Visible = true;
+                    containerItemsCompra.Visible  = true;
+                    containterItemsPedido.Visible = false;
                 }
-                else if (e.CommandName == "verPrecios")
+                else if (e.CommandName == "verPrecios11")
                 {
                     int idItem   = Convert.ToInt32(dgvProductPedido.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
                     int idPedido = Convert.ToInt32(ddlPedido.SelectedValue);
                     dgvPreciosItem.DataSource = daoCompras.GetPreciosByItemCotizacion(idItem,idPedido);
                     dgvPreciosItem.DataBind();
+                }
+                else if (e.CommandName == "verPrecios")
+                {
+                    GridViewRow row = (GridViewRow)(((Button)e.CommandSource).NamingContainer);
+                    String cantCompra = ((TextBox)row.FindControl("cantCompra")).Text;
+                    Response.Write("<script>alert('" + cantCompra + "')</script>");
                 }
             }
             catch (Exception ex)
@@ -70,11 +77,18 @@ namespace Indexx.pages
         }
         protected void itemSelected(object sender, EventArgs e)
         {
-            int idPedido                    = Convert.ToInt32(ddlPedido.SelectedValue);
-            dgvProductPedido.DataSource = daoCompras.GetProductosByPedido(idPedido);
-            dgvProductPedido.DataBind();
-            contentCotizacionProd.Visible = true;
-            dgvProductosList.Visible = false;
+            try
+            {
+                int idPedido = Convert.ToInt32(ddlPedido.SelectedValue);
+                dgvProductPedido.DataSource = daoCompras.GetProductosByPedido(idPedido);
+                dgvProductPedido.DataBind();
+                containterItemsPedido.Visible = true;
+                containerItemsCompra.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
         }
         protected void insertCompra(object sender, EventArgs e)
         {
@@ -82,8 +96,7 @@ namespace Indexx.pages
             if (idCotizacion != null && idCotizacion != 0) {
                 dgvComprasList.DataSource = daoCompras.InsertCompraByCotizacion(idCotizacion);
                 dgvComprasList.DataBind();
-                contentCotizacionProd.Visible = false;
-                dgvProductosList.Visible = false;
+
             }
         }
 

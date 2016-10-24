@@ -85,7 +85,7 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12" runat="server" id="containerItemsCompra" visible="false"> 
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Productos Compra </h2>
@@ -109,49 +109,61 @@
                 </div>
             </div>
         </div>
-    
-    
-    
-    <div class="col-sm-6">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Productos Pedido </h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    </li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div ID="contentCotizacionProd" runat="server" visible="false">
-                    <asp:GridView runat="server" ID="dgvProductPedido" CssClass="gridview bordered table" OnRowCommand="getItems" 
-                                  DataKeyNames="IdItem,Nombre,Cantidad,PrecioCompra,Tipo"
-                                  AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
-                        <Columns>
-                                <asp:BoundField DataField="IdItem"       HeaderText="Id" Visible="false"/>
-                                <asp:BoundField DataField="Nombre"       HeaderText = "Producto"    />
-                                <asp:BoundField DataField="Cantidad"     HeaderText = "Cantidad"    />
-                                <asp:BoundField DataField="PrecioCompra" HeaderText = "Ult. Precio Unitario"  />
-                                <asp:BoundField DataField="Tipo"         HeaderText = "Tipo Item" />
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <div class="text-center">
-                                            <asp:Button ID="btnVerPrecios" runat="server" 
-                                                        CommandName="verPrecios" CssClass="btn btn-info btn-xs"
-                                                        CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                                        Text="Ver Precios"/>
-                                        </div>
-                                    </ItemTemplate> 
-                                </asp:TemplateField>
-                            </Columns>
-                    </asp:GridView>
+
+        <div class="col-sm-12" runat="server" id="containterItemsPedido" visible="false">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Productos Pedido </h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-sm-12">
+                        <label>Pedido Cotizados</label>
+                        <asp:DropDownList ID="DropDownList1"  CssClass="ddl" runat="server" AutoPostBack="True" onselectedindexchanged="itemSelected">
+                            <asp:ListItem>Selec. Proveedor</asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
+                    <div class="col-sm-12">
+                        <div ID="contentCotizacionProd" runat="server">
+                            <asp:GridView runat="server" ID="dgvProductPedido" CssClass="gridview bordered table" OnRowCommand="getItems" 
+                                          DataKeyNames="IdItem,Nombre,Cantidad,PrecioCompra,Tipo"
+                                          AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
+                                <Columns>
+                                        <asp:BoundField DataField="IdItem"          HeaderText="Id" Visible="false"/>
+                                        <asp:BoundField DataField="Nombre"          HeaderText = "Producto"/>
+                                        <asp:BoundField DataField="Cantidad"        HeaderText = "Solicitado"/>
+                                        <asp:BoundField DataField="Tipo"            HeaderText = "Tipo Item"/>
+                                        <asp:TemplateField HeaderText="Comprar">
+                                            <ItemTemplate>
+                                                <asp:TextBox ID="cantCompra" runat="server">
+
+                                                </asp:TextBox>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <div class="text-center">
+                                                    <asp:Button ID="btnVerPrecios" runat="server" 
+                                                                CommandName="verPrecios" CssClass="btn btn-info btn-xs"
+                                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                                Text="Ver Precios"/>
+                                                </div>
+                                            </ItemTemplate> 
+                                        </asp:TemplateField>
+                                    </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </div>
 
-<div class="row">
+<div class="row" style="display:none;">
     <div class="col-sm-12">
         <div class="x_panel">
             <div class="x_title">

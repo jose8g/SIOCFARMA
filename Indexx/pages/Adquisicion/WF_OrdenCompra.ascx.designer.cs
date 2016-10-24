@@ -40,6 +40,15 @@ namespace Indexx.pages {
         protected global::System.Web.UI.WebControls.GridView dgvComprasList;
         
         /// <summary>
+        /// containerItemsCompra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl containerItemsCompra;
+        
+        /// <summary>
         /// dgvProductosList control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,24 @@ namespace Indexx.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvProductosList;
+        
+        /// <summary>
+        /// containterItemsPedido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl containterItemsPedido;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
         /// contentCotizacionProd control.

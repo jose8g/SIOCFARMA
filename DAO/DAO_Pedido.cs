@@ -36,7 +36,26 @@ namespace DAO
             }
 
         }
-        
+
+        public DataTable getItemxPedido()
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("[sp_getItemxPedido]", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                con.Close();
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+
+        }
+
 
     }
 }

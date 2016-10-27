@@ -25,7 +25,7 @@
             AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
             DataKeyNames="IdItem,Nombre,PrecioVenta"
             OnRowCommand="gvItems_RowComand" style="text-align:center"
-            AllowPaging="True" PageSize="8" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" >
+            AllowPaging="True" PageSize="8" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black">
         <RowStyle HorizontalAlign="center"></RowStyle>
         <Columns>
             <asp:BoundField DataField="IdItem"          HeaderText="IdItem" Visible="false"/>

@@ -45,22 +45,6 @@ namespace DAO
             conexion.Close();
         }
 
-        public DataTable getItemsByNombre(string Nombre)
-        {
-            try
-            {
-                mDa = new SqlDataAdapter("sp_obtenerItemPorNombre", conexion);
-                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
-                mDs = new DataSet();
-                mDa.Fill(mDs);
-                return mDs.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         public DataTable ConsultarItemcreado(string Nombre)
         {
             try
@@ -112,6 +96,75 @@ namespace DAO
             return mDs.Tables[0];
 
 
+        }
+
+        public DataTable getItemxStock()
+        {
+
+            mDa = new SqlDataAdapter("sp_getItemxStock", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
+
+        public DataTable getCopyPedidoxItem()
+        {
+
+            mDa = new SqlDataAdapter("sp_getCopyItemxStock", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
+
+        public DataTable getItemsByNombre(string Nombre)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemByNombre", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void insertarPedidoxItem(string IdPedido, string IdItem, string Cantidad)
+        {
+            SqlCommand comando = new SqlCommand("sp_registrar_pedidoxItem", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdPedido", IdPedido);
+            comando.Parameters.AddWithValue("@IdItem", IdItem);
+            comando.Parameters.AddWithValue("@Cantidad", Cantidad);
+
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+
+        public int insertarPedido()
+        {
+            SqlCommand comando = new SqlCommand("sp_registrar_pedido", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.Add("@IdPedido", SqlDbType.Int);
+            comando.Parameters["@IdPedido"].Direction = ParameterDirection.Output;
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@IdPedido"].Value);
         }
     }
 }

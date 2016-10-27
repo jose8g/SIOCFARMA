@@ -22,13 +22,13 @@ namespace Indexx.pages {
         protected global::System.Web.UI.WebControls.TextBox TextBox1;
         
         /// <summary>
-        /// ddlCotizacion control.
+        /// ddlPedido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCotizacion;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPedido;
         
         /// <summary>
         /// dgvComprasList control.
@@ -40,6 +40,15 @@ namespace Indexx.pages {
         protected global::System.Web.UI.WebControls.GridView dgvComprasList;
         
         /// <summary>
+        /// containerItemsCompra control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl containerItemsCompra;
+        
+        /// <summary>
         /// dgvProductosList control.
         /// </summary>
         /// <remarks>
@@ -47,6 +56,24 @@ namespace Indexx.pages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvProductosList;
+        
+        /// <summary>
+        /// containterItemsPedido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl containterItemsPedido;
+        
+        /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
         /// contentCotizacionProd control.
@@ -58,12 +85,39 @@ namespace Indexx.pages {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentCotizacionProd;
         
         /// <summary>
-        /// dgvProductCotizacion control.
+        /// dgvProductPedido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvProductCotizacion;
+        protected global::System.Web.UI.WebControls.GridView dgvProductPedido;
+        
+        /// <summary>
+        /// nombreProd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl nombreProd;
+        
+        /// <summary>
+        /// Div1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Div1;
+        
+        /// <summary>
+        /// dgvPreciosItem control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvPreciosItem;
     }
 }

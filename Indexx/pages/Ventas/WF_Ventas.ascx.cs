@@ -70,12 +70,17 @@ namespace Indexx.pages.Ventas
             ddlMarca.DataTextField  = "Nombre";
             ddlMarca.DataValueField = "IdMarca";
             ddlMarca.DataBind();
+            ddlMarca.Items.Insert(0, new ListItem("Selec. Marca", "0"));
         }
         protected void itemSelected(object sender, EventArgs e)
         {
-            int idMarca = ddlMarca.SelectedIndex;
-            dgvItems.DataSource = obj.getItemsByMarca(idMarca);
-            dgvItems.DataBind();
+            int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+            if (idMarca != 0)
+            {
+                dgvItems.DataSource = obj.getItemsByMarca(idMarca);
+                dgvItems.DataBind();
+            }
+            
         }
 
         public void agregarProducto()
@@ -96,7 +101,7 @@ namespace Indexx.pages.Ventas
         {
             try
             {
-                if (e.CommandName == "agregarItems")
+                if (e.CommandName == "cambiarNombre")
                 {
                    
                 }

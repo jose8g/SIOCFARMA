@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
+using System.Collections;
+using System.Windows.Forms;
+  
 
 namespace Indexx.pages.Ventas
 {
@@ -18,13 +21,9 @@ namespace Indexx.pages.Ventas
             if (!Page.IsPostBack)
             {
                 buildListMarca();
+                Session["venta"] = null;
+                buildTableVentasPendientes();
             }
-        }
-
-
-        protected void registrar_Click(object sender, EventArgs e)
-        {
-            //obj.registrar_venta(Text1.Value, DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), Text3.Value, Text4.Value, Text5.Value, Text6.Value);
         }
 
         protected void gvItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -37,25 +36,28 @@ namespace Indexx.pages.Ventas
             dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
             dgvItems.DataBind();
         }
-
+        
         protected void gvItems_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                if (e.CommandName == "agregarItems")
+                if (e.CommandName == "selecItem")
                 {
                     int idItem = Convert.ToInt32(dgvItems.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
-
+                    
                     if (Session["venta"] == null)
                     {
                         int idVenta = obj.registrar_venta();
-                        obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
+                        dgvCarrito.DataSource = obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
+                        dgvCarrito.DataBind();
                         Session["venta"] = idVenta;
                     }
                     else
                     {
-                        obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());
+                        dgvCarrito.DataSource = obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());;
+                        dgvCarrito.DataBind();
                     }
+                    buildTableVentasPendientes();
                 }
             }
             catch (Exception ex)
@@ -72,6 +74,7 @@ namespace Indexx.pages.Ventas
             ddlMarca.DataBind();
             ddlMarca.Items.Insert(0, new ListItem("Selec. Marca", "0"));
         }
+
         protected void itemSelected(object sender, EventArgs e)
         {
             int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
@@ -80,36 +83,75 @@ namespace Indexx.pages.Ventas
                 dgvItems.DataSource = obj.getItemsByMarca(idMarca);
                 dgvItems.DataBind();
             }
-            
-        }
-
-        public void agregarProducto()
-        {
-            
-            /*int cantidad = 0;
-            if (carrito != null)
+            else
             {
-                foreach (var item in carrito)
-                {
-                    cantidad += item.cantidad;
-                }
+                dgvItems.DataSource = null;
+                dgvItems.DataBind();
             }
-            lblCantidadCarrito.Text = "Ahora en tu carrito tienes (" + cantidad.ToString() + ") productos";*/
         }
 
-        protected void gvItems2_RowComand(object sender, GridViewCommandEventArgs e)
+        protected void gvCarrito_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                if (e.CommandName == "cambiarNombre")
+                if (e.CommandName == "editItem")
                 {
-                   
+                    GridViewRow row = (GridViewRow)(((System.Web.UI.WebControls.Button)e.CommandSource).NamingContainer);
+                    String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("cantidadVenta")).Text;
+                    if (cantidadVenta.Length != 0)
+                    {
+                        int idItem = Convert.ToInt32(dgvCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
+
+                        int salida = obj.updateCantidad(Convert.ToInt32(Session["venta"]), idItem, Convert.ToInt32(cantidadVenta));
+                        if (salida != 0)
+                        {
+                            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                            dgvItems.DataBind();
+                        }
+                        else
+                        {
+                            MessageBox.Show("La cantidad no es correcta", "",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("La cantidad no es correcta", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
+                else if (e.CommandName == "deleteItem")
+                {
+                    int idItem = Convert.ToInt32(dgvCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
+
+                    dgvCarrito.DataSource = obj.deleteItemxVenta(Convert.ToInt32(Session["venta"]), idItem);
+                    dgvCarrito.DataBind();
+
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    dgvItems.DataBind();
+                }
+                buildTableVentasPendientes();
             }
             catch (Exception ex)
             {
                 Response.Write("<script>alert('" + ex.Message + "')</script>");
             }
+        }
+
+
+        protected void gvVenta_RowComand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
+            }
+        }
+
+        public void buildTableVentasPendientes()
+        {
+            dgvVentas.DataSource = obj.getVentasPendientes();
+            dgvVentas.DataBind();
         }
     }
 }

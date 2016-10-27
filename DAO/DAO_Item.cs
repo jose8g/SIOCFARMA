@@ -98,7 +98,7 @@ namespace DAO
 
         }
 
-        public DataTable getItemxStock()
+        /*public DataTable getItemxStock()
         {
 
             mDa = new SqlDataAdapter("sp_getItemxStock", conexion);
@@ -108,7 +108,7 @@ namespace DAO
             return mDs.Tables[0];
 
 
-        }
+        }*/
 
         public DataTable getCopyPedidoxItem()
         {

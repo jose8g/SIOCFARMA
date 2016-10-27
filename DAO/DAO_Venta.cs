@@ -84,17 +84,73 @@ namespace DAO
             }
         }
 
-        public void registarItemXVenta(string IdVenta, string IdItem)
+        public DataTable registarItemXVenta(string IdVenta, string IdItem)
         {
-            SqlCommand comando = new SqlCommand("sp_registrar_ventaxitem", conexion);
+            try
+            {
+                mDa = new SqlDataAdapter("sp_registrar_ventaxitem", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int updateCantidad(int idVenta, int idItem, int cantidad)
+        {
+            SqlCommand comando = new SqlCommand("sp_editar_cantidadVenta", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@IdVenta", IdVenta);
-            comando.Parameters.AddWithValue("@IdItem", IdItem);
-
+            comando.Parameters.AddWithValue("@IdVenta",  idVenta);
+            comando.Parameters.AddWithValue("@IdItem",   idItem);
+            comando.Parameters.AddWithValue("@Cantidad", cantidad);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
             conexion.Open();
             comando.ExecuteNonQuery();
             conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        }
+
+        public DataTable deleteItemxVenta(int IdVenta, int IdItem)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_delete_VentaXItem", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable getVentasPendientes()
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getVentasPendientes", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

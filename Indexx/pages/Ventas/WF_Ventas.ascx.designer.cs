@@ -58,24 +58,6 @@ namespace Indexx.pages.Ventas {
         protected global::System.Web.UI.WebControls.GridView dgvItems;
         
         /// <summary>
-        /// TextBox1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
-        
-        /// <summary>
-        /// Text8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText Text8;
-        
-        /// <summary>
         /// dgvCarrito control.
         /// </summary>
         /// <remarks>
@@ -83,5 +65,14 @@ namespace Indexx.pages.Ventas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvCarrito;
+        
+        /// <summary>
+        /// dgvVentas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvVentas;
     }
 }

@@ -29,8 +29,8 @@ namespace Indexx.pages.Ventas
 
         protected void getItemxStock()
         {
-            dgvItems.DataSource = obj.getItemxStock();
-            dgvItems.DataBind();
+            /*dgvItems.DataSource = obj.getItemxStock();
+            dgvItems.DataBind();*/
         }
 
         protected void getItemsByNombre(object sender, EventArgs e)
@@ -73,7 +73,7 @@ namespace Indexx.pages.Ventas
         {
             try
             {
-                int idItem = Convert.ToInt32(IdItemtext.Text);
+                /*int idItem = Convert.ToInt32(IdItemtext.Text);
                 int cantidad = Convert.ToInt32(Cantidadtxt.Text);
 
                 if (Session["idPedido"] == null)
@@ -85,7 +85,7 @@ namespace Indexx.pages.Ventas
                 else
                 {
                     obj.insertarPedidoxItem(Session["idPedido"].ToString(), idItem.ToString(), cantidad.ToString());
-                }
+                }*/
             }
             catch (Exception ex)
             {

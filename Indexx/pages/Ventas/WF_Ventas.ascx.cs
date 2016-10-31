@@ -141,6 +141,27 @@ namespace Indexx.pages.Ventas
         {
             try
             {
+                int idVenta = Convert.ToInt32(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdVenta"].ToString());
+                if(e.CommandName == "deleteVenta")
+                {
+                    obj.deleteVenta(idVenta);
+                    buildTableVentasPendientes();
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    dgvItems.DataBind();
+                    if (idVenta == Convert.ToInt32(Session["venta"]))
+                    {
+                        Session["venta"] = null;
+                        dgvCarrito.DataSource = null;
+                        dgvCarrito.DataBind();
+                    }
+
+                }
+                else if (e.CommandName == "editVenta")
+                {
+                    Session["venta"] = idVenta;
+                    getItemsByVenta(idVenta);
+                }
+
             }
             catch (Exception ex)
             {
@@ -152,6 +173,12 @@ namespace Indexx.pages.Ventas
         {
             dgvVentas.DataSource = obj.getVentasPendientes();
             dgvVentas.DataBind();
+        }
+
+        public void getItemsByVenta(int IdVenta)
+        {
+            dgvCarrito.DataSource = obj.getItemsByVenta(IdVenta);
+            dgvCarrito.DataBind();
         }
     }
 }

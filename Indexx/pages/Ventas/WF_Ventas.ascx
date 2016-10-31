@@ -105,7 +105,7 @@
                             <asp:BoundField DataField ="Marca"           HeaderText ="Marca" />
                             <asp:TemplateField HeaderText="Cantidad">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="cantidadVenta" Text='<%#Eval("Cantidad") %>' DataField ="Cantidad" runat="server"/>
+                                    <asp:TextBox ID="cantidadVenta" Text='<%#Eval("Cantidad") %>' runat="server"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Accion">

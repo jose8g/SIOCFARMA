@@ -152,5 +152,30 @@ namespace DAO
                 throw ex;
             }
         }
+        public void deleteVenta(int idVenta)
+        {
+            SqlCommand comando = new SqlCommand("sp_delete_Venta", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IdVenta", idVenta);
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+        public DataTable getItemsByVenta(int IdVenta)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemsByVenta", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

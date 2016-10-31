@@ -98,7 +98,7 @@ namespace DAO
 
         }
 
-        /*public DataTable getItemxStock()
+        public DataTable getItemxStock()
         {
 
             mDa = new SqlDataAdapter("sp_getItemxStock", conexion);
@@ -108,7 +108,7 @@ namespace DAO
             return mDs.Tables[0];
 
 
-        }*/
+        }
 
         public DataTable getCopyPedidoxItem()
         {
@@ -139,18 +139,23 @@ namespace DAO
             }
         }
 
-        public void insertarPedidoxItem(string IdPedido, string IdItem, string Cantidad)
+        public DataTable insertarPedidoxItem(string IdPedido, string IdItem, decimal precio)
         {
-            SqlCommand comando = new SqlCommand("sp_registrar_pedidoxItem", conexion);
-            comando.CommandType = CommandType.StoredProcedure;
-
-            comando.Parameters.AddWithValue("@IdPedido", IdPedido);
-            comando.Parameters.AddWithValue("@IdItem", IdItem);
-            comando.Parameters.AddWithValue("@Cantidad", Cantidad);
-
-            conexion.Open();
-            comando.ExecuteNonQuery();
-            conexion.Close();
+            try
+            {
+                mDa = new SqlDataAdapter("sp_registrar_pedidoxItem", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+                mDa.SelectCommand.Parameters.AddWithValue("@Precio", precio);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public int insertarPedido()

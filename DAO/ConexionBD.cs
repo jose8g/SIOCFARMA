@@ -13,6 +13,7 @@ namespace DAO
             get
             {
                 return "Data Source=TOSHIBA\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
+                //return "Data Source=USER\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
             }
         }
     }

@@ -73,10 +73,15 @@ namespace DAO
             return mDs.Tables[0];
         }
 
-        public DataTable InsertCompraByCotizacion(int idCotizacion){
-            mDa = new SqlDataAdapter("sp_insertCompraByCotizacion", con);
+        public DataTable InsertCompra(String idCompra, int idPedido, int idProveedor, int idItem, int cantidad)
+        {
+            mDa = new SqlDataAdapter("sp_insertCompra", con);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-            mDa.SelectCommand.Parameters.AddWithValue("@IdCotizacion", idCotizacion);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra"    , idCompra);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido"    , idPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor" , idProveedor);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem"      , idItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@Cantidad"    , cantidad);
             mDs = new DataSet();
             mDa.Fill(mDs);
             return mDs.Tables[0];
@@ -87,6 +92,16 @@ namespace DAO
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDa.SelectCommand.Parameters.AddWithValue("@IdItem"   , idItem);
             mDa.SelectCommand.Parameters.AddWithValue("@IdPedido" , idPedido);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable GetProveedoresPedido(int idPedido)
+        {
+            mDa = new SqlDataAdapter("sp_listProveedoresByPedido", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", idPedido);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);
             return mDs.Tables[0];

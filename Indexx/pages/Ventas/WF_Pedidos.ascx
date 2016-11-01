@@ -30,10 +30,10 @@
                                 <asp:BoundField DataField="Nombre"     HeaderText="Nombre del Producto" />
                                 <asp:BoundField DataField="PrecioVenta"     HeaderText="Precio de Venta" />
                                 <asp:BoundField DataField="Stock"     HeaderText="Stock" />
-                                <asp:TemplateField HeaderText="AgregarProducto">
+                                <asp:TemplateField HeaderText="Agregar Producto">
                                     <ItemTemplate>
                                         <asp:Button ID="btnAgregarProducto" runat="server" 
-                                                    CommandName="agregarItemxStock" 
+                                                    CommandName="agregarItemxStock"  CssClass="btn btn-info btn-xs"
                                                     formnovalidate=""
                                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                     Text="Seleccionar"/>
@@ -73,28 +73,16 @@
                         <p>
                             <asp:GridView ID="dgvPedidos" runat="server" CssClass="gridview bordered table" 
                             AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
-                            DataKeyNames="IdItem,Nombre,PrecioVenta,Stock"
-                            OnRowCommand="gvItems_RowComand"
+                            DataKeyNames="IdItem,Nombre,PrecioUnitario,Cantidad"
+                            OnRowCommand="gvPedidos_RowComand"
                             AllowPaging="True" PageSize="8" Height="161px" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" >
                             <Columns>
-                                <asp:BoundField DataField="IdItem" HeaderText="IdItem" Visible="False" />
-                                <asp:BoundField DataField="Nombre"     HeaderText="Nombre del Producto" />
-                                <asp:TemplateField HeaderText="Precio">
-                                    <ItemTemplate>
-                                        <asp:TextBox ID="btnPrecio" runat="server" 
-                                                    CommandName="PrecioItem" 
-                                                    formnovalidate=""
-                                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                                    Text="Precio"/>
-                                    </ItemTemplate> 
-                                </asp:TemplateField>
+                                <asp:BoundField DataField="IdItem"             HeaderText="IdItem" Visible="False" />
+                                <asp:BoundField DataField="Nombre"             HeaderText="Nombre del Producto"  /> 
+                                <asp:BoundField DataField="PrecioUnitario"     HeaderText="Precio del Producto" />
                                 <asp:TemplateField HeaderText="Cantidad">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="btnCantidad" runat="server" 
-                                                    CommandName="CantidadItem" 
-                                                    formnovalidate=""
-                                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                                    Text="Cantidad"/>
+                                        <asp:TextBox ID="CantidadVenta" runat="server" Text='<%#Eval("Cantidad") %>'/>
                                     </ItemTemplate> 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="EditarPedido">

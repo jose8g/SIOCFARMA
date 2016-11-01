@@ -92,6 +92,19 @@ namespace DAO
             }
         }
 
+        public int finalizarPedido(int idPedido)
+        {
+            SqlCommand comando = new SqlCommand("sp_finalizarPedido", con);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@idPedido", idPedido);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            con.Open();
+            comando.ExecuteNonQuery();
+            con.Close();
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        }
+
 
     }
 }

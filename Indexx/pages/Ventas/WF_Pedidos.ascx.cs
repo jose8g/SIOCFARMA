@@ -83,7 +83,7 @@ namespace Indexx.pages.Ventas
                 if (e.CommandName == "EditarItemxStock")
                 {
                     GridViewRow row = (GridViewRow)(((System.Web.UI.WebControls.Button)e.CommandSource).NamingContainer);
-                    String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("Cantidad")).Text;
+                    String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("CantidadPedido")).Text;
                     if (cantidadVenta.Length != 0)
                     {
                         int idItem = Convert.ToInt32(dgvPedidos.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
@@ -110,9 +110,6 @@ namespace Indexx.pages.Ventas
 
                     dgvPedidos.DataSource = objP.deleteItemxPedido(Convert.ToInt32(Session["pedido"]), idItem);
                     dgvPedidos.DataBind();
-
-                    dgvItems.DataSource = obj.getItemsByNombre(txtBuscarItems.Value);
-                    dgvItems.DataBind();
                 }
             }
             catch (Exception ex)

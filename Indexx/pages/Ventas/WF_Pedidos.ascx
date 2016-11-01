@@ -4,6 +4,7 @@
 
 <body>
     <asp:UpdatePanel id="panelX" runat="Server"><ContentTemplate>
+        <div class="row">
             <div class="col-sm-12" style="display:;">
                 <div class="x_panel">
                     <div class="x_title">
@@ -19,12 +20,10 @@
                         <td><input id="txtBuscarItems" type="text" runat="server"/>
                         <asp:Button ID="btnBuscarItems" runat="server" Text="Buscar" OnClick="getItemsByNombre"/>
                         </td>
-                        <p>
-                        <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered table" 
-                            AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
-                            DataKeyNames="IdItem,Nombre,PrecioVenta,Stock"
-                            OnRowCommand="gvItems_RowComand"
-                            AllowPaging="True" PageSize="8" Height="161px" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" >
+                        <br /><br />
+                        <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvItems_RowComand"
+                            DataKeyNames="IdItem,Nombre,PrecioVenta,Stock" AutoGenerateColumns="False"
+                            style="text-align:center" AllowPaging="True" >
                             <Columns>
                                 <asp:BoundField DataField="IdItem" HeaderText="IdItem" Visible="False" />
                                 <asp:BoundField DataField="Nombre"     HeaderText="Nombre del Producto" />
@@ -39,30 +38,27 @@
                                                     Text="Seleccionar"/>
                                     </ItemTemplate> 
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="OcultarProducto">
+                                <%--<asp:TemplateField HeaderText="OcultarProducto">
                                     <ItemTemplate>
                                         <asp:Button ID="btnOcultarProducto" runat="server" 
-                                                    CommandName="ocultarItemxStock" 
+                                                    CommandName="ocultarItemxStock" CssClass="btn btn-info btn-xs"
                                                     formnovalidate=""
                                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                     Text="Ocultar"/>
                                     </ItemTemplate> 
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
                             </Columns>
-                                <EditRowStyle BorderColor="Black" BorderStyle="Solid" Font-Size="Larger" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <HeaderStyle BorderColor="Black" BorderStyle="Solid" ForeColor="Black" HorizontalAlign="Center" />
-                                <SortedDescendingCellStyle BorderColor="blue" BorderStyle="Solid" ForeColor="blue"  HorizontalAlign="Center" VerticalAlign="Middle"/>
                         </asp:GridView>
-                        </p>
                     </div>
                 </div>
             </div>
+        </div>
         
-
+        <div class="row">
             <div class="col-sm-12" style="display:;">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>MOSTRAR PEDIDOS </h2>
+                        <h2>LISTA DE PRODUCTOS DEL PEDIDO</h2>
                         <ul class="nav navbar-right panel_toolbox">
                             <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
                         </ul>
@@ -70,25 +66,22 @@
                         </div>
                     </div>
                     <div class="x_content">
-                        <p>
-                            <asp:GridView ID="dgvPedidos" runat="server" CssClass="gridview bordered table" 
-                            AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
-                            DataKeyNames="IdItem,Nombre,PrecioUnitario,Cantidad"
-                            OnRowCommand="gvPedidos_RowComand"
-                            AllowPaging="True" PageSize="8" Height="161px" Width="497px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" >
+                        <asp:GridView ID="dgvPedidos" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvPedidos_RowComand"
+                        DataKeyNames="IdItem,Nombre,PrecioUnitario" AutoGenerateColumns="False"
+                        style="text-align:center" AllowPaging="True" >
                             <Columns>
                                 <asp:BoundField DataField="IdItem"             HeaderText="IdItem" Visible="False" />
                                 <asp:BoundField DataField="Nombre"             HeaderText="Nombre del Producto"  /> 
                                 <asp:BoundField DataField="PrecioUnitario"     HeaderText="Precio del Producto" />
                                 <asp:TemplateField HeaderText="Cantidad">
                                     <ItemTemplate>
-                                        <asp:TextBox ID="CantidadVenta" runat="server" Text='<%#Eval("Cantidad") %>'/>
+                                        <asp:TextBox ID="CantidadPedido" runat="server" Text='<%#Eval("Cantidad") %>'/>
                                     </ItemTemplate> 
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="EditarPedido">
                                     <ItemTemplate>
                                         <asp:Button ID="btnEditarPedido" runat="server" 
-                                                    CommandName="EditarItemxStock" 
+                                                    CommandName="EditarItemxStock" CssClass="btn btn-info btn-xs" 
                                                     formnovalidate=""
                                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                     Text="Editar"/>
@@ -97,21 +90,66 @@
                                 <asp:TemplateField HeaderText="EliminarPedido">
                                     <ItemTemplate>
                                         <asp:Button ID="btnEliminarItemxStock" runat="server" 
-                                                    CommandName="eliminarItemxStock" 
+                                                    CommandName="eliminarItemxStock" CssClass="btn btn-info btn-xs"
                                                     formnovalidate=""
                                                     CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                     Text="Eliminar"/>
                                     </ItemTemplate> 
                                 </asp:TemplateField>
                             </Columns>
-                                <EditRowStyle BorderColor="Black" BorderStyle="Solid" Font-Size="Larger" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <HeaderStyle BorderColor="Black" BorderStyle="Solid" ForeColor="Black" HorizontalAlign="Center" />
-                                <SortedDescendingCellStyle BorderColor="blue" BorderStyle="Solid" ForeColor="blue"  HorizontalAlign="Center" VerticalAlign="Middle"/>
                         </asp:GridView>
-                            <asp:Button ID="btnGuardarPedido" runat="server" OnClick="GuardarPedidosxItem" Text="GuardarPedido" />
-                        </p>
                     </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12" style="display:;">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>PEDIDOS</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                        </ul>
+                        <div class="clearfix">
+                        </div>
+                    </div>
+                    <div class="x_content">
+                        <asp:GridView ID="GridView1" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvPedidos_RowComand"
+                        DataKeyNames="IdItem,Nombre,PrecioUnitario" AutoGenerateColumns="False"
+                        style="text-align:center" AllowPaging="True" >
+                            <Columns>
+                                <asp:BoundField DataField="IdItem"             HeaderText="IdItem" Visible="False" />
+                                <asp:BoundField DataField="Nombre"             HeaderText="Nombre del Producto"  /> 
+                                <asp:BoundField DataField="PrecioUnitario"     HeaderText="Precio del Producto" />
+                                <asp:TemplateField HeaderText="Cantidad">
+                                    <ItemTemplate>
+                                        <asp:TextBox ID="CantidadPedido" runat="server" Text='<%#Eval("Cantidad") %>'/>
+                                    </ItemTemplate> 
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="EditarPedido">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnEditarPedido" runat="server" 
+                                                    CommandName="EditarItemxStock" CssClass="btn btn-info btn-xs" 
+                                                    formnovalidate=""
+                                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                    Text="Editar"/>
+                                    </ItemTemplate> 
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="EliminarPedido">
+                                    <ItemTemplate>
+                                        <asp:Button ID="btnEliminarItemxStock" runat="server" 
+                                                    CommandName="eliminarItemxStock" CssClass="btn btn-info btn-xs"
+                                                    formnovalidate=""
+                                                    CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                    Text="Eliminar"/>
+                                    </ItemTemplate> 
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+        </div>
     </ContentTemplate></asp:UpdatePanel>
 </body>

@@ -96,11 +96,59 @@ namespace DAO
             mDa.Fill(mDs);
             return mDs.Tables[0];
         }
-
+        
         public DataTable GetProveedoresPedido(int idPedido)
         {
             mDa = new SqlDataAdapter("sp_listProveedoresByPedido", con);
             mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", idPedido);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable DeleteItemCompra(int idCompra,int idItem)
+        {
+            mDa = new SqlDataAdapter("sp_deleteItemCompra", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra" , idCompra);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem"   , idItem);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable UpdateItemByCompra(String idCompra, int idItem,int cantidad)
+        {
+            mDa = new SqlDataAdapter("sp_updateCantItemCompra", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra" , idCompra);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem"   , idItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@Cantidad" , cantidad);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable VerifyIfCompraExists(String idCompra)
+        {
+            mDa = new SqlDataAdapter("sp_selectCompraExists", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra" , idCompra);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable FinalizarCompra(String idCompra)
+        {
+            mDa = new SqlDataAdapter("sp_changeEstadoByCompra", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra", idCompra);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable GetDataCompra(String idCompra)
+        {
+            mDa = new SqlDataAdapter("sp_getDataByCompra", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra", idCompra);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);

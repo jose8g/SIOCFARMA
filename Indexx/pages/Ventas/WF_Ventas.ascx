@@ -29,9 +29,17 @@
                         </tr>
                         <br />
                         <tr>
-                            <td>BUSCAR PRODUCTOS POR MARCAS</td>
+                            <td>BUSCAR PRODUCTOS POR MARCA</td>
                             <td>
-                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="itemSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="marcaSelected" style="margin-bottom: 0px" Width="150px">
+                                </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <br />
+                        <tr>
+                            <td>BUSCAR PRODUCTOS POR TIPO</td>
+                            <td>
+                                <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="tipoSelected" style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -46,7 +54,7 @@
         <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>ITEMS</h2>
+                    <h2>PRODUCTOS</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>

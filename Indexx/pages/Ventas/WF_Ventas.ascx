@@ -142,14 +142,14 @@
                 </div>
                 <div class="x_content">
                     <asp:GridView ID="dgvVentas" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvVenta_RowComand"
-                            DataKeyNames="IdVenta" AutoGenerateColumns="False"
+                            DataKeyNames="IdVenta, FechaRealizacion, NombreVendedor, PrecioTotal" AutoGenerateColumns="False"
                             style="text-align:center" AllowPaging="True" >
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
                             <asp:BoundField DataField ="IdVenta"           HeaderText ="IdVenta" Visible="false" />
-                            <asp:BoundField DataField ="FechaRealizacion"  HeaderText ="FechaRealizacion" />
-                            <asp:BoundField DataField ="IdVendedor"        HeaderText ="IdVendedor" />
-                            <asp:BoundField DataField ="PrecioTotal"       HeaderText ="PrecioTotal" />
+                            <asp:BoundField DataField ="FechaRealizacion"  HeaderText ="Fecha" />
+                            <asp:BoundField DataField ="NombreVendedor"    HeaderText ="Vendedor" />
+                            <asp:BoundField DataField ="PrecioTotal"       HeaderText ="Precio Total" />
                             <asp:TemplateField HeaderText="Observacion">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtObservacion" Text='<%#Eval("Observacion") %>' runat="server"/>
@@ -167,6 +167,11 @@
                                                 formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Eliminar"/>
+                                    <asp:Button ID="btnFinalizarVenta" runat="server"
+                                                CommandName="finalizarVenta" CssClass="btn btn-info btn-xs"
+                                                formnovalidate=""
+                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                Text="Finalizar"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

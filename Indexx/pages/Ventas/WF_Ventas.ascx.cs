@@ -98,7 +98,7 @@ namespace Indexx.pages.Ventas
                 {
                     GridViewRow row = (GridViewRow)(((System.Web.UI.WebControls.Button)e.CommandSource).NamingContainer);
                     String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("cantidadVenta")).Text;
-                    if (cantidadVenta.Length != 0)
+                    if (cantidadVenta.Length != 0 && Convert.ToInt32(cantidadVenta) > 0)
                     {
                         int idItem = Convert.ToInt32(dgvCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
 
@@ -160,6 +160,28 @@ namespace Indexx.pages.Ventas
                 {
                     Session["venta"] = idVenta;
                     getItemsByVenta(idVenta);
+                }
+                else if (e.CommandName == "finalizarVenta")
+                {
+                    decimal precioTotal = Convert.ToDecimal(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["PrecioTotal"].ToString());
+                    if (precioTotal > 0)
+                    {
+                        int salida  = obj.finalizarVenta(idVenta);
+                        if (salida == 1)
+                        {
+                            buildTableVentasPendientes();
+                            if (Convert.ToInt32(Session["venta"]) == idVenta)
+                            {
+                                Session["venta"] = null;
+                                dgvCarrito.DataSource = null;
+                                dgvCarrito.DataBind();
+                            }
+                        }
+                        else if(salida == 0)
+                        {
+
+                        }
+                    }
                 }
 
             }

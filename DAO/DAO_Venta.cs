@@ -177,5 +177,18 @@ namespace DAO
                 throw ex;
             }
         }
+
+        public int finalizarVenta(int idVenta)
+        {
+            SqlCommand comando = new SqlCommand("sp_finalizarVenta", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IdVenta", idVenta);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        }
     }
 }

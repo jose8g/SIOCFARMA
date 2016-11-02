@@ -16,24 +16,24 @@ namespace DAO
         private SqlDataAdapter mDa;
         private DataSet mDs;
         SqlConnection con = new SqlConnection(ConexionBD.CadenaConexion);
-        //public DataTable ConsultarCompras()
-        //{
-        //    try
-        //    {
-        //        //mDa = new SqlDataAdapter("sp_lstConsultar_Categoria", con);
-        //        mDa = new SqlDataAdapter("sp_listConsultarCompras", con);
-        //        mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-        //        mDs = new DataSet();
-        //        mDa.Fill(mDs);
-        //        return mDs.Tables[0];
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
+        public DataTable ConsultarCompras()
+        {
+            try
+            {
+                //mDa = new SqlDataAdapter("sp_lstConsultar_Categoria", con);
+                mDa = new SqlDataAdapter("sp_listConsultarCompras", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
 
-        //    }
+            }
 
-        //}
+        }
 
         public DataTable GetProductosByCompra(int idCompra)
         {

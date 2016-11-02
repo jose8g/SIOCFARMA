@@ -102,10 +102,15 @@ height: auto!important;}
                             <asp:TemplateField HeaderText="Ver">
                                     <ItemTemplate>
                                         <div class="text-center">
-                                            <asp:ImageButton ID="btnVer" HeaderText="Ver" runat="server"
+                                            <%--<asp:ImageButton ID="btnVers" HeaderText="Ver" runat="server"
                                                 ImageUrl="../../images/icon2.png" CommandName="Ver"
                                                 formnovalidate=""
-                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />--%>
+                                            <asp:Button ID="btnVer" HeaderText="Ver" runat="server" 
+                                                        CommandName="Ver" CssClass="btn btn-info btn-xs"
+                                                        formnovalidate=""
+                                                        CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                        Text="Ver"/>
                                         </div>
                                     </ItemTemplate> 
                                 </asp:TemplateField>

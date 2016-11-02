@@ -92,7 +92,7 @@ height: auto!important;}
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView runat="server" ID="dgvPedidos" CssClass="gridview bordered"  OnRowCommand="dgvPedidos_RowComand"
+                    <asp:GridView runat="server" ID="dgvPedidos" CssClass="gridview bordered table"  OnRowCommand="dgvPedidos_RowComand"
                         DataKeyNames="IdPedido, Estado, FechaRegistro"
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvPedidos_PageIndexChanging" AllowPaging="True">
                         <Columns>
@@ -131,7 +131,7 @@ height: auto!important;}
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered" 
+                    <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered table" 
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvItems_PageIndexChanging"
                         DataKeyNames="IdItem, Farmaco, TipoFarmaco, Cantidad, PrecioUnitario"
                         OnRowCommand="dgvItems_RowComand" AllowPaging="True">
@@ -172,7 +172,7 @@ height: auto!important;}
         <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Pedidos</h2>
+                    <h2></h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -180,7 +180,7 @@ height: auto!important;}
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView runat="server" ID="dgvPedidoC" CssClass="gridview bordered" 
+                    <asp:GridView runat="server" ID="dgvPedidoC" CssClass="gridview bordered table" 
                         DataKeyNames="IdPedido,Nombre, Medida, Farmaco, Cantidad, PrecioUnitario"
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvPedidoC_PageIndexChanging" AllowPaging="True">
                         <Columns>
@@ -244,7 +244,7 @@ height: auto!important;}
             <asp:TextBox ID="txtEx" runat="server" Visible="False"></asp:TextBox>
         </div>
 
-        <asp:GridView ID="dgvExistente" runat="server" CssClass="gridview bordered" 
+        <asp:GridView ID="dgvExistente" runat="server" CssClass="gridview bordered table" 
             AutoGenerateColumns="False" OnPageIndexChanging="dgvExistente_PageIndexChanging"
             DataKeyNames="Existente"
             AllowPaging="True" PageSize="8" Height="161px" 
@@ -279,10 +279,13 @@ height: auto!important;}
             runat="server" ></asp:TextBox>
         <label class="lblcampos" for="name">
            Medida:</label>
-           <asp:DropDownList ID="ddlMedida" runat="server" AutoPostBack="true" CssClass="w-input txtcampos areadescriptionpopUp"
-               OnSelectedIndexChanged="ddlMedida_SelectedIndexChanged"></asp:DropDownList>
+            <br/>
+           <asp:DropDownList ID="ddlMedida" runat="server" AutoPostBack="true" CssClass="ddl"
+               OnSelectedIndexChanged="ddlMedida_SelectedIndexChanged" Width="298px"></asp:DropDownList>
            <%--<asp:TextBox ID="txtMedidapopup"   CssClass="w-input txtcampos areadescriptionpopUp"
             runat="server" ></asp:TextBox>--%>
+            <br/>
+            <br/>
         <label class="lblcampos" for="name">
            Cantidad de Medida:</label>
         <asp:TextBox ID="txtCantidadMpopup"   CssClass="w-input txtcampos areadescriptionpopUp"

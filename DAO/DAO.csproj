@@ -52,7 +52,6 @@
     <Compile Include="D_Pedido.cs" />
     <Compile Include="D_PedidoxCotizacion.cs" />
     <Compile Include="D_PedidoxItem.cs" />
-    <Compile Include="E_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

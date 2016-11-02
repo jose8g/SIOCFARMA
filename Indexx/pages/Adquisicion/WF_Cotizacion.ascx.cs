@@ -91,7 +91,10 @@ namespace Indexx.pages.Adquisicion
                     objE_PedI.IdItem1 = Convert.ToInt32(txtIdItem.Text);
 
                     objC_PedI.eliminarPedidoxItem(objE_PedI);
+                    dgvItems.DataSource = objC_PedI.ListarItemsxPedido(Convert.ToInt32(txtIdPedido.Text));
+                    dgvItems.DataBind();
                     Response.Write("<script>alert('" + "Se eliminó el item satisfactoriamente." + "')</script>");
+                    
                 }
             }
             catch (Exception ex)

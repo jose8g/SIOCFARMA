@@ -68,7 +68,6 @@ namespace Entidad
             Estado1 = Estadov;
             IdVendedor1 = IdVendedorv;
             IdCliente1 = IdClientev;
-
         }
 
     }

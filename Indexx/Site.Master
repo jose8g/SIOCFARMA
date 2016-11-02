@@ -26,9 +26,27 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <!-- Bootstrap Select-->
+    <link href="../css/bootstrap-select.css" rel="stylesheet">
 
+      
+    <style type="text/css">
+        .ddl
+        {
+            border:2px solid #07007F;
+            border-radius:5px;
+            padding:3px;
+            -webkit-appearance: none; 
+            background-image:url('Images/Arrowhead-Down-01.png');
+            background-position:88px;
+            background-repeat:no-repeat;
+            text-indent: 0.01px;
+            width:50%;
+        }
+    </style>
       <script src="js/jquery.min.js"></script>
       <script src="js/webflow.js"></script>
+      <script src="js/bootstrap-select.js"></script>
 
     <script type="text/javascript">
         jQuery(document).ready(function () {
@@ -79,7 +97,7 @@
                     <ul class="nav child_menu">
                       <li><a class="opcion1">Orden Compra</a> </li>
                       <li><a class="opcion2">Cotizacion</a></li>
-                      <li><a class="opcion3"> </a> </li>
+                      <li><a class="opcion3"> Gestion marca</a> </li>
                     </ul>
                   </li>
                    <li><a><i class="fa fa-file-excel-o"></i> Almacen <span class="fa fa-chevron-down"></span></a>
@@ -107,8 +125,8 @@
                   </li>
                     <li><a><i class="fa fa-file-excel-o"></i> Ventas <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a Class="Opcion5"> </a></li>
-                      <li><a href="#"></a></li>
+                      <li><a Class="Opcion5"></a></li>
+                      <li><a Class="Opcion6"></a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
                       <li><a href="#"> </a></li>
@@ -268,7 +286,7 @@
 			<div class="col-md-4 col-sm-4 col-xs-12">
             </div>
 
-            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="col-md-10 col-md-offset-1">
               
 			  <div class="row">
 

@@ -78,7 +78,7 @@
                 <input type="password" class="form-control" placeholder="Contraseña" required="" />
               </div>
               <div>
-                <a class="btn btn-default submit" href="WF_JefeDeInventario">Iniciar Sesión</a>
+                <a class="btn btn-default submit" href="WF_Vendedora.aspx">Iniciar Sesión</a>
               </div>
 
               <div class="clearfix"></div>

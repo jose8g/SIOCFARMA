@@ -56,14 +56,41 @@ namespace DAO
 
         public DataTable GetCotizacionesCreadas()
         {
-            ArrayList list = new ArrayList();
-            mDa = new SqlDataAdapter("sp_listGetCotizacionesCreadas", con);
+            mDa = new SqlDataAdapter("sp_listGetPedidosCotizados", con);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);
             return mDs.Tables[0];
         }
 
+        public DataTable GetProductosByPedido(int idPedido)
+        {
+            mDa = new SqlDataAdapter("sp_listProductosByPedido", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", idPedido);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable InsertCompraByCotizacion(int idCotizacion){
+            mDa = new SqlDataAdapter("sp_insertCompraByCotizacion", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCotizacion", idCotizacion);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable GetPreciosByItemCotizacion(int idItem, int idPedido){
+            mDa = new SqlDataAdapter("sp_listPreciosCotizacionesByItem", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem"   , idItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido" , idPedido);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
     }
 }
 

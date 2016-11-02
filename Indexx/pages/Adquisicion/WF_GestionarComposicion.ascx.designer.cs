@@ -7,36 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Indexx {
+namespace Indexx.pages.Adquisicion {
     
     
-    public partial class Formulario_web1 {
+    public partial class WF_GestionarComposicion {
         
         /// <summary>
-        /// ScriptManager2 control.
+        /// lbl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager2;
+        protected global::System.Web.UI.WebControls.Label lbl1;
         
         /// <summary>
-        /// WF_Ventas1 control.
+        /// ddlComposicion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_Ventas WF_Ventas1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlComposicion;
         
         /// <summary>
-        /// WF_Pedidos1 control.
+        /// gvDetalleComposicion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_Pedidos WF_Pedidos1;
+        protected global::System.Web.UI.WebControls.GridView gvDetalleComposicion;
     }
 }

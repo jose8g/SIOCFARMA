@@ -2,7 +2,6 @@
 <%@ Register Src="~/pages/Ventas/WF_Ventas.ascx" TagPrefix="uc1" TagName="WF_Ventas" %>
 <%@ Register Src="~/pages/Ventas/WF_Pedidos.ascx" TagPrefix="uc2" TagName="WF_Pedidos" %>
 
-
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server">
@@ -16,20 +15,21 @@
 
              jQuery(".Opcion5").click(function () {
                  jQuery("#ContentGestionarVenta").fadeIn('slow');
-                 jQuery("#ContentGestionarPedido").hide;
+                 jQuery("#ContentGestionarPedido").hide();
              });
-             jQuery(".Opcion5").click(function () {
-                 jQuery("#ContentGestionarVenta").hide;
+             jQuery(".Opcion6").click(function () {
+                 jQuery("#ContentGestionarVenta").hide();
                  jQuery("#ContentGestionarPedido").fadeIn('slow');
              });
          });
 	</script>
 
-    <div id="ContentGestionarVenta" style="display: block;">
-        <uc1:WF_Ventas runat="server" ID="WF_Ventas" />
+    <div id="ContentGestionarVenta" style="display:none;">
+        <uc1:WF_Ventas runat="server" ID="WF_Ventas1" />
     </div>
-        <div id="ContentGestionarPedido" style="display: block;">
-        <uc2:WF_Pedidos runat="server" id="WF_Pedidos" />
+
+    <div id="ContentGestionarPedido" style="display:none;">
+        <uc2:WF_Pedidos runat="server" ID="WF_Pedidos1" />
     </div>
     </form>
 </asp:Content>

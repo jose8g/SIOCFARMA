@@ -9,25 +9,25 @@ using Entidad;
 
 namespace CONTROL
 {
-    public class C_Pedido
+    public class C_Lote
     {
-        DAO_Pedido objD_Ped;
+        D_Lote objD_Lo;
 
-        public C_Pedido()
+        public C_Lote()
         {
-            objD_Ped = new DAO_Pedido();
+            objD_Lo = new D_Lote();
         }
 
-        /*public DataTable ListarPedidos()
+        public DataTable ListarMedidas()
         {
             try
             {
-                return objD_Ped.ListarPedidosxProveedor(IdProveedor);
+                return objD_Lo.ListarMedidas();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }*/
+        }
     }
 }

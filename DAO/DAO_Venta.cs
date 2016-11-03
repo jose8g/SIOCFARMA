@@ -67,6 +67,15 @@ namespace DAO
             return mDs.Tables[0];
         }
 
+        public DataTable GetTiposCreados()
+        {
+            mDa = new SqlDataAdapter("sp_getTipos", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
         public DataTable getItemsByMarca(int IdMarca)
         {
             try
@@ -83,7 +92,22 @@ namespace DAO
                 throw ex;
             }
         }
-
+        public DataTable getItemsByTipo(int IdTipo)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemByTipo", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdTipo", IdTipo);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable registarItemXVenta(string IdVenta, string IdItem)
         {
             try

@@ -44,14 +44,21 @@ namespace Entidad
             get { return Estado; }
             set { Estado = value; }
         }
-        private int IdPedido;
+        private DateTime FechaRegistro;
 
-        public int IdPedido1
+        public DateTime FechaRegistro1
         {
-            get { return IdPedido; }
-            set { IdPedido = value; }
+            get { return FechaRegistro; }
+            set { FechaRegistro = value; }
         }
 
+        private string NombreCotizacion;
+
+        public string NombreCotizacion1
+        {
+            get { return NombreCotizacion; }
+            set { NombreCotizacion = value; }
+        }
         public E_Cotizacion()
         {
             IdCotizacion = 0;
@@ -59,7 +66,8 @@ namespace Entidad
             PrecioCan = 0.0;
             Total = 0.0;
             Estado = false;
-            IdPedido = 0;
+            FechaRegistro = new DateTime();
+            NombreCotizacion = "";
         }
     }
 }

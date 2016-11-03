@@ -57,7 +57,7 @@
                 <div class="x_content">
                     <asp:GridView runat="server" ID="dgvComprasList" CssClass="gridview bordered table"  OnRowCommand="getItems"
                         DataKeyNames="IdCompras,FechaRegistro,Cantidad,PrecioCan,Descuento,Total,estado,proveedor"
-                            AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
+                          AutoGenerateColumns="False" OnPageIndexChanging="gvOrdenCompra_PageIndexChanging">
                         <Columns>
                                 <asp:BoundField DataField="IdCompras"     HeaderText="Id" Visible="false"/>
                                 <asp:BoundField DataField="proveedor"     HeaderText="Proveedor"     />

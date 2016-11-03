@@ -24,19 +24,20 @@
 
                 jQuery(".opcion2").click(function () {
                     jQuery("#ContentOrdenCompra").hide();
-                    jQuery("#ContentCotizacionn").fadeIn('slow');
+                    jQuery("#ContentCotizacion").fadeIn('slow');
                 });
 
             });
 
 	</script>
-    
 
+        
         <div id="ContentOrdenCompra" style="display:;">
-            <uc1:WF_OrdenCompra runat="server" id="WF_OrdenCompra" />
+            <uc1:WF_OrdenCompra runat="server" ID="WF_OrdenCompra" />
         </div>
         <div id="ContentCotizacion" style="display:;">
             <uc2:WF_Cotizacion runat="server" ID="WF_Cotizacion" />
         </div>
-    </form>
-</asp:Content>
+</form>
+                   
+        </asp:Content>

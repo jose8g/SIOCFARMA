@@ -110,7 +110,7 @@ namespace Indexx.pages.Adquision
         {
             DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
             int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
-            objci.insertarComposicionxItem(txtDESmED.Text,Convert.ToInt32(txtNomCan.Text), codigo, Convert.ToInt32(ddlComposicion.SelectedValue));
+            objci.insertarComposicionxItem(txtMedidaComp.Text, Convert.ToInt32(txtCantidadComp.Text), codigo, Convert.ToInt32(ddlComposicion.SelectedValue));
             dgvProdictoComposicion.DataSource = objci.getComposicionesxItemCreadas(codigo);
             dgvProdictoComposicion.DataBind();
         }

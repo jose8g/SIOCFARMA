@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
 using System.Collections;
+using System.Net.Mail;
 
 namespace Indexx.pages
 {
@@ -217,6 +218,26 @@ namespace Indexx.pages
             } catch(Exception ex){
                 Response.Write("<script>alert('asdas')</script>");
             }
+        }
+
+        protected void sendMail(object sender, EventArgs e) {
+            MailMessage mail = new MailMessage();
+            mail.To.Add("cesar.villarrreal@gmail.com");
+            mail.From = new MailAddress("cesar.villarrreal@gmail.com");
+            mail.Subject = "sub";
+
+            mail.Body = "Hola";
+
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com"; //Or Your SMTP Server Address
+            smtp.Credentials = new System.Net.NetworkCredential
+                 ("cesar.villarrreal@gmail.com", "1231231231"); // ***use valid credentials***
+            smtp.Port = 587;
+
+            //Or your Smtp Email ID and Password
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
 
     }

@@ -264,5 +264,6 @@
             </div>
         </div>
     </div>
+        <asp:Button runat="server" OnClick="sendMail" Text="Enviar Correo"/>
 </ContentTemplate>
 </asp:UpdatePanel>

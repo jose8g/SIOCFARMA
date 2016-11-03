@@ -24,14 +24,13 @@
                         <tr>
                             <td>BUSCAR PRODUCTOS POR NOMBRE</td>
                             <td><input id="Text7" type="text" runat="server"/>
-                            <asp:Button ID="Button1" runat="server" Text="Buscar" OnClick="getItemsByNombre" CssClass="btn btn-info btn-xs"/>
                             </td>
                         </tr>
                         <br />
                         <tr>
                             <td>BUSCAR PRODUCTOS POR MARCA</td>
                             <td>
-                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="marcaSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -39,8 +38,20 @@
                         <tr>
                             <td>BUSCAR PRODUCTOS POR TIPO</td>
                             <td>
-                                <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="tipoSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <br />
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <br />
+                        <tr>
+                            <td>REALIZAR BUSQUEDA</td>
+                            <td>
+                                <asp:Button ID="Button1" runat="server" Text="Buscar" OnClick="getItemsByNombre" CssClass="btn btn-info btn-xs"/>
                             </td>
                         </tr>
                     </table>
@@ -69,7 +80,7 @@
                         <Columns>
                             <asp:BoundField DataField ="IdItem"          HeaderText ="IdItem" Visible="false" />
                             <asp:BoundField DataField ="Nombre"          HeaderText ="Nombre" />
-                            <asp:BoundField DataField ="PrecioVenta"     HeaderText ="Precio" />
+                            <asp:BoundField DataField ="PrecioVenta"     HeaderText ="Precio unitario" />
                             <asp:BoundField DataField ="Tipo"            HeaderText ="Tipo" />
                             <asp:BoundField DataField ="Marca"           HeaderText ="Marca" />
                             <asp:BoundField DataField ="Stock"           HeaderText ="Stock" />

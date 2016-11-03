@@ -34,7 +34,9 @@ namespace Indexx.pages.Ventas
 
         protected void getItemsByNombre(object sender, EventArgs e)
         {
-            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+            int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+            int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
             dgvItems.DataBind();
         }
         
@@ -140,7 +142,9 @@ namespace Indexx.pages.Ventas
                         int salida = obj.updateCantidad(Convert.ToInt32(Session["venta"]), idItem, Convert.ToInt32(cantidadVenta));
                         if (salida != 0)
                         {
-                            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                            int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+                            int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+                            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
                             dgvItems.DataBind();
                             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se actualizó correctamente la cantidad','success')", true);
                         }
@@ -164,7 +168,10 @@ namespace Indexx.pages.Ventas
                     dgvCarrito.DataSource = obj.deleteItemxVenta(Convert.ToInt32(Session["venta"]), idItem);
                     dgvCarrito.DataBind();
 
-                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+                    int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
+                    dgvItems.DataBind();
                     dgvItems.DataBind();
                 }
                 buildTableVentasPendientes();
@@ -185,7 +192,10 @@ namespace Indexx.pages.Ventas
                 {
                     obj.deleteVenta(idVenta);
                     buildTableVentasPendientes();
-                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+                    int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
+                    dgvItems.DataBind();
                     dgvItems.DataBind();
                     if (idVenta == Convert.ToInt32(Session["venta"]))
                     {

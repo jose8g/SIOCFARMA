@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    class ConexionBD
+    public class ConexionBD
     {
         public static string CadenaConexion
         {
             get
             {
-                return "Data Source=TOSHIBA\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
+                return "Data Source=EDGAR-PC\\MSSQLSERVER1;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
             }
         }
     }

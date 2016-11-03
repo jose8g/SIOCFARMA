@@ -39,10 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="C_Movimientos.cs" />
     <Compile Include="C_Marca.cs" />
     <Compile Include="C_Pedido.cs" />
     <Compile Include="C_Proveedor.cs" />
+    <Compile Include="C_TipoMovimiento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

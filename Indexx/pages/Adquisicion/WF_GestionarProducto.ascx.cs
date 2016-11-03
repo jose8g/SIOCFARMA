@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using DAO;
 using Entidad;
+using CONTROL;
 using System.Data;
 using System.IO;
 using System.Diagnostics;
@@ -31,9 +32,12 @@ namespace Indexx.pages.Adquision
                 buildListMarcas();
                 buildListTipo();
                 buildListComposicion();
+                this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
             }
 
         }
+
+
 
         public void buildListMarcas()
         {
@@ -61,7 +65,6 @@ namespace Indexx.pages.Adquision
 
         protected void AgregarMarca(object sender, EventArgs e)
         {
-            Panel1.Visible = true;
         }
 
         protected void AñadirProductos(object sender, EventArgs e)
@@ -99,9 +102,8 @@ namespace Indexx.pages.Adquision
 
         protected void AgregarNewMarca(object sender, EventArgs e)
         {
-            objm.insertarMarca(txtNombreC.Text ,txtDesC.Text );
+            objm.insertarMarca(txtNombreMarca.Text, txtDescripcionMarca.Text);
             buildListMarcas();
-            Panel1.Enabled = false;
         }
 
         protected void AgregarComposicion(object sender, EventArgs e)

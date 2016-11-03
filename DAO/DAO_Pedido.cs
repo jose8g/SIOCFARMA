@@ -57,7 +57,7 @@ namespace DAO
 
         }
 
-        public int updateCantidadPedido(int idPedido, int idItem, int cantidad)
+        public void updateCantidadPedido(int idPedido, int idItem, int cantidad)
         {
             SqlCommand comando = new SqlCommand("sp_editar_cantidadPedido", con);
             comando.CommandType = CommandType.StoredProcedure;
@@ -65,13 +65,9 @@ namespace DAO
             comando.Parameters.AddWithValue("@IdPedido", idPedido);
             comando.Parameters.AddWithValue("@IdItem", idItem);
             comando.Parameters.AddWithValue("@Cantidad", cantidad);
-            comando.Parameters.Add("@salida", SqlDbType.Int);
-            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
             con.Open();
             comando.ExecuteNonQuery();
             con.Close();
-
-            return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
 
         public DataTable deleteItemxPedido(int IdPedido, int IdItem)
@@ -105,6 +101,32 @@ namespace DAO
             return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
 
+        public DataTable getPedido()
+        {
+
+            mDa = new SqlDataAdapter("sp_getPedido", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        
+        public DataTable deletePedido(int IdPedido)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_delete_Pedido", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

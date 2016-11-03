@@ -85,6 +85,15 @@ namespace Indexx.pages.Adquision {
         protected global::System.Web.UI.WebControls.DropDownList ddlComposicion;
         
         /// <summary>
+        /// Control btnNewComposicion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewComposicion;
+        
+        /// <summary>
         /// Control dgvProdictoComposicion.
         /// </summary>
         /// <remarks>
@@ -101,6 +110,15 @@ namespace Indexx.pages.Adquision {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProveedor;
+        
+        /// <summary>
+        /// Control btnNewProveedorq.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewProveedorq;
         
         /// <summary>
         /// Control dgvProductoProveedor.
@@ -193,13 +211,13 @@ namespace Indexx.pages.Adquision {
         protected global::System.Web.UI.WebControls.TextBox txtAgrRestriccion;
         
         /// <summary>
-        /// Control btnNewComposicion.
+        /// Control btnNew1Composicion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNewComposicion;
+        protected global::System.Web.UI.WebControls.Button btnNew1Composicion;
         
         /// <summary>
         /// Control UpdatePanel4.

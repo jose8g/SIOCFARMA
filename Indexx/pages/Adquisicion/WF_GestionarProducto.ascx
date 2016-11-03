@@ -2,6 +2,14 @@
 
 <script src="../../js/pop1.js"></script>
 <link href="../../css/pop1.css" rel="stylesheet" />
+<script src="../../js/pop2.js"></script>
+<link href="../../css/pop2.css" rel="stylesheet" />
+<script src="../../js/pop3.js"></script>
+<link href="../../css/pop3.css" rel="stylesheet" />
+<script src="../../js/pop4.js"></script>
+<link href="../../css/pop4.css" rel="stylesheet" />
+<script src="../../js/pop5.js"></script>
+<link href="../../css/pop5.css" rel="stylesheet" />
 
 <script src="../../Scripts/jquery-1.8.2.min.js"></script>
 <script src="../../js/jquery-1.4.1.min.js"></script>
@@ -9,6 +17,22 @@
 <script language="javascript" type="text/javascript">
     function ocultar() {
         $("#pop1").fadeIn('slow');
+    }
+
+    function ocultar2() {
+        $("#pop2").fadeIn('slow');
+    }
+
+    function ocultar3() {
+        $("#pop3").fadeIn('slow');
+    }
+
+    function ocultar4() {
+        $("#pop4").fadeIn('slow');
+    }
+
+    function ocultar5() {
+        $("#pop5").fadeIn('slow');
     }
 </script>
 
@@ -31,6 +55,49 @@ height: auto!important;}
     height: auto  !important;
            }
         #pop1
+        {
+            padding: 15px !important;
+            height: auto !important;
+        }
+
+        #pop2
+       {top: 55px !important;
+           padding: 15px !important;
+    height: auto  !important;
+           }
+        #pop2
+        {
+            padding: 15px !important;
+            height: auto !important;
+        }
+        #pop3
+       {top: 55px !important;
+           padding: 15px !important;
+    height: auto  !important;
+           }
+        #pop3
+        {
+            padding: 15px !important;
+            height: auto !important;
+        }
+
+        #pop4
+       {top: 55px !important;
+           padding: 15px !important;
+    height: auto  !important;
+           }
+        #pop4
+        {
+            padding: 15px !important;
+            height: auto !important;
+        }
+
+        #pop5
+       {top: 55px !important;
+           padding: 15px !important;
+    height: auto  !important;
+           }
+        #pop5
         {
             padding: 15px !important;
             height: auto !important;
@@ -97,8 +164,6 @@ height: auto!important;}
         </div>
     </div>
    </div>
-   </ContentTemplate> </asp:UpdatePanel>
-
     <div class="row">
         <div class="col-sm-12">
             <div class="x_panel">
@@ -112,12 +177,12 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Composicion</label>
-                    <asp:DropDownList ID="ddlComposicion"  CssClass="ddl" runat="server" AutoPostBack="True">
+                    <asp:DropDownList ID="ddlComposicion"  CssClass="ddl btnCerrarSolicitud3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlComposicion_SelectedIndexChanged">
                         <asp:ListItem>Selec. Tipo</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button runat="server" Text="Nueva Composicion"  OnClick="AgregarComposicion"/>
+                    <asp:Button id="btnNewComposicion" runat="server" class="w-button btncontent btncontenthover btnCerrarSolicitud2"  Text="Nueva Composicion"  OnClick="AgregarComposicion"/>
                 <div class="x_content">
                     <asp:GridView runat="server" ID="dgvProdictoComposicion" CssClass="gridview bordered table"  OnRowCommand="dgvProdictoComposicion_RowCommand"
                         DataKeyNames="IdComposicionxItem,IdItem,Nombre,Cantidad,Medida"
@@ -148,7 +213,7 @@ height: auto!important;}
             </div>
         </div>
     </div>
-
+    
      <div class="row">
         <div class="col-sm-12">
             <div class="x_panel">
@@ -162,22 +227,23 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Proveedor:</label>
-                    <asp:DropDownList ID="ddlProveedor"  CssClass="ddl" runat="server" AutoPostBack="True">
+                    <asp:DropDownList ID="ddlProveedor"  CssClass="ddl btnCerrarSolicitud5" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged">
                         <asp:ListItem>Selec. Proveedor</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button runat="server" Text="Nuevo Proveedor"  OnClick="AgregarProveedor"/>
+                    <asp:Button id="btnNewProveedorq" runat="server" Text="Nuevo Proveedor" class="w-button btncontent btncontenthover btnCerrarSolicitud4" OnClick="AgregarProveedor"/>
                 <div class="x_content">
                     <asp:GridView runat="server" ID="dgvProductoProveedor" CssClass="gridview bordered table"  OnRowCommand="dgvProductoProveedor_RowCommand"
-                        DataKeyNames="IdComposicionxItem,IdItem,Nombre,Cantidad,Medida"
+                        DataKeyNames="IdProveedorxItem,CodigoProveedor,Nombre,.Responsable,RUC,Direccion"
                             AutoGenerateColumns="False" OnPageIndexChanging="dgvProductoProveedor_PageIndexChanging">
                         <Columns>
-                                <asp:BoundField DataField="IdComposicionxItem" HeaderText="Id" Visible="false"/>
-                                <asp:BoundField DataField="IdItem" HeaderText="Id" Visible="false"/>
-                                <asp:BoundField DataField="Nombre" HeaderText="Composicion" />
-                                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad"        />
-                                <asp:BoundField DataField="Medida"      HeaderText="Medida"  />
+                                <asp:BoundField DataField="IdProveedorxItem" HeaderText="Id" Visible="false"/>
+                                <asp:BoundField DataField="CodigoProveedor" HeaderText="Id"/>
+                                <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+                                <asp:BoundField DataField="Responsable" HeaderText="Responsable"        />
+                                <asp:BoundField DataField="RUC"      HeaderText="RUC"  />
+                                <asp:BoundField DataField="Direccion"      HeaderText="Direccion"  />
                             <asp:TemplateField HeaderText="Editar">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgEditar" HeaderText="Editar" CssClass="img"  runat="server"
@@ -198,7 +264,7 @@ height: auto!important;}
             </div>
         </div>
     </div>
-       
+       </ContentTemplate> </asp:UpdatePanel>
 </body>       
         
    <div id="pop1" style="display:none; width: 60%; left: 100.5px; top: 660px;">
@@ -229,7 +295,7 @@ height: auto!important;}
         </div>
 
     <div id="pop2" style="display:none; width: 60%; left: 100.5px; top: 660px;">
-        <div id="cerrar1">
+        <div id="cerrar2">
             X</div>
         <%--el boton para cerrar--%>
     <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
@@ -249,10 +315,9 @@ height: auto!important;}
             runat="server" ></asp:TextBox>
         <br>
         <br />
-        <asp:Button ID="btnNewComposicion" runat="server" Height="42px" class="w-button btncontent btncontenthover" Text="Guardar" Width="229px" OnClick="AgregarNewComposicion"/>
+        <asp:Button ID="btnNew1Composicion" runat="server" Height="42px" class="w-button btncontent btncontenthover" Text="Guardar" Width="229px" OnClick="AgregarNewComposicion"/>
       </ContentTemplate>
-        </asp:UpdatePanel>
-       
+        </asp:UpdatePanel>  
         </div>
 
     <div id="pop3" style="display:none; width: 60%; left: 100.5px; top: 660px;">
@@ -271,7 +336,7 @@ height: auto!important;}
         <asp:TextBox ID="txtNombreComp"   enable="false" CssClass="w-input txtcampos areadescriptionpopUp"
             runat="server" ></asp:TextBox>
         <label class="lblcampos" for="name">
-           Resctricciones:</label>
+           Restricciones:</label>
            <asp:TextBox ID="txtRestricionComp"  enable="false"  CssClass="w-input txtcampos areadescriptionpopUp"
             runat="server" ></asp:TextBox>
          <label class="lblcampos" for="name">
@@ -293,7 +358,7 @@ height: auto!important;}
 <div id="pop4" style="display:none; width: 60%; left: 100.5px; top: 660px;">
         <div id="cerrar4">
             X</div>
-        <%--el boton para cerrar--%>
+    <%--el boton para cerrar--%>
     <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
             </h1>--%>
         <asp:UpdatePanel ID="UpdatePanel5" runat="server">
@@ -340,7 +405,7 @@ height: auto!important;}
 <div id="pop5" style="display:none; width: 60%; left: 100.5px; top: 660px;">
         <div id="cerrar5">
             X</div>
-        <%--el boton para cerrar--%>
+    <%--el boton para cerrar--%>
     <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
             </h1>--%>
         <asp:UpdatePanel ID="UpdatePanel6" runat="server">

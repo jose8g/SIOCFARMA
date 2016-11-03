@@ -39,18 +39,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="D_Lote.cs" />
-    <Compile Include="DAO_Movimientos.cs" />
     <Compile Include="ConexionBD.cs" />
     <Compile Include="DAO_Composicion.cs" />
     <Compile Include="DAO_ComposicionxItem.cs" />
     <Compile Include="DAO_Compras.cs" />
-    <Compile Include="DAO_Marca.cs" />
     <Compile Include="DAO_Item.cs" />
+    <Compile Include="DAO_Marca.cs" />
+    <Compile Include="DAO_Movimientos.cs" />
     <Compile Include="DAO_Pedido.cs" />
+    <Compile Include="DAO_Proveedor.cs" />
+    <Compile Include="DAO_ProveedorxItem.cs" />
     <Compile Include="DAO_TipoMovimiento.cs" />
     <Compile Include="DAO_Venta.cs" />
     <Compile Include="D_Cotizacion.cs" />
+    <Compile Include="D_Lote.cs" />
     <Compile Include="D_Pedido.cs" />
     <Compile Include="D_PedidoxCotizacion.cs" />
     <Compile Include="D_PedidoxItem.cs" />

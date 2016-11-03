@@ -39,9 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="C_Lote.cs" />
     <Compile Include="C_Marca.cs" />
     <Compile Include="C_Pedido.cs" />
+    <Compile Include="C_PedidoxCotizacion.cs" />
+    <Compile Include="C_PedidoxItem.cs" />
     <Compile Include="C_Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -126,7 +126,7 @@ namespace DAO
         {
             try
             {
-                mDa = new SqlDataAdapter("sp_getItemByNombre", conexion);
+                mDa = new SqlDataAdapter("sp_getItemByNombreByStock", conexion);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
                 mDs = new DataSet();

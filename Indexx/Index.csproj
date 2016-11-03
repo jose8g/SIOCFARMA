@@ -39,9 +39,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -62,6 +66,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -147,6 +152,8 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\magnific-popup.css" />
     <Content Include="css\pop1.css" />
+    <Content Include="css\PoPupAgregarMarca.css" />
+    <Content Include="css\modal.css" />
     <Content Include="css\style.css" />
     <Content Include="documentation\css\animate.min.css" />
     <Content Include="documentation\css\bootstrap.min.css" />
@@ -172,6 +179,11 @@
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\jquery-1.4.1.min.js" />
     <Content Include="js\pop1.js" />
+    <Content Include="js\PoPupAgregarMarca.js" />
+    <Content Include="images\icon1.png" />
+    <Content Include="images\icon2.png" />
+    <Content Include="images\icon3.png" />
+    <Content Include="images\icon4.png" />
     <Content Include="pages\Adquisicion\WF_Cotizacion.ascx" />
     <Content Include="pages\Adquisicion\WF_GestionarProducto.ascx" />
     <Content Include="pages\Adquisicion\WF_OrdenCompra.ascx" />
@@ -3740,7 +3752,9 @@
     <Content Include="vendors\validator\multifield.js" />
     <Content Include="vendors\validator\validator.js" />
     <Content Include="w3layouts-license.txt" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Bundle.config" />
   </ItemGroup>
   <ItemGroup>

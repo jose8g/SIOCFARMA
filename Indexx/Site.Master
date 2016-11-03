@@ -24,6 +24,11 @@
     <!-- JQVMap -->
     <link href="../vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
 
+    <!-- Pnotify -->
+    <link href="../vendors/pnotify/dist/pnotify.css" rel="stylesheet"/>
+    <link href="../vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet"/>
+    <link href="../vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet"/>
+
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
     <!-- Bootstrap Select-->
@@ -361,6 +366,12 @@
     <script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
     <script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
     <script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+
+    <!-- Pnotify -->
+    <script src="../vendors/pnotify/dist/pnotify.js"></script>
+    <script src="../vendors/pnotify/dist/pnotify.buttons.js" ></script>
+    <script src="../vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
     <!-- bootstrap-daterangepicker -->
     <script src="js/moment/moment.min.js"></script>
     <script src="js/datepicker/daterangepicker.js"></script>
@@ -627,5 +638,15 @@
         gauge.setTextField(document.getElementById("gauge-text"));
     </script>
     <!-- /gauge.js -->
+    <script type="text/javascript">
+        function Notificacion(titulo,texto,tipo) {
+            new PNotify({
+                title: titulo,
+                text: texto,
+                type: tipo,
+                styling: 'bootstrap3'
+            });
+        }
+</script>
   </body>
 </html>

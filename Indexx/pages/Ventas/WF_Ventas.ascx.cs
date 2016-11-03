@@ -6,6 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
+using System.Collections;
+using System.Windows.Forms;
+  
 
 namespace Indexx.pages.Ventas
 {
@@ -18,13 +21,10 @@ namespace Indexx.pages.Ventas
             if (!Page.IsPostBack)
             {
                 buildListMarca();
+                buildListTipo();
+                Session["venta"] = null;
+                buildTableVentasPendientes();
             }
-        }
-
-
-        protected void registrar_Click(object sender, EventArgs e)
-        {
-            //obj.registrar_venta(Text1.Value, DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss"), Text3.Value, Text4.Value, Text5.Value, Text6.Value);
         }
 
         protected void gvItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -37,30 +37,36 @@ namespace Indexx.pages.Ventas
             dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
             dgvItems.DataBind();
         }
-
+        
         protected void gvItems_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                if (e.CommandName == "agregarItems")
+                if (e.CommandName == "selecItem")
                 {
                     int idItem = Convert.ToInt32(dgvItems.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
-
+                    if (idItem.ToString() == null)
+                    {
+                        throw new Exception("Acción no permitida");
+                    }
                     if (Session["venta"] == null)
                     {
                         int idVenta = obj.registrar_venta();
-                        obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
+                        dgvCarrito.DataSource = obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
+                        dgvCarrito.DataBind();
                         Session["venta"] = idVenta;
                     }
                     else
                     {
-                        obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());
+                        dgvCarrito.DataSource = obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());;
+                        dgvCarrito.DataBind();
                     }
+                    buildTableVentasPendientes();
                 }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
         }
 
@@ -72,7 +78,17 @@ namespace Indexx.pages.Ventas
             ddlMarca.DataBind();
             ddlMarca.Items.Insert(0, new ListItem("Selec. Marca", "0"));
         }
-        protected void itemSelected(object sender, EventArgs e)
+
+        public void buildListTipo()
+        {
+            ddlTipo.DataSource = obj.GetTiposCreados();
+            ddlTipo.DataTextField = "Nombre";
+            ddlTipo.DataValueField = "IdTipo";
+            ddlTipo.DataBind();
+            ddlTipo.Items.Insert(0, new ListItem("Selec. Tipo", "0"));
+        }
+
+        protected void marcaSelected(object sender, EventArgs e)
         {
             int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
             if (idMarca != 0)
@@ -80,36 +96,156 @@ namespace Indexx.pages.Ventas
                 dgvItems.DataSource = obj.getItemsByMarca(idMarca);
                 dgvItems.DataBind();
             }
-            
-        }
-
-        public void agregarProducto()
-        {
-            
-            /*int cantidad = 0;
-            if (carrito != null)
+            else
             {
-                foreach (var item in carrito)
-                {
-                    cantidad += item.cantidad;
-                }
+                dgvItems.DataSource = null;
+                dgvItems.DataBind();
             }
-            lblCantidadCarrito.Text = "Ahora en tu carrito tienes (" + cantidad.ToString() + ") productos";*/
         }
 
-        protected void gvItems2_RowComand(object sender, GridViewCommandEventArgs e)
+        protected void tipoSelected(object sender, EventArgs e)
+        {
+            int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+            if (idTipo != 0)
+            {
+                dgvItems.DataSource = obj.getItemsByMarca(idTipo);
+                dgvItems.DataBind();
+            }
+            else
+            {
+                dgvItems.DataSource = null;
+                dgvItems.DataBind();
+            }
+        }
+
+        protected void gvCarrito_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                if (e.CommandName == "cambiarNombre")
+                if (e.CommandName == "editItem")
                 {
-                   
+                    GridViewRow row = (GridViewRow)(((System.Web.UI.WebControls.Button)e.CommandSource).NamingContainer);
+                    String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("cantidadVenta")).Text;
+                    if (cantidadVenta == null)
+                    {
+                        throw new Exception("Debe especificar una cantidad");
+                    }
+                    if (cantidadVenta.Length != 0 && Convert.ToInt32(cantidadVenta) > 0)
+                    {
+                        int idItem = Convert.ToInt32(dgvCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
+                        if (idItem.ToString() == null)
+                        {
+                            throw new Exception("Acción no permitida");
+                        }
+                        int salida = obj.updateCantidad(Convert.ToInt32(Session["venta"]), idItem, Convert.ToInt32(cantidadVenta));
+                        if (salida != 0)
+                        {
+                            dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                            dgvItems.DataBind();
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se actualizó correctamente la cantidad','success')", true);
+                        }
+                        else
+                        {
+                            throw new Exception("La cantidad sobrepasa el stock");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("La cantidad debe ser mayor a 0");
+                    }
                 }
+                else if (e.CommandName == "deleteItem")
+                {
+                    int idItem = Convert.ToInt32(dgvCarrito.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
+                    if (idItem.ToString() == null)
+                    {
+                        throw new Exception("Acción no permitida");
+                    }
+                    dgvCarrito.DataSource = obj.deleteItemxVenta(Convert.ToInt32(Session["venta"]), idItem);
+                    dgvCarrito.DataBind();
+
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    dgvItems.DataBind();
+                }
+                buildTableVentasPendientes();
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
+        }
+
+
+        protected void gvVenta_RowComand(object sender, GridViewCommandEventArgs e)
+        {
+            try
+            {
+                int idVenta = Convert.ToInt32(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdVenta"].ToString());
+                if(e.CommandName == "deleteVenta")
+                {
+                    obj.deleteVenta(idVenta);
+                    buildTableVentasPendientes();
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value);
+                    dgvItems.DataBind();
+                    if (idVenta == Convert.ToInt32(Session["venta"]))
+                    {
+                        Session["venta"] = null;
+                        dgvCarrito.DataSource = null;
+                        dgvCarrito.DataBind();
+                    }
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente la venta','success')", true);
+                }
+                else if (e.CommandName == "editVenta")
+                {
+                    Session["venta"] = idVenta;
+                    getItemsByVenta(idVenta);
+                }
+                else if (e.CommandName == "finalizarVenta")
+                {
+                    decimal precioTotal = Convert.ToDecimal(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["PrecioTotal"].ToString());
+                    if (precioTotal > 0)
+                    {
+                        int salida  = obj.finalizarVenta(idVenta);
+                        if (salida == 1)
+                        {
+                            buildTableVentasPendientes();
+                            if (Convert.ToInt32(Session["venta"]) == idVenta)
+                            {
+                                Session["venta"] = null;
+                                dgvCarrito.DataSource = null;
+                                dgvCarrito.DataBind();
+                            }
+                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+                        }
+                        else if(salida == 0)
+                        {
+                            throw new Exception("Un producto de la lista tiene cantidad igual a 0");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("El precio total no puede ser igual a 0");
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                //Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
+        }
+
+        public void buildTableVentasPendientes()
+        {
+            dgvVentas.DataSource = obj.getVentasPendientes();
+            dgvVentas.DataBind();
+        }
+
+        public void getItemsByVenta(int IdVenta)
+        {
+            dgvCarrito.DataSource = obj.getItemsByVenta(IdVenta);
+            dgvCarrito.DataBind();
         }
     }
 }

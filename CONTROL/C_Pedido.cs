@@ -22,7 +22,7 @@ namespace CONTROL
         {
             try
             {
-                return objD_Ped.ListarPedidos();
+                return objD_Ped.ListarPedidosxProveedor(IdProveedor);
             }
             catch (Exception ex)
             {

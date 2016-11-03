@@ -20,12 +20,13 @@ namespace DAO
             conexion = new SqlConnection(ConexionBD.CadenaConexion);
         }
 
-        public DataTable ListarPedidos()
+        public DataTable ListarPedidosxProveedor(int IdProveedor)
         {
             try
             {
-                mDa = new SqlDataAdapter("SP_ListarPedidos", conexion);
+                mDa = new SqlDataAdapter("SP_ListarPedidosxProveedor", conexion);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
                 mdd = new DataSet();
                 mDa.Fill(mdd);
                 return mdd.Tables[0];

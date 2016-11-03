@@ -39,13 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="E_Movimientos.cs" />
     <Compile Include="E_ComposicionxItem.cs" />
     <Compile Include="E_Compra.cs" />
     <Compile Include="E_Cotizacion.cs" />
     <Compile Include="E_Item.cs" />
     <Compile Include="E_Pedido.cs" />
     <Compile Include="E_TipoMovimiento.cs" />
+    <Compile Include="E_PedidoxCotizacion.cs" />
+    <Compile Include="E_PedidoxItem.cs" />
     <Compile Include="E_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

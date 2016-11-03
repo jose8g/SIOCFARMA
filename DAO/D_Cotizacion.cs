@@ -30,7 +30,6 @@ namespace DAO
             unCommand.Parameters.AddWithValue("@PrecioCan", objE_Cot.PrecioCan1);
             unCommand.Parameters.AddWithValue("@Total", objE_Cot.Total1);
             unCommand.Parameters.AddWithValue("@Estado", objE_Cot.Estado1);
-            unCommand.Parameters.AddWithValue("@IdPedido", objE_Cot.IdPedido1);
             conexion.Open();
             unCommand.ExecuteNonQuery();
 

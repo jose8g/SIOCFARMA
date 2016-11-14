@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
+using System.Collections;
 using System.Windows.Forms;
 
 namespace Indexx.pages.Ventas
@@ -22,12 +23,14 @@ namespace Indexx.pages.Ventas
             {
                 Session["pedido"] = null;
                 getItemxStock();
+                getPedidos();
             }
         }
         protected void gvItems_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvItems.PageIndex = e.NewPageIndex;
             dgvPedidos.PageIndex = e.NewPageIndex;
+            dgvPedidos1.PageIndex = e.NewPageIndex;
         }
 
 
@@ -65,6 +68,7 @@ namespace Indexx.pages.Ventas
                         dgvPedidos.DataBind();
                     }
 
+                    getPedidos();
                     //dgvPedidos.DataSource = obj.getCopyPedidoxItem();
                     //dgvPedidos.DataBind();
 
@@ -84,29 +88,35 @@ namespace Indexx.pages.Ventas
                 {
                     GridViewRow row = (GridViewRow)(((System.Web.UI.WebControls.Button)e.CommandSource).NamingContainer);
                     String cantidadVenta = ((System.Web.UI.WebControls.TextBox)row.FindControl("CantidadPedido")).Text;
+                    if (Convert.ToInt32(cantidadVenta) <= 0)
+                    {
+                        throw new Exception("La cantidad debe ser mayor a 0");
+                    }
                     if (cantidadVenta.Length != 0)
                     {
                         int idItem = Convert.ToInt32(dgvPedidos.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
-
-                        int salida = objP.updateCantidadPedido(Convert.ToInt32(Session["pedido"]), idItem, Convert.ToInt32(cantidadVenta));
-                        if (salida != 0)
+                        if (idItem.ToString() == null)
                         {
-                            dgvItems.DataSource = obj.getItemsByNombre(txtBuscarItems.Value);
-                            dgvItems.DataBind();
+                            throw new Exception("Acción no permitida");
                         }
-                        else
-                        {
-                            MessageBox.Show("La cantidad no es correcta", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
+                        objP.updateCantidadPedido(Convert.ToInt32(Session["pedido"]), idItem, Convert.ToInt32(cantidadVenta));
+                        dgvItems.DataSource = obj.getItemsByNombre(txtBuscarItems.Value);
+                        dgvItems.DataBind();
+                        getPedidos();
+                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se actualizó correctamente la cantidad','success')", true);
                     }
                     else
                     {
-                        MessageBox.Show("La cantidad no es correcta", "", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        throw new Exception("La cantidad debe ser mayor a 0");
                     }
                 }
                 else if (e.CommandName == "eliminarItemxStock")
                 {
                     int idItem = Convert.ToInt32(dgvPedidos.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
+                    if (idItem.ToString() == null)
+                    {
+                        throw new Exception("Acción no permitida");
+                    }
 
                     dgvPedidos.DataSource = objP.deleteItemxPedido(Convert.ToInt32(Session["pedido"]), idItem);
                     dgvPedidos.DataBind();
@@ -114,36 +124,57 @@ namespace Indexx.pages.Ventas
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
         }
 
-        protected void GuardarPedidosxItem(object sender, EventArgs e)
+        protected void getPedidos()
+        {
+            dgvPedidos1.DataSource = objP.getPedido();
+            dgvPedidos1.DataBind();
+        }
+
+        protected void gvPedidosMostrar_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try
             {
-                /*int idItem = Convert.ToInt32(IdItemtext.Text);
-                int cantidad = Convert.ToInt32(Cantidadtxt.Text);
-
-                if (Session["idPedido"] == null)
+                int idPedido = Convert.ToInt32(dgvPedidos1.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdPedido"].ToString());
+                if (e.CommandName == "eliminarPedido")
                 {
-                    int idPedido = obj.insertarPedido();
-                    obj.insertarPedidoxItem(idPedido.ToString(), idItem.ToString(), cantidad.ToString());
-                    Session["idPedido"] = idPedido;
+                    dgvPedidos1.DataSource = objP.deletePedido(idPedido);
+                    dgvPedidos1.DataBind();
+                    if (idPedido == Convert.ToInt32(Session["pedido"]))
+                    {
+                        Session["pedido"] = null;
+                        dgvPedidos.DataSource = null;
+                        dgvPedidos.DataBind();
+                    }
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente la venta','success')", true);
                 }
-                else
+                else if (e.CommandName == "finalizarPedido")
                 {
-                    obj.insertarPedidoxItem(Session["idPedido"].ToString(), idItem.ToString(), cantidad.ToString());
-                }*/
+                    int salida = objP.finalizarPedido(idPedido);
+                    if (salida == 1)
+                    {
+                        if (Convert.ToInt32(Session["pedido"]) == idPedido)
+                        {
+                            Session["pedido"] = null;
+                            dgvPedidos.DataSource = null;
+                            dgvPedidos.DataBind();
+                        }
+                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+                    }
+                    else if (salida == 0)
+                    {
+                        throw new Exception("Un producto de la lista tiene cantidad igual a 0");
+                    }
+                }
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
+                //Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
-        }
-        protected void registrarPedidosxItem(object sender, EventArgs e)
-        {
-            
         }
     }
 }

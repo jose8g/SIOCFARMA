@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAO
+namespace CONTROL
 {
-    public class D_Venta
+    public class C_Movimientos
     {
     }
 }

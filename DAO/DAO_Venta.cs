@@ -37,13 +37,15 @@ namespace DAO
             return Convert.ToInt32(comando.Parameters["@IdVenta"].Value);
         }
 
-        public DataTable getItemsByNombre(string Nombre)
+        public DataTable getItemsByNombre(string Nombre, int idMarca, int idTipo)
         {
             try
             {
                 mDa = new SqlDataAdapter("sp_getItemByNombre", conexion);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdMarca", idMarca);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdTipo", idTipo);
                 mDs = new DataSet();
                 mDa.Fill(mDs);
                 return mDs.Tables[0];

@@ -1,22 +1,21 @@
 ﻿function mostrar() {
 
-    $("#pop1").fadeIn('slow');
+    $("#pop5").fadeIn('slow');
 
 } //checkHover
 
 function cliclBtnShowPopup() {
-    $(".btnCerrarSolicitud").click(function () {
-        alert("llega");
+    $(".btnCerrarSolicitud5").click(function () {
         mostrar();
     });
 }
 
 $(document).ready(function () {
 
-    console.log($(".btnCerrarSolicitud"));
-    $("#pop1").fadeOut('slow');
+    console.log($(".btnCerrarSolicitud5"));
+    $("#pop5").fadeOut('slow');
 
-    $(".btnCerrarSolicitud").click(function (){
+    $(".btnCerrarSolicitud5").click(function () {
         mostrar();
     });
 
@@ -28,8 +27,8 @@ $(document).ready(function () {
     //Darle el alto y ancho
     //    $("#pop").css('width', img_w + 'px');
     //    $("#pop").css('height', img_h + 'px');
-    $("#pop1").css('width', '40%');
-    $("#pop1").css('height', '40%');
+    $("#pop5").css('width', '40%');
+    $("#pop5").css('height', '40%');
 
     //Esconder el popup
     //    $("#pop").hide();
@@ -41,30 +40,30 @@ $(document).ready(function () {
     //Centra el popup   
     w = (w / 2) - (500 / 2);
     h = (h / 2) - (300 / 2);
-    $("#pop1").css("left", w + "px");
-    $("#pop1").css("top", h + "px");
+    $("#pop5").css("left", w + "px");
+    $("#pop5").css("top", h + "px");
 
 
     //   
     //    //Función para cerrar el popup
-    $("#cerrar").click(function () {
-        $("#pop1").fadeOut('slow');
+    $("#cerrar5").click(function () {
+        $("#pop5").fadeOut('slow');
     });
 
 
 });
 function mostrarSub() {
 
-    $("#pop1").fadeIn('slow');
+    $("#pop5").fadeIn('slow');
 
 } //checkHover
 
 $(document).ready(function () {
 
 
-    $("#pop1").fadeOut('slow');
+    $("#pop5").fadeOut('slow');
 
-    $(".btnCerrarSolicitud").click(function () {
+    $(".btnCerrarSolicitud5").click(function () {
 
         mostrarSub();
     });
@@ -77,8 +76,8 @@ $(document).ready(function () {
     //Darle el alto y ancho
     //    $("#pop").css('width', img_w + 'px');
     //    $("#pop").css('height', img_h + 'px');
-    $("#pop1").css('width', '60%');
-    $("#pop1").css('height', '60%');
+    $("#pop5").css('width', '60%');
+    $("#pop5").css('height', '60%');
 
     //Esconder el popup
     //    $("#pop").hide();
@@ -90,14 +89,14 @@ $(document).ready(function () {
     //Centra el popup   
     w = (w / 2) - (500 / 2);
     h = (h / 2) - (300 / 2);
-    $("#pop1").css("left", w + "px");
-    $("#pop1").css("top", h + "px");
+    $("#pop5").css("left", w + "px");
+    $("#pop5").css("top", h + "px");
 
 
     //   
     //    //Función para cerrar el popup
-    $("#cerrar").click(function () {
-        $("#pop1").fadeOut('slow');
+    $("#cerrar5").click(function () {
+        $("#pop5").fadeOut('slow');
     });
 
 

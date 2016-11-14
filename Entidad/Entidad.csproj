@@ -44,6 +44,7 @@
     <Compile Include="E_Cotizacion.cs" />
     <Compile Include="E_Item.cs" />
     <Compile Include="E_Pedido.cs" />
+    <Compile Include="E_TipoMovimiento.cs" />
     <Compile Include="E_PedidoxCotizacion.cs" />
     <Compile Include="E_PedidoxItem.cs" />
     <Compile Include="E_Venta.cs" />

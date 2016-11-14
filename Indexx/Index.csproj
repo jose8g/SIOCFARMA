@@ -176,6 +176,7 @@
     <Content Include="images\cotizar.png" />
     <Content Include="js\bootstrap-select.js" />
     <Content Include="js\jquery-1.4.1.min.js" />
+    <Content Include="js\pop1.js" />
     <Content Include="js\PoPupAgregarMarca.js" />
     <Content Include="images\icon1.png" />
     <Content Include="images\icon2.png" />

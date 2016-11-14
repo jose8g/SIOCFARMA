@@ -17,21 +17,16 @@ namespace CONTROL
             objD_PedxIt = new D_PedidoxItem();
         }
 
-        public DataTable ListarItemsxPedido(int IdPedido)
+        public DataTable ListarItemsxPedido(int IdPedido, int IdProveedor)
         {
             try
             {
-                return objD_PedxIt.ListarItemsxPedido(IdPedido);
+                return objD_PedxIt.ListarItemsxPedido(IdPedido, IdProveedor);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-        }
-
-        public void eliminarPedidoxItem(E_PedidoxItem objE_PedI)
-        {
-            objD_PedxIt.eliminarPedidoxItem(objE_PedI);
         }
     }
 }

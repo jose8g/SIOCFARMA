@@ -6,6 +6,7 @@
 
 function cliclBtnShowPopup() {
     $(".btnCerrarSolicitud").click(function () {
+        alert("llega");
         mostrar();
     });
 }

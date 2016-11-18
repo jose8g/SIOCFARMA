@@ -67,6 +67,15 @@ namespace Indexx.pages.Ventas {
         protected global::System.Web.UI.WebControls.GridView dgvItems;
         
         /// <summary>
+        /// tituloVenta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tituloVenta;
+        
+        /// <summary>
         /// dgvCarrito control.
         /// </summary>
         /// <remarks>

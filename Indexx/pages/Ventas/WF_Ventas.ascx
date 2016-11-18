@@ -26,7 +26,6 @@
                             <td><input id="Text7" type="text" runat="server"/>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>BUSCAR PRODUCTOS POR MARCA</td>
                             <td>
@@ -34,7 +33,6 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>BUSCAR PRODUCTOS POR TIPO</td>
                             <td>
@@ -42,12 +40,10 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>-</td>
                             <td>-</td>
                         </tr>
-                        <br />
                         <tr>
                             <td>REALIZAR BUSQUEDA</td>
                             <td>
@@ -88,7 +84,6 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnAgregarProducto" runat="server"
                                                 CommandName="selecItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Agregar"/>
                                 </ItemTemplate>
@@ -112,6 +107,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    
+                    <h2 id="tituloVenta" runat="server"></h2>
                     <asp:GridView ID="dgvCarrito" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvCarrito_RowComand"
                             DataKeyNames="IdItem" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
                             style="text-align:center" AllowPaging="True" >
@@ -131,12 +128,10 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnEditItem" runat="server"
                                                 CommandName="editItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Guardar"/>
                                     <asp:Button ID="btnDeleteItem" runat="server"
                                                 CommandName="deleteItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Eliminar"/>
                                 </ItemTemplate>
@@ -165,7 +160,7 @@
                             style="text-align:center" AllowPaging="True" >
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
-                            <asp:BoundField DataField ="IdVenta"           HeaderText ="IdVenta" Visible="false" />
+                            <asp:BoundField DataField ="IdVenta"           HeaderText ="Codigo de venta" />
                             <asp:BoundField DataField ="FechaRealizacion"  HeaderText ="Fecha" />
                             <asp:BoundField DataField ="NombreVendedor"    HeaderText ="Vendedor" />
                             <asp:BoundField DataField ="PrecioTotal"       HeaderText ="Precio Total" />
@@ -178,17 +173,14 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnEditVenta" runat="server"
                                                 CommandName="editVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Editar"/>
                                     <asp:Button ID="btnDeleteVenta" runat="server"
                                                 CommandName="deleteVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Eliminar"/>
                                     <asp:Button ID="btnFinalizarVenta" runat="server"
                                                 CommandName="finalizarVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Finalizar"/>
                                 </ItemTemplate>

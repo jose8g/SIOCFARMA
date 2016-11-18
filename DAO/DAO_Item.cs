@@ -24,9 +24,6 @@ namespace DAO
         {
             conexion = new SqlConnection(ConexionBD.CadenaConexion);
         }
-        //*creo las variables necesarias para el insert pdt:que el id se autogenerable para que no s einserte,luego en ves de meter 
-        //el coidgo que seleccione y en tu procedure lo guardas  en una variable la cual compara con el id de la tabla  ala qque pertenece
-        //asi ya no me tes codigo sin listas xD
 
         //
         public void insertarItem(string Nombre, string PrecioVenta, string Estado, string IdTipo, string IdMarca)

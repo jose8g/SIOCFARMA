@@ -402,6 +402,7 @@
     <Content Include="documentation\fonts\scss\_variables.scss" />
     <Content Include="images\logo.psd" />
     <Content Include="images\Thumbs.db" />
+    <Content Include="pdf\boletaFarma.pdf" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="production\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="production\images\american-express.png" />

@@ -57,11 +57,13 @@ namespace Indexx.pages.Ventas
                         dgvCarrito.DataSource = obj.registarItemXVenta(idVenta.ToString(), idItem.ToString());
                         dgvCarrito.DataBind();
                         Session["venta"] = idVenta;
+                        tituloVenta.InnerText = "Venta " + idVenta.ToString();
                     }
                     else
                     {
                         dgvCarrito.DataSource = obj.registarItemXVenta(Session["venta"].ToString(), idItem.ToString());;
                         dgvCarrito.DataBind();
+                        tituloVenta.InnerText = "Venta " + Session["venta"].ToString();
                     }
                     buildTableVentasPendientes();
                 }
@@ -165,13 +167,24 @@ namespace Indexx.pages.Ventas
                     {
                         throw new Exception("Acción no permitida");
                     }
-                    dgvCarrito.DataSource = obj.deleteItemxVenta(Convert.ToInt32(Session["venta"]), idItem);
+                    DataTable ventaXItem = obj.deleteItemxVenta(Convert.ToInt32(Session["venta"]), idItem);
+                    dgvCarrito.DataSource = ventaXItem;
                     dgvCarrito.DataBind();
-
-                    int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
-                    int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
-                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
-                    dgvItems.DataBind();
+                    if (ventaXItem.Rows.Count == 0)
+                    {
+                        obj.deleteVenta(Convert.ToInt32(Session["venta"]));
+                        buildTableVentasPendientes();
+                        int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
+                        int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
+                        dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
+                        dgvItems.DataBind();
+                        Session["venta"] = null;
+                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente la venta','success')", true);
+                        tituloVenta.InnerText = "";
+                    }
+                    int idMarcaCombo = Convert.ToInt32(ddlMarca.SelectedValue);
+                    int idTipoCombo = Convert.ToInt32(ddlTipo.SelectedValue);
+                    dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarcaCombo, idTipoCombo);
                     dgvItems.DataBind();
                 }
                 buildTableVentasPendientes();
@@ -196,12 +209,12 @@ namespace Indexx.pages.Ventas
                     int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
                     dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
                     dgvItems.DataBind();
-                    dgvItems.DataBind();
                     if (idVenta == Convert.ToInt32(Session["venta"]))
                     {
                         Session["venta"] = null;
                         dgvCarrito.DataSource = null;
                         dgvCarrito.DataBind();
+                        tituloVenta.InnerText = "";
                     }
                     ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente la venta','success')", true);
                 }
@@ -209,6 +222,7 @@ namespace Indexx.pages.Ventas
                 {
                     Session["venta"] = idVenta;
                     getItemsByVenta(idVenta);
+                    tituloVenta.InnerText = "Venta " + Session["venta"];
                 }
                 else if (e.CommandName == "finalizarVenta")
                 {
@@ -224,6 +238,7 @@ namespace Indexx.pages.Ventas
                                 Session["venta"] = null;
                                 dgvCarrito.DataSource = null;
                                 dgvCarrito.DataBind();
+                                tituloVenta.InnerText = "";
                             }
                             ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
                         }

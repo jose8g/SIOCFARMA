@@ -21,18 +21,28 @@ namespace Indexx.pages.Adquision
         E_Item objI;
         DAO_Item obj;
         DAO_Marca objm;
+        DAO_Proveedor objp;
         DAO_ComposicionxItem objci;
+        DAO_ProveedorxItem objpi;
+        DAO_Composicion objcom;
         protected void Page_Load(object sender, EventArgs e)
         {
+            objcom = new DAO_Composicion();
             obj = new DAO_Item();
+            objp = new DAO_Proveedor();
             objci = new DAO_ComposicionxItem();
+            objpi = new DAO_ProveedorxItem();
             objm = new DAO_Marca();
             if (!Page.IsPostBack)
             {
                 buildListMarcas();
                 buildListTipo();
                 buildListComposicion();
-                this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
+                this.btnAgregarMarca.Attributes.Add("OnClick=", "javascript: return ocultar();");
+                this.ddlComposicion.Attributes.Add("OnSelectedIndexChanged='ddlComposicion_SelectedIndexChanged'", "javascript: return ocultar3();");
+                this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar2();");
+                this.ddlProveedor.Attributes.Add("OnSelectedIndexChanged='ddlProveedor_SelectedIndexChanged'", "javascript: return ocultar5();");
+                this.btnNewProveedorq.Attributes.Add("OnClick", "javascript: return ocultar4();");
             }
 
         }
@@ -45,6 +55,7 @@ namespace Indexx.pages.Adquision
             ddlMarca.DataTextField = "Nombre";
             ddlMarca.DataValueField = "IdMarca";
             ddlMarca.DataBind();
+            ddlMarca.Items.Insert(0, new ListItem("---Seleccionar marca---", "0"));
         }
 
         public void buildListTipo()
@@ -53,6 +64,7 @@ namespace Indexx.pages.Adquision
             ddlTipo.DataTextField = "Nombre";
             ddlTipo.DataValueField = "IdTipo";
             ddlTipo.DataBind();
+            ddlTipo.Items.Insert(0, new ListItem("---Seleccionar tipo---", "0"));
         }
 
         public void buildListComposicion()
@@ -61,21 +73,23 @@ namespace Indexx.pages.Adquision
             ddlComposicion.DataTextField = "Nombre";
             ddlComposicion.DataValueField = "IdComposicion";
             ddlComposicion.DataBind();
+            ddlComposicion.Items.Insert(0, new ListItem("---Seleccionar Composicion---", "0"));
         }
 
         protected void AgregarMarca(object sender, EventArgs e)
         {
         }
-
+        protected void AgregarComposicion(object sender, EventArgs e)
+        {
+        }
+        protected void AgregarProveedor(object sender, EventArgs e)
+        {
+        }
         protected void AñadirProductos(object sender, EventArgs e)
         {
             obj.insertarItem(this.txtProducto.Text, this.txtPreVenta.Text, this.ddlEstado.SelectedValue, this.ddlTipo.SelectedValue, this.ddlMarca.SelectedValue);
         }
 
-        protected void AñadirComposicion(object sender, EventArgs e)
-        {
-           
-        }
         protected void dgvProdictoComposicion_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -89,24 +103,36 @@ namespace Indexx.pages.Adquision
                 }
             }
             catch (Exception ex) { }
-
         }
         protected void dgvProdictoComposicion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvProdictoComposicion.PageIndex = e.NewPageIndex;
         }
 
-        protected void AñadirNewComposicion(object sender, EventArgs e)
+        protected void dgvProductoProveedor_RowCommand (object sender, GridViewCommandEventArgs e)
         {
+
         }
 
+        protected void dgvProductoProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvProductoProveedor.PageIndex = e.NewPageIndex;
+        }
         protected void AgregarNewMarca(object sender, EventArgs e)
         {
             objm.insertarMarca(txtNombreMarca.Text, txtDescripcionMarca.Text);
             buildListMarcas();
+            txtNombreMarca.Text = "";
+            txtDescripcionMarca.Text = "";
         }
-
-        protected void AgregarComposicion(object sender, EventArgs e)
+        protected void AgregarNewComposicion(object sender, EventArgs e)
+        {
+            objcom.insertarComposicion(txtAgrNombre.Text, txtAgrRestriccion.Text);
+            buildListComposicion();
+            txtAgrNombre.Text = "";
+            txtAgrRestriccion.Text = "";
+        }
+        protected void AgregarComposicionItem(object sender, EventArgs e)
         {
             DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
             int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
@@ -114,5 +140,48 @@ namespace Indexx.pages.Adquision
             dgvProdictoComposicion.DataSource = objci.getComposicionesxItemCreadas(codigo);
             dgvProdictoComposicion.DataBind();
         }
+
+        protected void AgregarProveedorItem(object sender, EventArgs e)
+        {
+            DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
+            objpi.insertarProveedorxItem(Convert.ToInt32(ddlProveedor.SelectedValue), codigo, "1");
+            dgvProductoProveedor.DataSource = objpi.getProveedoresxItemCreadas(codigo);
+            dgvProductoProveedor.DataBind();
+        }
+
+        protected void AgregarNewProveedor(object sender, EventArgs e)
+        {
+            objp.insertarProveedores(Convert.ToInt32(txtCodigoProv.Text), txtNombreProv.Text, txtDireccionProv.Text, Convert.ToInt32(txtTelefonoProv.Text), Convert.ToInt32(txtRucProv.Text ), txtCorreoProv.Text, txtResponsableProv.Text,"1");
+            buildListComposicion();
+            txtCodigoProv.Text = "";
+            txtNombreProv.Text = "";
+            txtDireccionProv.Text = "";
+            txtTelefonoProv.Text = "";
+            txtRucProv.Text = "";
+            txtCorreoProv.Text = "";
+            txtResponsableProv.Text = "";
+        }
+        protected void ddlComposicion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtNombreComp.Text = Convert.ToString(ddlComposicion.SelectedItem);
+            DataTable dgv = objcom.ConsultarCompSeleccionar(Convert.ToString(ddlComposicion.SelectedValue));
+            txtRestricionComp.Text = Convert.ToString(dgv.Rows[0]["Restricciones"].ToString());
+        }
+
+        protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtNombreComp.Text = Convert.ToString(ddlProveedor.SelectedItem);
+            DataTable dgv = objp.ConsultarProvSeleccionar(Convert.ToInt32(ddlProveedor.SelectedValue));
+            txtCodigoProv.Text = Convert.ToString(dgv.Rows[0]["CodigoProveedor"].ToString());
+            txtNombreProv.Text = Convert.ToString(dgv.Rows[0]["Nombre"].ToString());
+            txtDireccionProv.Text = Convert.ToString(dgv.Rows[0]["Direccion"].ToString());
+            txtTelefonoProv.Text = Convert.ToString(dgv.Rows[0]["Telefono"].ToString());
+            txtRucProv.Text = Convert.ToString(dgv.Rows[0]["RUC"].ToString());
+            txtCorreoProv.Text = Convert.ToString(dgv.Rows[0]["Correo"].ToString());
+            txtResponsableProv.Text = Convert.ToString(dgv.Rows[0]["Responsable"].ToString());
+            
+        }
+       
     }
 }

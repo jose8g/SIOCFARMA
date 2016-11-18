@@ -26,16 +26,23 @@ namespace DAO
             SqlCommand unCommand = new SqlCommand("SP_InsertarCotizacion", conexion);
             unCommand.CommandType = CommandType.StoredProcedure;
 
-            unCommand.Parameters.AddWithValue("@NumCotizacion", objE_Cot.NumCotizacion1);
-            unCommand.Parameters.AddWithValue("@PrecioCan", objE_Cot.PrecioCan1);
+            unCommand.Parameters.AddWithValue("@PreTotal", objE_Cot.PreTotal1);
+            unCommand.Parameters.AddWithValue("@Descuento", objE_Cot.Descuento1);
             unCommand.Parameters.AddWithValue("@Total", objE_Cot.Total1);
-            unCommand.Parameters.AddWithValue("@Estado", objE_Cot.Estado1);
+            unCommand.Parameters.AddWithValue("@NombreCotizacion", objE_Cot.NombreCotizacion1);
             conexion.Open();
             unCommand.ExecuteNonQuery();
 
             conexion.Close();
         }
 
-
+        public DataTable TotalCotizar()
+        {
+            mDa = new SqlDataAdapter("SP_TotalCotizar", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mdd = new DataSet();
+            mDa.Fill(mdd);
+            return mdd.Tables[0];
+        }
     }
 }

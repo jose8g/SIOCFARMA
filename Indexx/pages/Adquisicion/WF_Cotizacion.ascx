@@ -57,6 +57,17 @@ height: auto!important;}
         else
             return false;
     }
+    function SoloNumerosypunto(e) {
+        var iKeyCode = 0;
+        if (window.event)
+            iKeyCode = window.event.keyCode
+        else if (e)
+            iKeyCode = e.which;
+        if ((iKeyCode > 47 && iKeyCode < 58) || (iKeyCode == 8) || (iKeyCode == 46))
+            return true
+        else
+            return false;
+    }
 </script>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
@@ -146,17 +157,7 @@ height: auto!important;}
                                         <div class="text-center">
                                             <asp:ImageButton ID="btnEditar" HeaderText="Editar" runat="server"
                                                 ImageUrl="../../images/icon3.png" CommandName="Editar"
-                                                formnovalidate CssClass="imggrillaedit btnCerrarSolicitud"
-                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-                                        </div>
-                                    </ItemTemplate>
-                            </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Eliminar">
-                                    <ItemTemplate>
-                                        <div class="text-center">
-                                            <asp:ImageButton ID="btnEliminar" HeaderText="Eliminar" runat="server"
-                                                ImageUrl="../../images/icon4.png" CommandName="Eliminar" AllowPaging="True"
-                                                formnovalidate="" onclientclick="return confirm('¿Desea eliminar el item?');"
+                                                formnovalidate="" CssClass="imggrillaedit btnCerrarSolicitud"
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                                         </div>
                                     </ItemTemplate>
@@ -180,66 +181,107 @@ height: auto!important;}
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:GridView runat="server" ID="dgvPedidoC" CssClass="gridview bordered table" 
-                        DataKeyNames="IdPedido,Nombre, Medida, Farmaco, Cantidad, PrecioUnitario"
+                    <asp:GridView runat="server" ID="dgvPedidoC" CssClass="gridview bordered table" OnRowCommand="dgvPedidoC_RowComand"
+                        DataKeyNames="IdItem,IdPedido,Nombre, Medida, Farmaco, Cantidad, PrecioUnitario, Total"
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvPedidoC_PageIndexChanging" AllowPaging="True">
                         <Columns>
+                            <asp:BoundField DataField="IdItem" HeaderText="IdItem" Visible="false" />
                             <asp:BoundField DataField="IdPedido" HeaderText="N° Pedido" />
                             <asp:BoundField DataField="Nombre" HeaderText="Proveedor" />
                             <asp:BoundField DataField="Medida" HeaderText="Medida" />
                             <asp:BoundField DataField="Farmaco" HeaderText="Farmaco" />
                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" />
+                            <asp:BoundField DataField="Total" HeaderText="Total" />
+                            <asp:TemplateField HeaderText="Eliminar">
+                                    <ItemTemplate>
+                                        <div class="text-center">
+                                            <asp:ImageButton ID="btnEliminar" HeaderText="Eliminar" runat="server"
+                                                ImageUrl="../../images/icon4.png" CommandName="Eliminar" AllowPaging="True"
+                                                formnovalidate="" onclientclick="return confirm('¿Desea eliminar el item?');"
+                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                                        </div>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
                             </Columns>
                     </asp:GridView>
                 </div>
             </div>
         </div>
     </div>
+    
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Subtotal</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <asp:GridView runat="server" ID="dgvSubtotal" CssClass="gridview bordered table" OnRowCommand="dgvSubtotal_RowComand"
+                        DataKeyNames="SubTotal"
+                        AutoGenerateColumns="False" OnPageIndexChanging="dgvSubtotal_PageIndexChanging" AllowPaging="True">
+                        <Columns>
+                            <asp:BoundField DataField="SubTotal" HeaderText="SubTotal" />
+                            <asp:TemplateField HeaderText="Cotizar">
+                                    <ItemTemplate>
+                                        <div class="text-center">
+                                            <asp:Button ID="btnCotizar" HeaderText="Cotizar" runat="server" 
+                                                        CommandName="Cotizar" CssClass="btn btn-info btn-xs"
+                                                        formnovalidate=""
+                                                        CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                        Text="Cotizar"/>
+                                        </div>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Finalizar">
+                                    <ItemTemplate>
+                                        <div class="text-center">
+                                            <asp:Button ID="btnFinalizar" HeaderText="Finalizar" runat="server" 
+                                                        CommandName="Finalizar" CssClass="btn btn-info btn-xs"
+                                                        formnovalidate=""
+                                                        CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                        Text="Finalizar"/>
+                                        </div>
+                                    </ItemTemplate>
+                            </asp:TemplateField>
+                            </Columns>
+                    </asp:GridView>
 
-    <%--<asp:Panel Visible="false" ID="panel2" runat="server" CssClass="InnerPopup" style="max-height: 500px; width:auto; overflow: auto;/*display:none*/">
-        <div id="Div1" runat="server" style="max-height: 500px; width:auto; overflow: auto;">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Editar</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                        </ul>
-                        <div class="clearfix"></div>
-                        </div>
-                    <div class="x_content">
-                        <label>Cantidad:</label>
-                        <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="x_content">
-                        <label>Medida:</label>
-                        <%--<asp:TextBox ID="txtMedida" runat="server"></asp:TextBox>--%>
-                        <%--<asp:DropDownList ID="ddlMedidaa" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlMedida_SelectedIndexChanged"></asp:DropDownList>
-                    </div>
-                    <div class="x_content">
-                        <label>Cantidad de Medida:</label>
-                        <asp:TextBox ID="txtCantidadM" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="x_content">
-                        <label>Precio:</label>
-                        <asp:TextBox ID="txtPrecio" runat="server"></asp:TextBox>
-                    </div>
-                    <div class="x_content">
-                        <asp:Button ID="btnAceptar" runat="server" Text="Aceptar" OnClick="btnAceptar_Click" />
-                    </div>
+                    <asp:Label ID="lblNombreCot" runat="server" Text="Nombre de la Cotización:" Visible="False"></asp:Label>
+                        <asp:TextBox ID="txtNombreCot" runat="server" Visible="False"></asp:TextBox>
+                        <br/>
+                        <asp:Label ID="lblDescuento" runat="server" Text="Descuento:" Visible="False"></asp:Label>
+                        <asp:TextBox ID="txtDescuento" runat="server" Visible="False"></asp:TextBox>
+                        <br/>
+                        
+                    <br/>
+
+                    <asp:GridView runat="server" ID="dgvTotal" CssClass="gridview bordered table"
+                        DataKeyNames="NumCotizacion,NombreCotizacion,FechaRegistro,PreTotal,Descuento,Total"
+                        AutoGenerateColumns="False" OnPageIndexChanging="dgvTotal_PageIndexChanging" AllowPaging="True">
+                        <Columns>
+                            <asp:BoundField DataField="NumCotizacion" HeaderText="N° Cotizacion" />
+                            <asp:BoundField DataField="NombreCotizacion" HeaderText="Nombre" />
+                            <asp:BoundField DataField="FechaRegistro" HeaderText="Fecha de Registro" />
+                            <asp:BoundField DataField="PreTotal" HeaderText="PreTotal" />
+                            <asp:BoundField DataField="Descuento" HeaderText="Descuento" />
+                            <asp:BoundField DataField="Total" HeaderText="Total" />
+                            </Columns>
+                    </asp:GridView>
+                   
                 </div>
             </div>
         </div>
-        </div>
-    </asp:Panel>--%>
+    </div>
+
     <div class="principal" style="height: 1241px">
        
-        <div><asp:TextBox ID="txtIdPedido" runat="server" Visible="False" ></asp:TextBox>
-            <asp:TextBox ID="txtIdProv" runat="server" Visible="False"></asp:TextBox>
-            <asp:TextBox ID="txtIdItem" runat="server" Visible="False"></asp:TextBox>
+        <div>
             <asp:TextBox ID="txtIdDDL" runat="server" Visible="False"></asp:TextBox>
             <asp:TextBox ID="txtEx" runat="server" Visible="False"></asp:TextBox>
         </div>

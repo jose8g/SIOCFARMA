@@ -7,7 +7,12 @@ using System.Web.UI.WebControls;
 using System.Data;
 using DAO;
 using System.Collections;
-using System.Windows.Forms;
+using itexS = iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html.simpleparser;
+using System.IO;
+using System.Diagnostics;
+using System.Drawing;
   
 
 namespace Indexx.pages.Ventas
@@ -23,6 +28,7 @@ namespace Indexx.pages.Ventas
                 buildListMarca();
                 buildListTipo();
                 Session["venta"] = null;
+                Session["ventaBoleta"] = null;
                 buildTableVentasPendientes();
             }
         }
@@ -38,6 +44,7 @@ namespace Indexx.pages.Ventas
             int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
             dgvItems.DataSource = obj.getItemsByNombre(Text7.Value, idMarca, idTipo);
             dgvItems.DataBind();
+            Session["Nombre"] = Convert.ToString(Text7.Value);
         }
         
         protected void gvItems_RowComand(object sender, GridViewCommandEventArgs e)
@@ -201,6 +208,10 @@ namespace Indexx.pages.Ventas
             try
             {
                 int idVenta = Convert.ToInt32(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdVenta"].ToString());
+                if (idVenta.ToString() == null)
+                {
+                    throw new Exception("Acción no permitida");
+                }
                 if(e.CommandName == "deleteVenta")
                 {
                     obj.deleteVenta(idVenta);
@@ -229,23 +240,44 @@ namespace Indexx.pages.Ventas
                     decimal precioTotal = Convert.ToDecimal(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["PrecioTotal"].ToString());
                     if (precioTotal > 0)
                     {
-                        int salida  = obj.finalizarVenta(idVenta);
-                        if (salida == 1)
+                        //Session["ventaFinalizar"] = idVenta;
+                        //ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "mostrar()", true);
+                        FinalizarVenta(idVenta);
+                        //int salida  = obj.finalizarVenta(idVenta);
+                        //if (salida == 1)
+                        //{
+                        //    buildTableVentasPendientes();
+                        //    if (Convert.ToInt32(Session["venta"]) == idVenta)
+                        //    {
+                        //        Session["venta"] = null;
+                        //        dgvCarrito.DataSource = null;
+                        //        dgvCarrito.DataBind();
+                        //        tituloVenta.InnerText = "";
+                        //    }
+                        //    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+                        //}
+                        //else if(salida == 0)
+                        //{
+                        //    throw new Exception("Un producto de la lista tiene cantidad igual a 0");
+                        //}
+                    }
+                    else
+                    {
+                        throw new Exception("El precio total no puede ser igual a 0");
+                    }
+                }
+                else if (e.CommandName == "generarPDF")
+                {
+                    decimal precioTotal = Convert.ToDecimal(dgvVentas.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["PrecioTotal"].ToString());
+                    if (precioTotal > 0)
+                    {
+
+                        Session["ventaBoleta"] = idVenta;
+                        if (idVenta.ToString() == null)
                         {
-                            buildTableVentasPendientes();
-                            if (Convert.ToInt32(Session["venta"]) == idVenta)
-                            {
-                                Session["venta"] = null;
-                                dgvCarrito.DataSource = null;
-                                dgvCarrito.DataBind();
-                                tituloVenta.InnerText = "";
-                            }
-                            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+                            throw new Exception("Acción no permitida");
                         }
-                        else if(salida == 0)
-                        {
-                            throw new Exception("Un producto de la lista tiene cantidad igual a 0");
-                        }
+                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "mostrar()", true);
                     }
                     else
                     {
@@ -259,6 +291,278 @@ namespace Indexx.pages.Ventas
                 //Response.Write("<script>alert('" + ex.Message + "')</script>");
                 ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
+        }
+        public void btnPdf_Click(object sender, EventArgs e)
+        {
+            
+            try{
+                if (Session["ventaBoleta"].ToString() == null)
+                {
+                    throw new Exception("Acción no permitida");
+                }
+                Response.Clear();
+                Response.ContentType = "boletaFarma/pdf";
+                Response.AddHeader("content-disposition", "attachment; filename=boletaFarma.pdf");
+                FillPDF(Server.MapPath("pdf/boletaFarma.pdf"), Response.OutputStream, Convert.ToInt32(Session["ventaBoleta"]));
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cerrar()", true);
+            }
+            catch (Exception ex)
+            {
+                //Response.Write("<script>alert('" + ex.Message + "')</script>");
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
+        }
+
+        public void FinalizarVenta(int idVenta)
+        {
+            if (Convert.ToString(idVenta) == null)
+            {
+                throw new Exception("Acción no permitida");
+            }
+            int salida = obj.finalizarVenta(idVenta);
+            if (salida == 1)
+            {
+                buildTableVentasPendientes();
+                if (Convert.ToInt32(Session["venta"]) == idVenta)
+                {
+                    Session["venta"] = null;
+                    dgvCarrito.DataSource = null;
+                    dgvCarrito.DataBind();
+                    tituloVenta.InnerText = "";
+                }
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+            }
+            else if (salida == 0)
+            {
+                throw new Exception("Un producto de la lista tiene cantidad igual a 0");
+            }
+        }
+
+        public void FillPDF(string templateFile, Stream stream, int idVenta)
+        {
+            // Abrimos la plantilla y creamos una copia, sobre
+            // la cual trabajaremos...
+            PdfReader reader = new PdfReader(templateFile);
+            PdfStamper stamp = new PdfStamper(reader, stream);
+
+            stamp.AcroFields.SetField("txtCliente", this.textNombre.Text);
+            stamp.AcroFields.SetField("txtDNI", this.textDni.Text);
+            stamp.AcroFields.SetField("txtRuc", this.textRuc.Text);
+            stamp.AcroFields.SetField("txtDirec", this.textDirec.Text);
+            System.DateTime moment = DateTime.Today;
+            stamp.AcroFields.SetField("txtDia", Convert.ToString(moment.Day));
+            stamp.AcroFields.SetField("txtMes", Convert.ToString(moment.Month));
+            stamp.AcroFields.SetField("txtYear", Convert.ToString(moment.Year));
+            
+            
+
+            // Creamos el tipo de Font que vamos utilizar
+            //iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 30, iTextSharp.text.Font.NORMAL, itexS.BaseColor.BLACK);
+
+            /*PdfPTable tblPrueba = new PdfPTable(1);
+            tblPrueba.WidthPercentage = 100;*/
+            //Configuramos el título de las columnas de la tabla
+
+            /*PdfPCell clCodigo = new PdfPCell(new itexS.Phrase("Cantidad", _standardFont));
+            clCodigo.BorderWidth = 0;
+            clCodigo.HorizontalAlignment = itexS.Element.ALIGN_CENTER;
+            clCodigo.BorderWidthBottom = 0.75f;*/
+
+            //Añadimos las celdas a la tabla
+            //tblPrueba.AddCell(clCodigo);
+
+            DataTable dt = new DataTable();
+            dt = obj.getItemsByVenta(idVenta);
+
+            for (int rows = 0; rows < dt.Rows.Count; rows++)
+            {
+                //GridViewRow row = gvPermisos.Rows[i];
+                for (int column = 0; column < dt.Columns.Count; column++)
+                {
+                    {
+                        if (column == 0)
+                        {
+                            if (rows == 0)
+                            {
+                                stamp.AcroFields.SetField("txtCant1", dt.Rows[0][column].ToString());
+                                //stamp.AcroFields.SetField("txtCliente", this.textNombre.Text);
+                            }
+
+                            if (rows == 1)
+                            {
+                                stamp.AcroFields.SetField("txtCant2", dt.Rows[1][column].ToString());
+                            }
+
+                            if (rows == 2)
+                            {
+                                stamp.AcroFields.SetField("txtCant3", dt.Rows[2][column].ToString());
+                            }
+
+                            if (rows == 3)
+                            {
+                                stamp.AcroFields.SetField("txtCant4", dt.Rows[3][column].ToString());
+                            }
+                            if (rows == 4)
+                            {
+                                stamp.AcroFields.SetField("txtCant5", dt.Rows[4][column].ToString());
+                            }
+
+                            if (rows == 5)
+                            {
+                                stamp.AcroFields.SetField("txtCant6", dt.Rows[5][column].ToString());
+                            }
+
+                            if (rows == 6)
+                            {
+                                stamp.AcroFields.SetField("txtCant7", dt.Rows[6][column].ToString());
+                            }
+
+                            if (rows == 7)
+                            {
+                                stamp.AcroFields.SetField("txtCant8", dt.Rows[7][column].ToString());
+                            }
+                            if (rows == 8)
+                            {
+                                stamp.AcroFields.SetField("txtCant9", dt.Rows[8][column].ToString());
+                            }
+
+                        }
+                        else if (column == 1)
+                        {
+                            if (rows == 0)
+                            {
+                                stamp.AcroFields.SetField("txtDesc1", dt.Rows[0][column].ToString());
+                            }
+                            if (rows == 1)
+                            {
+                                stamp.AcroFields.SetField("txtDesc2", dt.Rows[1][column].ToString());
+
+                            }
+                            if (rows == 2)
+                            {
+                                stamp.AcroFields.SetField("txtDesc3", dt.Rows[2][column].ToString());
+
+                            }
+                            if (rows == 3)
+                            {
+                                stamp.AcroFields.SetField("txtDesc4", dt.Rows[3][column].ToString());
+                            }
+                            if (rows == 4)
+                            {
+                                stamp.AcroFields.SetField("txtDesc5", dt.Rows[4][column].ToString());
+                            }
+                            if (rows == 5)
+                            {
+                                stamp.AcroFields.SetField("txtDesc6", dt.Rows[5][column].ToString());
+
+                            }
+                            if (rows == 6)
+                            {
+                                stamp.AcroFields.SetField("txtDesc7", dt.Rows[6][column].ToString());
+
+                            }
+                            if (rows == 7)
+                            {
+                                stamp.AcroFields.SetField("txtDesc8", dt.Rows[7][column].ToString());
+                            }
+                            if (rows == 8)
+                            {
+                                stamp.AcroFields.SetField("txtDesc9", dt.Rows[8][column].ToString());
+
+                            }
+                        }
+                        else if (column == 2)
+                        {
+                            if (rows == 0)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario1", dt.Rows[0][column].ToString());
+                            }
+                            if (rows == 1)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario2", dt.Rows[1][column].ToString());
+                            }
+                            if (rows == 2)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario3", dt.Rows[2][column].ToString());
+
+                            }
+                            if (rows == 3)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario4", dt.Rows[3][column].ToString());
+                            }
+                            if (rows == 4)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario5", dt.Rows[4][column].ToString());
+                            }
+                            if (rows == 5)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario6", dt.Rows[5][column].ToString());
+                            }
+                            if (rows == 6)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario7", dt.Rows[6][column].ToString());
+
+                            }
+                            if (rows == 7)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario8", dt.Rows[7][column].ToString());
+                            }
+                            if (rows == 8)
+                            {
+                                stamp.AcroFields.SetField("txtPUnitario9", dt.Rows[8][column].ToString());
+                            }
+                        }
+
+                        else if (column == 3)
+                        {
+                            if (rows == 0)
+                            {
+                                stamp.AcroFields.SetField("txtImporte1", dt.Rows[0][column].ToString());
+                            }
+                            if (rows == 1)
+                            {
+                                stamp.AcroFields.SetField("txtImporte2", dt.Rows[1][column].ToString());
+                            }
+                            if (rows == 2)
+                            {
+                                stamp.AcroFields.SetField("txtImporte3", dt.Rows[2][column].ToString());
+                            }
+                            if (rows == 3)
+                            {
+                                stamp.AcroFields.SetField("txtImporte4", dt.Rows[3][column].ToString());
+                            }
+                            if (rows == 4)
+                            {
+                                stamp.AcroFields.SetField("txtImporte5", dt.Rows[4][column].ToString());
+                            }
+                            if (rows == 5)
+                            {
+                                stamp.AcroFields.SetField("txtImporte6", dt.Rows[5][column].ToString());
+                            }
+                            if (rows == 6)
+                            {
+                                stamp.AcroFields.SetField("txtImporte7", dt.Rows[6][column].ToString());
+                            }
+                            if (rows == 7)
+                            {
+                                stamp.AcroFields.SetField("txtImporte8", dt.Rows[7][column].ToString());
+                            }
+                            if (rows == 8)
+                            {
+                                stamp.AcroFields.SetField("txtImporte9", dt.Rows[8][column].ToString());
+                            }
+                        }
+                    }
+                }
+                //tblPrueba.AddCell(clCodigo);
+            }
+            
+            //tblPrueba.SpacingBefore = 15f;
+
+
+            // Fijamos los valores y enviamos el resultado al stream...
+            stamp.FormFlattening = true;
+            stamp.Close();
         }
 
         public void buildTableVentasPendientes()

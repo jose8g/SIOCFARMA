@@ -85,7 +85,7 @@ namespace Indexx.pages.Adquision {
         protected global::System.Web.UI.WebControls.DropDownList ddlComposicion;
         
         /// <summary>
-        /// dgvProdictoComposicion control.
+        /// Control dgvProdictoComposicion.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -103,7 +103,7 @@ namespace Indexx.pages.Adquision {
         protected global::System.Web.UI.WebControls.DropDownList ddlProveedor;
         
         /// <summary>
-        /// imgEditar control.
+        /// Control dgvProductoProveedor.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -202,11 +202,20 @@ namespace Indexx.pages.Adquision {
         protected global::System.Web.UI.WebControls.TextBox txtAgrRestriccion;
         
         /// <summary>
-        /// UpdatePanel4 control.
+        /// Control btnNewComposicion.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNewComposicion;
+        
+        /// <summary>
+        /// Control UpdatePanel4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel4;
         

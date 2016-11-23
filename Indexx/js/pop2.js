@@ -1,24 +1,21 @@
 ﻿function mostrar() {
-    $("#pop1").fadeIn('slow');
+
+    $("#pop2").fadeIn('slow');
 
 } //checkHover
-function cerrar() {
-    $("#pop1").fadeOut('slow');
 
-}
 function cliclBtnShowPopup() {
-    $(".btnCerrarSolicitud").click(function () {
-        alert("llega");
+    $(".btnCerrarSolicitud2").click(function () {
         mostrar();
     });
 }
 
 $(document).ready(function () {
 
-    console.log($(".btnCerrarSolicitud"));
-    $("#pop1").fadeOut('slow');
+    console.log($(".btnCerrarSolicitud2"));
+    $("#pop2").fadeOut('slow');
 
-    $(".btnCerrarSolicitud").click(function (){
+    $(".btnCerrarSolicitud2").click(function () {
         mostrar();
     });
 
@@ -30,8 +27,8 @@ $(document).ready(function () {
     //Darle el alto y ancho
     //    $("#pop").css('width', img_w + 'px');
     //    $("#pop").css('height', img_h + 'px');
-    $("#pop1").css('width', '40%');
-    $("#pop1").css('height', '40%');
+    $("#pop2").css('width', '40%');
+    $("#pop2").css('height', '40%');
 
     //Esconder el popup
     //    $("#pop").hide();
@@ -43,32 +40,30 @@ $(document).ready(function () {
     //Centra el popup   
     w = (w / 2) - (500 / 2);
     h = (h / 2) - (300 / 2);
-    $("#pop1").css("left", w + "px");
-    $("#pop1").css("top", h + "px");
+    $("#pop2").css("left", w + "px");
+    $("#pop2").css("top", h + "px");
 
 
     //   
     //    //Función para cerrar el popup
-    $("#cerrar").click(function () {
-        $("#pop1").fadeOut('slow');
+    $("#cerrar2").click(function () {
+        $("#pop2").fadeOut('slow');
     });
-    $("#HeadContent_WF_Ventas1_btnPdf").click(function () {
-        $("#pop1").fadeOut('slow');
-    });
+
 
 });
 function mostrarSub() {
 
-    $("#pop1").fadeIn('slow');
+    $("#pop2").fadeIn('slow');
 
 } //checkHover
 
 $(document).ready(function () {
 
 
-    $("#pop1").fadeOut('slow');
+    $("#pop2").fadeOut('slow');
 
-    $(".btnCerrarSolicitud").click(function () {
+    $(".btnCerrarSolicitud2").click(function () {
 
         mostrarSub();
     });
@@ -81,8 +76,8 @@ $(document).ready(function () {
     //Darle el alto y ancho
     //    $("#pop").css('width', img_w + 'px');
     //    $("#pop").css('height', img_h + 'px');
-    $("#pop1").css('width', '60%');
-    $("#pop1").css('height', '60%');
+    $("#pop2").css('width', '60%');
+    $("#pop2").css('height', '60%');
 
     //Esconder el popup
     //    $("#pop").hide();
@@ -94,14 +89,14 @@ $(document).ready(function () {
     //Centra el popup   
     w = (w / 2) - (500 / 2);
     h = (h / 2) - (300 / 2);
-    $("#pop1").css("left", w + "px");
-    $("#pop1").css("top", h + "px");
+    $("#pop2").css("left", w + "px");
+    $("#pop2").css("top", h + "px");
 
 
     //   
     //    //Función para cerrar el popup
-    $("#cerrar").click(function () {
-        $("#pop1").fadeOut('slow');
+    $("#cerrar2").click(function () {
+        $("#pop2").fadeOut('slow');
     });
 
 

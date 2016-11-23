@@ -21,13 +21,14 @@ namespace DAO
             conexion = new SqlConnection(ConexionBD.CadenaConexion);
         }
 
-        public DataTable ListarItemsxPedido(int IdPedido)
+        public DataTable ListarItemsxPedido(int IdPedido, int IdProveedor)
         {
             try
             {
                 mDa = new SqlDataAdapter("SP_MostrarItemsxPedido", conexion);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
                 mdd = new DataSet();
                 mDa.Fill(mdd);
                 return mdd.Tables[0];
@@ -36,19 +37,6 @@ namespace DAO
             {
                 throw ex;
             }
-        }
-
-        public void eliminarPedidoxItem(E_PedidoxItem objE_PedI)
-        {
-            SqlCommand unCommand = new SqlCommand("SP_EliminarPedidosxItem", conexion);
-            unCommand.CommandType = CommandType.StoredProcedure;
-
-            unCommand.Parameters.AddWithValue("@IdPedido", objE_PedI.IdPedido1);
-            unCommand.Parameters.AddWithValue("@IdItem", objE_PedI.IdItem1);
-            conexion.Open();
-            unCommand.ExecuteNonQuery();
-
-            conexion.Close();
         }
     }
 }

@@ -174,6 +174,8 @@
     <Content Include="documentation\js\jquery.min.js" />
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
+    <Content Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx" />
+    <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="images\cotizar.png" />
     <Content Include="js\bootstrap-select.js" />
@@ -3780,6 +3782,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.designer.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.designer.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
     </Compile>
     <Compile Include="WF_Almacenero.aspx.cs">
       <DependentUpon>WF_Almacenero.aspx</DependentUpon>

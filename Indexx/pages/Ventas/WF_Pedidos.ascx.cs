@@ -153,21 +153,21 @@ namespace Indexx.pages.Ventas
                 }
                 else if (e.CommandName == "finalizarPedido")
                 {
-                    int salida = objP.finalizarPedido(idPedido);
-                    if (salida == 1)
-                    {
-                        if (Convert.ToInt32(Session["pedido"]) == idPedido)
-                        {
-                            Session["pedido"] = null;
-                            dgvPedidos.DataSource = null;
-                            dgvPedidos.DataBind();
-                        }
-                        ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
-                    }
-                    else if (salida == 0)
-                    {
-                        throw new Exception("Un producto de la lista tiene cantidad igual a 0");
-                    }
+                    //int salida = objP.finalizarPedido(idPedido);
+                    //if (salida == 1)
+                    //{
+                    //    if (Convert.ToInt32(Session["pedido"]) == idPedido)
+                    //    {
+                    //        Session["pedido"] = null;
+                    //        dgvPedidos.DataSource = null;
+                    //        dgvPedidos.DataBind();
+                    //    }
+                    //    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se realizó correctamente la venta','success')", true);
+                    //}
+                    //else if (salida == 0)
+                    //{
+                    //    throw new Exception("Un producto de la lista tiene cantidad igual a 0");
+                    //}
                 }
             }
             catch (Exception ex)

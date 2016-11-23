@@ -340,11 +340,8 @@ namespace Indexx.pages.Ventas
 
         public void FillPDF(string templateFile, Stream stream, int idVenta)
         {
-            // Abrimos la plantilla y creamos una copia, sobre
-            // la cual trabajaremos...
             PdfReader reader = new PdfReader(templateFile);
             PdfStamper stamp = new PdfStamper(reader, stream);
-
             stamp.AcroFields.SetField("txtCliente", this.textNombre.Text);
             stamp.AcroFields.SetField("txtDNI", this.textDni.Text);
             stamp.AcroFields.SetField("txtRuc", this.textRuc.Text);
@@ -353,30 +350,17 @@ namespace Indexx.pages.Ventas
             stamp.AcroFields.SetField("txtDia", Convert.ToString(moment.Day));
             stamp.AcroFields.SetField("txtMes", Convert.ToString(moment.Month));
             stamp.AcroFields.SetField("txtYear", Convert.ToString(moment.Year));
-            
-            
 
-            // Creamos el tipo de Font que vamos utilizar
-            //iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 30, iTextSharp.text.Font.NORMAL, itexS.BaseColor.BLACK);
-
-            /*PdfPTable tblPrueba = new PdfPTable(1);
-            tblPrueba.WidthPercentage = 100;*/
-            //Configuramos el título de las columnas de la tabla
-
-            /*PdfPCell clCodigo = new PdfPCell(new itexS.Phrase("Cantidad", _standardFont));
-            clCodigo.BorderWidth = 0;
-            clCodigo.HorizontalAlignment = itexS.Element.ALIGN_CENTER;
-            clCodigo.BorderWidthBottom = 0.75f;*/
-
-            //Añadimos las celdas a la tabla
-            //tblPrueba.AddCell(clCodigo);
+            DataTable dtVenta = new DataTable();
+            dtVenta = obj.getDetalleVenta(idVenta);
+            stamp.AcroFields.SetField("txtPreTotal", dtVenta.Rows[0][0].ToString());
+            stamp.AcroFields.SetField("txtTotal", dtVenta.Rows[0][1].ToString());
 
             DataTable dt = new DataTable();
             dt = obj.getItemsByVenta(idVenta);
 
             for (int rows = 0; rows < dt.Rows.Count; rows++)
             {
-                //GridViewRow row = gvPermisos.Rows[i];
                 for (int column = 0; column < dt.Columns.Count; column++)
                 {
                     {
@@ -385,7 +369,6 @@ namespace Indexx.pages.Ventas
                             if (rows == 0)
                             {
                                 stamp.AcroFields.SetField("txtCant1", dt.Rows[0][column].ToString());
-                                //stamp.AcroFields.SetField("txtCliente", this.textNombre.Text);
                             }
 
                             if (rows == 1)
@@ -554,13 +537,7 @@ namespace Indexx.pages.Ventas
                         }
                     }
                 }
-                //tblPrueba.AddCell(clCodigo);
             }
-            
-            //tblPrueba.SpacingBefore = 15f;
-
-
-            // Fijamos los valores y enviamos el resultado al stream...
             stamp.FormFlattening = true;
             stamp.Close();
         }

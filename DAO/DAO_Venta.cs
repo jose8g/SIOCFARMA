@@ -255,5 +255,22 @@ namespace DAO
                 throw ex;
             }
         }
+
+        public DataTable getDetalleVenta(int IdVenta)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getDetalleVenta", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

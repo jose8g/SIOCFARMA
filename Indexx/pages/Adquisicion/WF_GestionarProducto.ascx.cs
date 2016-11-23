@@ -38,11 +38,13 @@ namespace Indexx.pages.Adquision
                 buildListMarcas();
                 buildListTipo();
                 buildListComposicion();
-                this.btnAgregarMarca.Attributes.Add("OnClick=", "javascript: return ocultar();");
-                this.ddlComposicion.Attributes.Add("OnSelectedIndexChanged='ddlComposicion_SelectedIndexChanged'", "javascript: return ocultar3();");
+                buildListProveedor();  
+                this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
                 this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar2();");
-                this.ddlProveedor.Attributes.Add("OnSelectedIndexChanged='ddlProveedor_SelectedIndexChanged'", "javascript: return ocultar5();");
-                this.btnNewProveedorq.Attributes.Add("OnClick", "javascript: return ocultar4();");
+                this.btnNewProveedorq.Attributes.Add("OnClick", "javascript: return ocultar5();");
+
+                this.ddlComposicion.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar3();");
+                this.ddlProveedor.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar4();");
             }
 
         }
@@ -74,6 +76,14 @@ namespace Indexx.pages.Adquision
             ddlComposicion.DataValueField = "IdComposicion";
             ddlComposicion.DataBind();
             ddlComposicion.Items.Insert(0, new ListItem("---Seleccionar Composicion---", "0"));
+        }
+        public void buildListProveedor()
+        {
+            ddlProveedor.DataSource = objp.getProveedorCreadas();
+            ddlProveedor.DataTextField = "Nombre";
+            ddlProveedor.DataValueField = "IdProveedor";
+            ddlProveedor.DataBind();
+            ddlProveedor.Items.Insert(0, new ListItem("---Seleccionar Proveedor---", "0"));
         }
 
         protected void AgregarMarca(object sender, EventArgs e)
@@ -152,21 +162,23 @@ namespace Indexx.pages.Adquision
 
         protected void AgregarNewProveedor(object sender, EventArgs e)
         {
-            objp.insertarProveedores(Convert.ToInt32(txtCodigoProv.Text), txtNombreProv.Text, txtDireccionProv.Text, Convert.ToInt32(txtTelefonoProv.Text), Convert.ToInt32(txtRucProv.Text ), txtCorreoProv.Text, txtResponsableProv.Text,"1");
-            buildListComposicion();
-            txtCodigoProv.Text = "";
-            txtNombreProv.Text = "";
-            txtDireccionProv.Text = "";
-            txtTelefonoProv.Text = "";
-            txtRucProv.Text = "";
-            txtCorreoProv.Text = "";
-            txtResponsableProv.Text = "";
+            objp.insertarProveedores(Convert.ToInt32(txtAgrCodigo.Text), txtAgrNombrePro.Text, txtAgrDireccion.Text, Convert.ToInt32(txtAgrTelefono.Text), Convert.ToInt32(txtAgrRuc.Text), txtAgrCorreo.Text, txtAgrResponsable.Text, "1");
+            buildListProveedor();
+            txtAgrCodigo.Text = "";
+            txtAgrNombrePro.Text = "";
+            txtAgrDireccion.Text = "";
+            txtAgrTelefono.Text = "";
+            txtAgrRuc.Text = "";
+            txtAgrCorreo.Text = "";
+            txtAgrResponsable.Text = "";
         }
         protected void ddlComposicion_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtNombreComp.Text = Convert.ToString(ddlComposicion.SelectedItem);
             DataTable dgv = objcom.ConsultarCompSeleccionar(Convert.ToString(ddlComposicion.SelectedValue));
             txtRestricionComp.Text = Convert.ToString(dgv.Rows[0]["Restricciones"].ToString());
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cliclBtnShowPopup3()", true);  
+
         }
 
         protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +192,7 @@ namespace Indexx.pages.Adquision
             txtRucProv.Text = Convert.ToString(dgv.Rows[0]["RUC"].ToString());
             txtCorreoProv.Text = Convert.ToString(dgv.Rows[0]["Correo"].ToString());
             txtResponsableProv.Text = Convert.ToString(dgv.Rows[0]["Responsable"].ToString());
-            
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cliclBtnShowPopup4()", true);            
         }
        
     }

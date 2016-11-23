@@ -69,5 +69,16 @@ namespace DAO
                 throw ex;
             }
         }
+        public DataTable getProveedorCreadas()
+        {
+
+            mDa = new SqlDataAdapter("sp_getProveedor", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+
+
+        }
     }
 }

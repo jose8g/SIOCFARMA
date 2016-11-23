@@ -23,16 +23,17 @@
         $("#pop2").fadeIn('slow');
     }
 
+
+    function ocultar5() {
+        $("#pop5").fadeIn('slow');
+    }
+
     function ocultar3() {
         $("#pop3").fadeIn('slow');
     }
 
     function ocultar4() {
         $("#pop4").fadeIn('slow');
-    }
-
-    function ocultar5() {
-        $("#pop5").fadeIn('slow');
     }
 </script>
 
@@ -177,7 +178,7 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Composicion</label>
-                    <asp:DropDownList ID="ddlComposicion"  CssClass="ddl btnCerrarSolicitud3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlComposicion_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlComposicion" CssClass="ddl btncontent btncontenthover  btnCerrarSolicitud3" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlComposicion_SelectedIndexChanged">
                         <asp:ListItem>Selec. Tipo</asp:ListItem>
                     </asp:DropDownList>
                 </div>
@@ -227,12 +228,12 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Proveedor:</label>
-                    <asp:DropDownList ID="ddlProveedor"  CssClass="ddl btnCerrarSolicitud5" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlProveedor" CssClass="ddl btncontent btncontenthover  btnCerrarSolicitud4" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged">
                         <asp:ListItem>Selec. Proveedor</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button id="btnNewProveedorq" runat="server" Text="Nuevo Proveedor" class="w-button btncontent btncontenthover btnCerrarSolicitud4" OnClick="AgregarProveedor"/>
+                    <asp:Button id="btnNewProveedorq" runat="server" Text="Nuevo Proveedor" class="w-button btncontent btncontenthover btnCerrarSolicitud5" OnClick="AgregarProveedor"/>
                 <div class="x_content">
                     <asp:GridView runat="server" ID="dgvProductoProveedor" CssClass="gridview bordered table"  OnRowCommand="dgvProductoProveedor_RowCommand"
                         DataKeyNames="IdProveedorxItem,CodigoProveedor,Nombre,.Responsable,RUC,Direccion"
@@ -283,7 +284,7 @@ height: auto!important;}
         <asp:TextBox ID="txtNombreMarca"   CssClass="w-input txtcampos areadescriptionpopUp"
             runat="server" ></asp:TextBox>
         <label class="lblcampos" for="name">
-           Cantidad:</label>
+           Descripcion:</label>
            <asp:TextBox ID="txtDescripcionMarca"   CssClass="w-input txtcampos areadescriptionpopUp"
             runat="server" ></asp:TextBox>
         <br>

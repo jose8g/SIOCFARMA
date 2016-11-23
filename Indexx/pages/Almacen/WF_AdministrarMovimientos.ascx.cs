@@ -34,25 +34,42 @@ namespace Indexx.pages.Almacen
             ddlTipoMov.DataTextField = "Nombre";
             ddlTipoMov.DataValueField = "IdTipoMovimiento";
             ddlTipoMov.DataBind();
+            ddlTipoMov.Items.Insert(0, new ListItem("-Seleccionar Movimiento-", "0"));
+
         }
-        protected void itemSelected(object sender, EventArgs e)
+        protected void itemSelected_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlTipoMov.DataValueField == "2")
+            if (ddlTipoMov.SelectedIndex == 1)
             {
                 PnlEntrada.Visible = true;
+                PnlSalida.Visible= false;
+                PnlAjustePositivo.Visible= false;
+                PnlAjusteNegativo.Visible = false;
             }
-            else  if (ddlTipoMov.DataValueField == "3")
+            else if (ddlTipoMov.SelectedIndex == 2)
             {
+                PnlEntrada.Visible = false;
                 PnlSalida.Visible = true;
+                PnlAjustePositivo.Visible = false;
+                PnlAjusteNegativo.Visible = false;
+                
             }
-            else if (ddlTipoMov.DataValueField == "4")
+            else if (ddlTipoMov.SelectedIndex == 3)
             {
+                PnlEntrada.Visible = false;
+                PnlSalida.Visible = false;
                 PnlAjustePositivo.Visible = true;
+                PnlAjusteNegativo.Visible = false;
             }
-            else if (ddlTipoMov.DataValueField == "5")
+            else if (ddlTipoMov.SelectedIndex == 4)
             {
+                PnlEntrada.Visible = false;
+                PnlSalida.Visible = false;
+                PnlAjustePositivo.Visible = false;
                 PnlAjusteNegativo.Visible = true;
             }
         }
+
+
     }
 }

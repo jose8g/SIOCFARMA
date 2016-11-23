@@ -1,10 +1,22 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_Ventas.ascx.cs" Inherits="Indexx.pages.Ventas.WF_Ventas" %>
+<script src="../../js/pop1.js"type="text/javascript"></script>
+<link href="../../css/pop1.css" type="text/css" rel="stylesheet" />
 
+<script src="../../Scripts/jquery-1.8.2.min.js"></script>
+<script src="../../js/jquery-1.4.1.min.js"></script>
 <style type="text/css">
     .auto-style1 {
         width: 100%;
     }
     .bordered {}
+    
+    #pop1
+
+    {
+        top: 55px !important;
+        padding: 15px !important;
+        height: auto  !important;
+    }
 </style>
 <body>
     <asp:UpdatePanel id="panelX" runat="Server"><ContentTemplate>
@@ -26,7 +38,6 @@
                             <td><input id="Text7" type="text" runat="server"/>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>BUSCAR PRODUCTOS POR MARCA</td>
                             <td>
@@ -34,7 +45,6 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>BUSCAR PRODUCTOS POR TIPO</td>
                             <td>
@@ -42,12 +52,10 @@
                                 </asp:DropDownList>
                             </td>
                         </tr>
-                        <br />
                         <tr>
                             <td>-</td>
                             <td>-</td>
                         </tr>
-                        <br />
                         <tr>
                             <td>REALIZAR BUSQUEDA</td>
                             <td>
@@ -88,7 +96,6 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnAgregarProducto" runat="server"
                                                 CommandName="selecItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Agregar"/>
                                 </ItemTemplate>
@@ -112,6 +119,8 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    
+                    <h2 id="tituloVenta" runat="server"></h2>
                     <asp:GridView ID="dgvCarrito" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvCarrito_RowComand"
                             DataKeyNames="IdItem" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
                             style="text-align:center" AllowPaging="True" >
@@ -131,12 +140,10 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnEditItem" runat="server"
                                                 CommandName="editItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Guardar"/>
                                     <asp:Button ID="btnDeleteItem" runat="server"
                                                 CommandName="deleteItem" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Eliminar"/>
                                 </ItemTemplate>
@@ -165,11 +172,12 @@
                             style="text-align:center" AllowPaging="True" >
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
-                            <asp:BoundField DataField ="IdVenta"           HeaderText ="IdVenta" Visible="false" />
+                            <asp:BoundField DataField ="IdVenta"           HeaderText ="Codigo de venta" />
                             <asp:BoundField DataField ="FechaRealizacion"  HeaderText ="Fecha" />
                             <asp:BoundField DataField ="NombreVendedor"    HeaderText ="Vendedor" />
                             <asp:BoundField DataField ="PrecioTotal"       HeaderText ="Precio Total" />
-                            <asp:TemplateField HeaderText="Observacion">
+                            <asp:BoundField DataField ="Total"             HeaderText ="Total(+IGV)" />
+                            <asp:TemplateField HeaderText="Observacion" Visible="false">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtObservacion" Text='<%#Eval("Observacion") %>' runat="server"/>
                                 </ItemTemplate>
@@ -178,19 +186,20 @@
                                 <ItemTemplate>
                                     <asp:Button ID="btnEditVenta" runat="server"
                                                 CommandName="editVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Editar"/>
                                     <asp:Button ID="btnDeleteVenta" runat="server"
                                                 CommandName="deleteVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Eliminar"/>
                                     <asp:Button ID="btnFinalizarVenta" runat="server"
                                                 CommandName="finalizarVenta" CssClass="btn btn-info btn-xs"
-                                                formnovalidate=""
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Finalizar"/>
+                                    <asp:Button ID="btnGenerarPDF" runat="server"
+                                                CommandName="generarPDF" CssClass="btn btn-info btn-xs"
+                                                CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                                Text="Generar PDF"/>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
@@ -200,4 +209,20 @@
         </div>
     </div>
     </ContentTemplate></asp:UpdatePanel>
+    <div id="pop1" style="display:none ; width: 44%;  left: -8px;"">
+        <div id="cerrar">X</div>
+        <%--el boton para cerrar--%>
+    <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
+            </h1>--%>
+        <asp:Label runat="server" id="lblTituloPopup" ><h2>GENERAR BOLETA DE VENTA</h2><br /></asp:Label>
+        <asp:Label runat="server" id="lblNombre" >NOMBRE    :</asp:Label>
+        <asp:TextBox ID="textNombre" runat="server"></asp:TextBox><br />
+        <asp:Label runat="server" id="lblDni" >DNI       :</></asp:Label>
+        <asp:TextBox ID="textDni" runat="server"></asp:TextBox><br />
+        <asp:Label runat="server" id="lblRuc" >RUC       :</asp:Label>
+        <asp:TextBox ID="textRuc" runat="server"></asp:TextBox><br />
+        <asp:Label runat="server" id="lblDirec" >Direccion :</asp:Label>
+        <asp:TextBox ID="textDirec" runat="server"></asp:TextBox><br />
+        <asp:Button ID="btnPdf" runat="server" BackColor="#0099FF" BorderColor="#3399FF" ForeColor="White" Text="Generar Boleta" Width="177px" OnClick="btnPdf_Click" />
+    </div>
 </body>

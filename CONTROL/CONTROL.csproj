@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C_Cotizacion.cs" />
     <Compile Include="C_Composicion.cs" />
     <Compile Include="C_Lote.cs" />
     <Compile Include="C_Marca.cs" />

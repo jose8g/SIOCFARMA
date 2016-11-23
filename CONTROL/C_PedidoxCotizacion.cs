@@ -40,11 +40,11 @@ namespace CONTROL
             }
         }
 
-        public DataTable MostrarPedidoxCotizacion(int IdPedido, int IdProveedor, int IdItem)
+        public DataTable MostrarPedidoxCotizacion(int IdPedido, int IdProveedor)
         {
             try
             {
-                return objD_PedC.MostrarPedidoxCotizacion(IdPedido, IdProveedor, IdItem);
+                return objD_PedC.MostrarPedidoxCotizacion(IdPedido, IdProveedor);
             }
             catch (Exception ex)
             {

@@ -46,6 +46,19 @@ namespace DAO
 
         }
 
+        public DataTable InsertarPedidoxCotizacion(int IdPedido, int IdProveedor, int IdLote, int IdItem, int Cantidad, double PrecioUnitario)
+        {
+            mDa = new SqlDataAdapter("SP_InsertarPedidoxCotizacion", conexion);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@Cantidad", Cantidad);
+            mDa.SelectCommand.Parameters.AddWithValue("@PrecioUnitario", PrecioUnitario);
+            mdd = new DataSet();
+            mDa.Fill(mdd);
+            return mdd.Tables[0];
+        }
+
         public void actualizarPedidoxCotizacion(E_PedidoxCotizacion objE_PedC)
         {
             try
@@ -71,6 +84,19 @@ namespace DAO
             }
 
         }
+        public DataTable actualizarPedidoxCotizacion(int IdPedido, int IdProveedor, int IdLote, int IdItem, int Cantidad, double PrecioUnitario)
+        {
+            mDa = new SqlDataAdapter("SP_ActualizarPedidoxCotizacion", conexion);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@Cantidad", Cantidad);
+            mDa.SelectCommand.Parameters.AddWithValue("@PrecioUnitario", PrecioUnitario);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mdd = new DataSet();
+            mDa.Fill(mdd);
+            return mdd.Tables[0];
+        }
 
         public DataTable BuscarExistente(int IdPedido, int IdProveedor, int IdItem)
         {
@@ -91,14 +117,13 @@ namespace DAO
             }
         }
 
-        public DataTable MostrarPedidoxCotizacion(int IdPedido, int IdProveedor, int IdItem)
+        public DataTable MostrarPedidoxCotizacion(int IdPedido, int IdProveedor)
         {
             try
             {
                 mDa = new SqlDataAdapter("SP_MostrarPedidosxCotizacion", conexion);
                 mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
                 mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
-                mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mdd = new DataSet();
                 mDa.Fill(mdd);
@@ -108,6 +133,29 @@ namespace DAO
             {
                 throw ex;
             }
+        }
+
+        public DataTable eliminarPedidoxCotizacion(int IdPedido, int IdProveedor, int IdItem)
+        {
+            mDa = new SqlDataAdapter("SP_EliminarPedidosxCotizacion", conexion);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mdd = new DataSet();
+            mDa.Fill(mdd);
+            return mdd.Tables[0];
+        }
+
+        public DataTable subTotalCotizar(int IdPedido, int IdProveedor)
+        {
+            mDa = new SqlDataAdapter("SP_SubTotalCotizar", conexion);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mdd = new DataSet();
+            mDa.Fill(mdd);
+            return mdd.Tables[0];
         }
 
     }

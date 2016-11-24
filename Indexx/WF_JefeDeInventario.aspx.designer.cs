@@ -46,6 +46,6 @@ namespace Indexx {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Estadisticos.WebUserControl1 WF_Reportes3;
+        //protected global::Indexx.pages.Estadisticos.WebUserControl1 WF_Reportes3;
     }
 }

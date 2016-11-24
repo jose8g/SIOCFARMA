@@ -3817,6 +3817,13 @@
     <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.designer.cs">
       <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
     </Compile>
+    <Compile Include="pages\Seguridad\WF_AdministrarProveedores.ascx.cs">
+      <DependentUpon>WF_AdministrarProveedores.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Seguridad\WF_AdministrarProveedores.ascx.designer.cs">
+      <DependentUpon>WF_AdministrarProveedores.ascx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Seguridad\WF_Configuracion_Almacen.ascx.cs">
       <DependentUpon>WF_Configuracion_Almacen.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

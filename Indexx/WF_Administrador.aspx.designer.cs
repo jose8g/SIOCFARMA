@@ -22,15 +22,6 @@ namespace Indexx {
         protected global::System.Web.UI.ScriptManager ScriptManager2;
         
         /// <summary>
-        /// WF_AdministrarProveedores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Indexx.pages.Seguridad.WF_AdministrarProveedores WF_AdministrarProveedores;
-        
-        /// <summary>
         /// WF_AsignarProveedoresAPedido control.
         /// </summary>
         /// <remarks>
@@ -47,5 +38,14 @@ namespace Indexx {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Indexx.pages.Seguridad.WebUserControl1 WF_Configuracion_Almacen;
+        
+        /// <summary>
+        /// WF_AdministrarProveedores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Indexx.pages.Seguridad.WF_AdministrarProveedores WF_AdministrarProveedores;
     }
 }

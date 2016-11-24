@@ -50,6 +50,7 @@
     <Compile Include="DAO_Pedido.cs" />
     <Compile Include="DAO_Proveedor.cs" />
     <Compile Include="DAO_ProveedorxItem.cs" />
+    <Compile Include="DAO_Reportes.cs" />
     <Compile Include="DAO_TipoMovimiento.cs" />
     <Compile Include="DAO_Venta.cs" />
     <Compile Include="D_Cotizacion.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="D_Pedido.cs" />
     <Compile Include="D_PedidoxCotizacion.cs" />
     <Compile Include="D_PedidoxItem.cs" />
+    <Compile Include="D_Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

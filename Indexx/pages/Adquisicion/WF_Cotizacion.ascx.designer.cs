@@ -77,6 +77,7 @@ namespace Indexx.pages.Adquisicion {
         
         /// <summary>
         /// lblNombreCot control.
+        /// Control lblNombreCot.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
@@ -112,6 +113,16 @@ namespace Indexx.pages.Adquisicion {
         protected global::System.Web.UI.WebControls.TextBox txtDescuento;
         
         /// <summary>
+        /// Control dgvSubtotal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvSubtotal;
+        
+        /// <summary>
+        /// Control dgvTotal.
         /// dgvTotal control.
         /// </summary>
         /// <remarks>

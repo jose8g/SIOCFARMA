@@ -45,7 +45,10 @@ namespace DAO
                 mDa = new SqlDataAdapter("[sp_getItemxPedido]", con);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDs = new DataSet();
+
+                ArrayList mdx = new ArrayList();
                 mDa.Fill(mDs);
+                //mdx.Fill(mDs);
                 con.Close();
                 return mDs.Tables[0];
             }

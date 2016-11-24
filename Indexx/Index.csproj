@@ -199,6 +199,7 @@
     <Content Include="js\pop3.js" />
     <Content Include="js\pop4.js" />
     <Content Include="js\pop5.js" />
+    <Content Include="pages\Seguridad\WF_AdministrarProveedores.ascx" />
     <Content Include="pages\Seguridad\WF_Configuracion_Almacen.ascx" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="images\cotizar.png" />

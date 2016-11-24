@@ -8,78 +8,81 @@ namespace Entidad
 {
     public class E_Proveedor
     {
-        private int idProveedor;
-        public int IdProveedor
+        private int IdProveedor;
+
+        public int IdProveedor1
         {
             get { return IdProveedor; }
             set { IdProveedor = value; }
         }
+        private int CodigoProveedor;
 
-
-        private int codigoProveedor;
-        public int CodigoProveedor
+        public int CodigoProveedor1
         {
             get { return CodigoProveedor; }
             set { CodigoProveedor = value; }
         }
+        private string Nombre;
 
-
-        private string nombre;
-        public string Nombre
+        public string Nombre1
         {
             get { return Nombre; }
             set { Nombre = value; }
         }
+        private string Direccion;
 
-
-        private string direccion;
-        public string Direccion
+        public string Direccion1
         {
             get { return Direccion; }
             set { Direccion = value; }
         }
+        private int Telefono;
 
-
-        private int telefono;
-        public int Telefono
+        public int Telefono1
         {
             get { return Telefono; }
             set { Telefono = value; }
         }
+        private Int64 RUC;
 
-
-        private int rUC;
-        public int RUC
+        public Int64 RUC1
         {
             get { return RUC; }
             set { RUC = value; }
         }
+        private string Correo;
 
-
-        private string correo;
-        public string Correo
+        public string Correo1
         {
             get { return Correo; }
             set { Correo = value; }
         }
+        private string Responsable;
 
-
-        private string responsable;
-        public string Responsable
+        public string Responsable1
         {
             get { return Responsable; }
             set { Responsable = value; }
         }
+        private Boolean Estado;
 
-
-        private char estado;
-        public char Estado
+        public Boolean Estado1
         {
             get { return Estado; }
             set { Estado = value; }
         }
 
-
-
+        public E_Proveedor()
+        {
+            IdProveedor = 0;
+            CodigoProveedor = 0;
+            Nombre = "";
+            Direccion = "";
+            Telefono = 0;
+            RUC = 0;
+            Correo = "";
+            Responsable = "";
+            Estado = true;
+        }
     }
 }

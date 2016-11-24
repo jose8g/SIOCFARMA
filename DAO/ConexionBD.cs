@@ -14,11 +14,12 @@ namespace DAO
             {
                 return "Data Source=EDGARRELUZ-PC;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
                 //return "Data Source=EDGARRELUZ-PC;Initial Catalog=BD_SIOCFARMA;User ID=sa;Password=jesie0701";
+                //return "Data Source=EDGAR-PC\\MSSQLSERVER1;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
                 //return "Data Source=LAPTOP-ARICDKF6\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
                 //return "Data Source=USER\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
                 //return "Data Source=WINDOWS-OSHK0B1;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
                 //return "Data Source=LABINF201A08;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
-                //return "Data Source=TOSHIBA\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
+                return "Data Source=TOSHIBA\\SQLEXPRESS;Initial Catalog=BD_SIOCFARMA;Integrated Security=True";
             }
         }
     }

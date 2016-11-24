@@ -42,18 +42,6 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\itextsharp.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp.pdfa, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\itextsharp.pdfa.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp.xtra, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\itextsharp.xtra.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -427,7 +415,6 @@
     <Content Include="documentation\fonts\scss\_variables.scss" />
     <Content Include="images\logo.psd" />
     <Content Include="images\Thumbs.db" />
-    <Content Include="pdf\boletaFarma.pdf" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="production\css\maps\jquery-jvectormap-2.0.3.css" />
     <Content Include="production\images\american-express.png" />
@@ -3806,6 +3793,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.designer.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.designer.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
     </Compile>
     <Compile Include="WF_Almacenero.aspx.cs">
       <DependentUpon>WF_Almacenero.aspx</DependentUpon>

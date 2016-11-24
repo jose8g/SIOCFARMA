@@ -49,6 +49,7 @@
     <Compile Include="DAO_Pedido.cs" />
     <Compile Include="DAO_Proveedor.cs" />
     <Compile Include="DAO_ProveedorxItem.cs" />
+    <Compile Include="DAO_Reportes.cs" />
     <Compile Include="DAO_TipoMovimiento.cs" />
     <Compile Include="DAO_Venta.cs" />
     <Compile Include="D_Cotizacion.cs" />

@@ -151,6 +151,7 @@ namespace Indexx.pages
         public void buildListCotizacion()
         {
             ddlPedido.DataSource     = daoCompras.GetCotizacionesCreadas();
+            //DataTable obj = daoCompras.GetCotizacionesCreadas();
             ddlPedido.DataTextField  = "FechaRegistro";
             ddlPedido.DataValueField = "IdPedido";
             ddlPedido.DataBind();

@@ -174,6 +174,7 @@
     <Content Include="documentation\js\jquery.min.js" />
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
+    <Content Include="pages\Estadisticos\WF_Reportes.ascx" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="images\cotizar.png" />
     <Content Include="js\bootstrap-select.js" />
@@ -3781,6 +3782,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Estadisticos\WF_Reportes.ascx.cs">
+      <DependentUpon>WF_Reportes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Estadisticos\WF_Reportes.ascx.designer.cs">
+      <DependentUpon>WF_Reportes.ascx</DependentUpon>
     </Compile>
     <Compile Include="WF_Almacenero.aspx.cs">
       <DependentUpon>WF_Almacenero.aspx</DependentUpon>

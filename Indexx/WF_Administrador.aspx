@@ -2,7 +2,8 @@
 
 <%@ Register Src="~/pages/Adquisicion/WF_AsignarProveedoresAPedido.ascx" TagPrefix="uc1" TagName="WF_AsignarProveedoresAPedido" %>
 <%@ Register Src="~/pages/Seguridad/WF_Configuracion_Almacen.ascx"  TagPrefix="uc2" TagName="WF_Configuracion_Almacen" %>
-<%@ Register Src="~/pages/Seguridad/WF_AdministrarProveedores.ascx" TagPrefix="uc1" TagName="WF_AdministrarProveedores" %>
+<%@ Register Src="~/pages/Seguridad/WF_AdministrarProveedores.ascx" TagPrefix="uc3" TagName="WF_AdministrarProveedores" %>
+
 
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
@@ -11,29 +12,28 @@
         </asp:ScriptManager> 
          
           <script type="text/javascript" >
-            jQuery(document).ready(function ()
-            {
-                jQuery(".Opcion8").text("Administrar Proveedor");
-                
+              jQuery(document).ready(function ()
+              {
+                  jQuery(".opcion8").text("Asignar Proveedores a Pedidos");
+                  jQuery(".opcion9").text("Administrar Proveedores");
 
-                jQuery(".Opcion8").click(function ()
-                {
-                    jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                  jQuery(".opcion8").click(function () {
+                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                  });
 
-             jQuery(".Opcion8").click(function () {
-                 jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
-                 jQuery("#ContentConfigAlmacen").hide();
-             });
-             jQuery(".Opcion9").click(function () {
-                 jQuery("#ContentConfigAlmacen").fadeIn('slow');
-                 jQuery("#ContentAsignarProveedorAPedido").hide();
-             });
-         });
+                  jQuery(".opcion9").click(function () {
+                      jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
+                      jQuery("#ContentAdministrarProveedor").hide();
+                  });
+              });
 
 	</script>
          
         <div id="ContentAdministrarProveedor" style="display:;">
-            <uc1:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
+            <uc3:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
+
+            </div>
     <div id="ContentAsignarProveedorAPedido" style="display:none;">
         <uc1:WF_AsignarProveedoresAPedido runat="server" id="WF_AsignarProveedoresAPedido" />
         </div>

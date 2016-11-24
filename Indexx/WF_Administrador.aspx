@@ -12,21 +12,33 @@
         </asp:ScriptManager> 
          
           <script type="text/javascript" >
-              jQuery(document).ready(function ()
-              {
-                  jQuery(".opcion8").text("Asignar Proveedores a Pedidos");
-                  jQuery(".opcion9").text("Administrar Proveedores");
-
+            jQuery(document).ready(function ()
+            {
+                  jQuery(".Opcion8").text("Asignar pedido a proveedor");
+                  jQuery(".Opcion9").text("Configuracion Almacén");
+                  jQuery(".Opcion10").text("Administrar proveedor");
+                
                   jQuery(".opcion8").click(function () {
                       jQuery("#ContentAdministrarProveedor").fadeIn('slow');
                       jQuery("#ContentAsignarProveedorAPedido").hide();
                   });
 
                   jQuery(".opcion9").click(function () {
-                      jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
+                 jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
+                      jQuery("#ContentConfigAlmacen").hide();
                       jQuery("#ContentAdministrarProveedor").hide();
                   });
-              });
+                  jQuery(".Opcion9").click(function (){
+                      jQuery("#ContentConfigAlmacen").fadeIn('slow');
+                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                      jQuery("#ContentAdministrarProveedor").hide();
+                  });
+                  jQuery(".Opcion10").click(function () {
+                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                      jQuery("#ContentConfigAlmacen").hide();
+             });
+         });
 
 	</script>
          
@@ -39,6 +51,9 @@
         </div>
     <div id="ContentConfigAlmacen" style="display:none;">
         <uc2:WF_Configuracion_Almacen runat="server" id="WF_Configuracion_Almacen" />
+    </div>
+    <div id="ContentAdministrarProveedor" style="display:none;">
+        <uc3:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
     </div>
      </form>
                    

@@ -103,7 +103,7 @@
                       <li><a class="opcion1">Orden Compra</a> </li>
                       <li><a class="opcion2">Cotizacion</a></li>
                       <li><a class="opcion3"> Gestion marca</a> </li>
-                      <li><a class="opcion8"> Asignar pedido a proveedor</a> </li>
+                      <li><a class="Opcion8"> Asignar pedido a proveedor</a> </li>
                       <li><a class="opcion6">Estadisticos</a> </li>
                     </ul>
                   </li>
@@ -146,8 +146,8 @@
                   </li>
                   <li><a><i class="fa fa-lock"></i> Seguridad <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a Class="Opcion8"></a></li>
                       <li><a Class="Opcion9"></a></li>
+                      <li><a Class="Opcion10"></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -457,26 +457,7 @@
         });
     </script>
     <!-- /Flot -->
-
-    <!-- JQVMap -->
-    <script>
-        $(document).ready(function () {
-            $('#world-map-gdp').vectorMap({
-                map: 'world_en',
-                backgroundColor: null,
-                color: '#ffffff',
-                hoverOpacity: 0.7,
-                selectedColor: '#666666',
-                enableZoom: true,
-                showTooltip: true,
-                values: sample_data,
-                scaleColors: ['#E6F2F0', '#149B7E'],
-                normalizeFunction: 'polynomial'
-            });
-        });
-    </script>
-    <!-- /JQVMap -->
-
+    
     <!-- Skycons -->
     <script>
         $(document).ready(function () {
@@ -504,7 +485,8 @@
     </script>
     <!-- /Doughnut Chart -->
     <script type="text/javascript">
-        function Notificacion(titulo,texto,tipo) {
+        function Notificacion(titulo, texto, tipo) {
+            console.log("entra");
             new PNotify({
                 title: titulo,
                 text: texto,

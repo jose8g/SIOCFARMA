@@ -38,6 +38,14 @@ namespace Indexx {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Indexx.pages.Adquisicion.WF_Cotizacion1 WF_Cotizacion;
-       
+        
+        /// <summary>
+        /// WF_Reportes control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Indexx.pages.Estadisticos.WF_Reportes WF_Reportes;
     }
 }

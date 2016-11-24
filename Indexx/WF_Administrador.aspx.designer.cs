@@ -13,21 +13,31 @@ namespace Indexx {
     public partial class Formulario_web11 {
         
         /// <summary>
-        /// ScriptManager3 control.
+        /// Control ScriptManager2.
         /// </summary>
         /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager3;
+        protected global::System.Web.UI.ScriptManager ScriptManager2;
         
         /// <summary>
-        /// WF_AsignarProveedoresAPedido control.
+        /// Control WF_AdministrarProveedores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::Indexx.pages.Adquisicion.WF_AsignarProveedoresAPedido WF_AsignarProveedoresAPedido;
+        
+        /// <summary>
+        /// WF_Configuracion_Almacen control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Adquisicion.WF_AsignarProveedoresAPedido WF_AsignarProveedoresAPedido;
+        protected global::Indexx.pages.Seguridad.WebUserControl1 WF_Configuracion_Almacen;
+        protected global::Indexx.pages.Seguridad.WF_AdministrarProveedores WF_AdministrarProveedores;
     }
 }

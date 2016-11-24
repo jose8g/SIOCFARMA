@@ -74,6 +74,7 @@ namespace Indexx.pages.Adquisicion
                     dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
                     dgvSubtotal.DataBind();
                     camposCotVis();
+                    camposCot2();
                 }
             }
             catch(Exception ex)
@@ -161,7 +162,11 @@ namespace Indexx.pages.Adquisicion
                     {
                         throw new Exception("Ingrese el descuento");
                     }
-                    if (nom == null)
+                    if (desc <= 0)
+                    {
+                        throw new Exception("El descuento debe ser mayor a cero.");
+                    }
+                    if (txtNombreCot.Text == "")
                     {
                         throw new Exception("Ingrese un nombre a la cotización");
                     }
@@ -191,6 +196,17 @@ namespace Indexx.pages.Adquisicion
             lblDescuento.Enabled = false;
             txtDescuento.Enabled = false;
         }
+
+        private void camposCot2()
+        {
+            lblNombreCot.Enabled = true;
+            txtNombreCot.Enabled = true;
+            lblDescuento.Enabled = true;
+            txtDescuento.Enabled = true;
+            txtNombreCot.Text = "";
+            txtDescuento.Text = "";
+        }
+
         private void camposCotVis()
         {
             lblNombreCot.Visible = true;
@@ -367,11 +383,11 @@ namespace Indexx.pages.Adquisicion
                         objE_PedC.Cantidad1 = Convert.ToInt32(txtCantidadMpopup.Text.Trim());
                         objE_PedC.PrecioUnitario1 = Convert.ToDouble(txtPreciopopup.Text);
 
-                        objC_PedC.insertarPedidoxCotizacion(objE_PedC);
                         if (idPedido == null || idItem == null)
                         {
                             throw new Exception("No se puede registrar el item");
                         }
+                        objC_PedC.insertarPedidoxCotizacion(objE_PedC);
                         dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]),
                             Convert.ToInt32(txtIdProveedor.Text));
                         dgvPedidoC.DataBind();
@@ -391,11 +407,12 @@ namespace Indexx.pages.Adquisicion
                         objE_PedC.Cantidad1 = Convert.ToInt32(txtCantidadMpopup.Text.Trim());
                         objE_PedC.PrecioUnitario1 = Convert.ToDouble(txtPreciopopup.Text);
 
-                        objC_PedC.actualizarPedidoxCotizacion(objE_PedC);
                         if (idPedido == null || idItem == null)
                         {
                             throw new Exception("No se puede actualizar el item");
                         }
+
+                        objC_PedC.actualizarPedidoxCotizacion(objE_PedC);
                         dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]),
                             Convert.ToInt32(txtIdProveedor.Text));
                         dgvPedidoC.DataBind();

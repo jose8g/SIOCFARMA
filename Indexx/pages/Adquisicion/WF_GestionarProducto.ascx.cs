@@ -41,10 +41,8 @@ namespace Indexx.pages.Adquision
                 buildListProveedor();  
                 this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
                 this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar2();");
-                this.btnNewProveedorq.Attributes.Add("OnClick", "javascript: return ocultar5();");
-
-                this.ddlComposicion.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar3();");
-                this.ddlProveedor.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar4();");
+                this.btnNewProveedor1.Attributes.Add("OnClick", "javascript: return ocultar5();");
+                
             }
 
         }
@@ -91,6 +89,7 @@ namespace Indexx.pages.Adquision
         }
         protected void AgregarComposicion(object sender, EventArgs e)
         {
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cliclBtnShowPopup2()", true);
         }
         protected void AgregarProveedor(object sender, EventArgs e)
         {
@@ -126,7 +125,7 @@ namespace Indexx.pages.Adquision
 
         protected void dgvProductoProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvProductoProveedor.PageIndex = e.NewPageIndex;
+            dgvProductoProveedor1.PageIndex = e.NewPageIndex;
         }
         protected void AgregarNewMarca(object sender, EventArgs e)
         {
@@ -149,6 +148,7 @@ namespace Indexx.pages.Adquision
             objci.insertarComposicionxItem(txtMedidaComp.Text, Convert.ToInt32(txtCantidadComp.Text), codigo, Convert.ToInt32(ddlComposicion.SelectedValue));
             dgvProdictoComposicion.DataSource = objci.getComposicionesxItemCreadas(codigo);
             dgvProdictoComposicion.DataBind();
+            Panel3.Visible = false;
         }
 
         protected void AgregarProveedorItem(object sender, EventArgs e)
@@ -156,8 +156,9 @@ namespace Indexx.pages.Adquision
             DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
             int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
             objpi.insertarProveedorxItem(Convert.ToInt32(ddlProveedor.SelectedValue), codigo, "1");
-            dgvProductoProveedor.DataSource = objpi.getProveedoresxItemCreadas(codigo);
-            dgvProductoProveedor.DataBind();
+            dgvProductoProveedor1.DataSource = objpi.getProveedoresxItemCreadas(codigo);
+            dgvProductoProveedor1.DataBind();
+            Panel4.Visible = false;  
         }
 
         protected void AgregarNewProveedor(object sender, EventArgs e)
@@ -177,7 +178,7 @@ namespace Indexx.pages.Adquision
             txtNombreComp.Text = Convert.ToString(ddlComposicion.SelectedItem);
             DataTable dgv = objcom.ConsultarCompSeleccionar(Convert.ToString(ddlComposicion.SelectedValue));
             txtRestricionComp.Text = Convert.ToString(dgv.Rows[0]["Restricciones"].ToString());
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cliclBtnShowPopup3()", true);  
+            Panel3.Visible = true;
 
         }
 
@@ -192,7 +193,7 @@ namespace Indexx.pages.Adquision
             txtRucProv.Text = Convert.ToString(dgv.Rows[0]["RUC"].ToString());
             txtCorreoProv.Text = Convert.ToString(dgv.Rows[0]["Correo"].ToString());
             txtResponsableProv.Text = Convert.ToString(dgv.Rows[0]["Responsable"].ToString());
-            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "cliclBtnShowPopup4()", true);            
+            Panel4.Visible = true;         
         }
        
     }

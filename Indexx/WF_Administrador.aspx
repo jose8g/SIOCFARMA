@@ -11,24 +11,24 @@
         </asp:ScriptManager> 
          
           <script type="text/javascript" >
-            jQuery(document).ready(function ()
-            {
-                jQuery(".Opcion8").text("Administrar Proveedor");
+              jQuery(document).ready(function ()
+              {
+                  jQuery(".Opcion8").text("Administrar Proveedor");
                 
 
-                jQuery(".Opcion8").click(function ()
-                {
-                    jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                  jQuery(".Opcion8").click(function ()
+                  {
+                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
 
-             jQuery(".Opcion8").click(function () {
-                 jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
-                 jQuery("#ContentConfigAlmacen").hide();
-             });
-             jQuery(".Opcion9").click(function () {
-                 jQuery("#ContentConfigAlmacen").fadeIn('slow');
-                 jQuery("#ContentAsignarProveedorAPedido").hide();
-             });
-         });
+                      jQuery(".Opcion8").click(function () {
+                          jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
+                          jQuery("#ContentConfigAlmacen").hide();
+                      });
+                      jQuery(".Opcion9").click(function () {
+                          jQuery("#ContentConfigAlmacen").fadeIn('slow');
+                          jQuery("#ContentAsignarProveedorAPedido").hide();
+                      });
+                  });
 
 	</script>
          

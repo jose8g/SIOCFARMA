@@ -7,10 +7,10 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace Indexx.pages.Adquisicion {
+namespace Indexx.pages.Seguridad {
     
     
-    public partial class WF_Cotizacion1 {
+    public partial class WF_AdministrarProveedores {
         
         /// <summary>
         /// Control UpdatePanel1.
@@ -22,130 +22,76 @@ namespace Indexx.pages.Adquisicion {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Control txtIdProveedor.
+        /// Control txtNombreProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdProveedor;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreProv;
         
         /// <summary>
-        /// Control btnBuscarProveedor.
+        /// Control txtDireccionProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscarProveedor;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionProv;
         
         /// <summary>
-        /// Control dgvPedidos.
+        /// Control txtTelefonoProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPedidos;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonoProv;
         
         /// <summary>
-        /// Control dgvItems.
+        /// Control txtRucProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvItems;
+        protected global::System.Web.UI.WebControls.TextBox txtRucProv;
         
         /// <summary>
-        /// Control dgvPedidoC.
+        /// Control txtCorreoProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvPedidoC;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoProv;
         
         /// <summary>
-        /// Control lblNombreCot.
+        /// Control txtResponsableProv.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreCot;
+        protected global::System.Web.UI.WebControls.TextBox txtResponsableProv;
         
         /// <summary>
-        /// Control txtNombreCot.
+        /// Control btnRegistrar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreCot;
+        protected global::System.Web.UI.WebControls.Button btnRegistrar;
         
         /// <summary>
-        /// Control lblDescuento.
+        /// Control dgvProveedores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDescuento;
-        
-        /// <summary>
-        /// Control txtDescuento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescuento;
-        
-        /// <summary>
-        /// Control dgvSubtotal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvSubtotal;
-        
-        /// <summary>
-        /// Control dgvTotal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvTotal;
-        
-        /// <summary>
-        /// Control txtIdDDL.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdDDL;
-        
-        /// <summary>
-        /// Control txtEx.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEx;
-        
-        /// <summary>
-        /// Control dgvExistente.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvExistente;
+        protected global::System.Web.UI.WebControls.GridView dgvProveedores;
         
         /// <summary>
         /// Control UpdatePanel2.
@@ -166,40 +112,67 @@ namespace Indexx.pages.Adquisicion {
         protected global::System.Web.UI.WebControls.Label lblTituloPopup;
         
         /// <summary>
-        /// Control txtCantidadpopup.
+        /// Control txtNombrepopup.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidadpopup;
+        protected global::System.Web.UI.WebControls.TextBox txtNombrepopup;
         
         /// <summary>
-        /// Control ddlMedida.
+        /// Control txtDireccionpopup.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMedida;
+        protected global::System.Web.UI.WebControls.TextBox txtDireccionpopup;
         
         /// <summary>
-        /// Control txtCantidadMpopup.
+        /// Control txtTelefonopopup.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCantidadMpopup;
+        protected global::System.Web.UI.WebControls.TextBox txtTelefonopopup;
         
         /// <summary>
-        /// Control txtPreciopopup.
+        /// Control txtRucpopup.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPreciopopup;
+        protected global::System.Web.UI.WebControls.TextBox txtRucpopup;
+        
+        /// <summary>
+        /// Control txtCorreopopup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCorreopopup;
+        
+        /// <summary>
+        /// Control txtResponsablepopup.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtResponsablepopup;
+        
+        /// <summary>
+        /// Control ddlEstado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlEstado;
         
         /// <summary>
         /// Control btnAceptarPopUp.

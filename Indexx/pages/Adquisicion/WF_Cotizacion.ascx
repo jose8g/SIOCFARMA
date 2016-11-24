@@ -222,6 +222,15 @@ height: auto!important;}
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    <asp:Label ID="lblNombreCot" runat="server" Text="Nombre de la Cotización:" Visible="False"></asp:Label>
+                        <asp:TextBox ID="txtNombreCot" runat="server" Visible="False"></asp:TextBox>
+                        <br/>
+                        <asp:Label ID="lblDescuento" runat="server" Text="Descuento:" Visible="False"></asp:Label>
+                        <asp:TextBox ID="txtDescuento" runat="server" Visible="False"></asp:TextBox>
+                        <br/>
+                        
+                    <br/>
+
                     <asp:GridView runat="server" ID="dgvSubtotal" CssClass="gridview bordered table" OnRowCommand="dgvSubtotal_RowComand"
                         DataKeyNames="SubTotal"
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvSubtotal_PageIndexChanging" AllowPaging="True">
@@ -252,14 +261,7 @@ height: auto!important;}
                             </Columns>
                     </asp:GridView>
 
-                    <asp:Label ID="lblNombreCot" runat="server" Text="Nombre de la Cotización:" Visible="False"></asp:Label>
-                        <asp:TextBox ID="txtNombreCot" runat="server" Visible="False"></asp:TextBox>
-                        <br/>
-                        <asp:Label ID="lblDescuento" runat="server" Text="Descuento:" Visible="False"></asp:Label>
-                        <asp:TextBox ID="txtDescuento" runat="server" Visible="False"></asp:TextBox>
-                        <br/>
-                        
-                    <br/>
+                     <br/>
 
                     <asp:GridView runat="server" ID="dgvTotal" CssClass="gridview bordered table"
                         DataKeyNames="NumCotizacion,NombreCotizacion,FechaRegistro,PreTotal,Descuento,Total"

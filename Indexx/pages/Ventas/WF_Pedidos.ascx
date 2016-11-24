@@ -1,6 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_Pedidos.ascx.cs" Inherits="Indexx.pages.Ventas.WF_Pedidos" %>
 
-
+<style type="text/css">
+    .auto-style1 {
+        width: 100%;
+    }
+    .bordered {}
+</style>
 
 <body>
     <asp:UpdatePanel id="panelX" runat="Server"><ContentTemplate>

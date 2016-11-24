@@ -34,8 +34,8 @@ namespace DAO
             comando.Parameters.AddWithValue("@Nombre", Nombre);
             comando.Parameters.AddWithValue("@PrecioVenta", PrecioVenta);
             comando.Parameters.AddWithValue("@Estado", Estado);
-            comando.Parameters.AddWithValue("@NombreT", IdTipo);
-            comando.Parameters.AddWithValue("@NombreM", IdMarca);
+            comando.Parameters.AddWithValue("@IdTipo", IdTipo);
+            comando.Parameters.AddWithValue("@IdMarca", IdMarca);
 
             conexion.Open();
             comando.ExecuteNonQuery();

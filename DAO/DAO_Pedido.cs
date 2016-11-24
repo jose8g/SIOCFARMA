@@ -91,18 +91,30 @@ namespace DAO
             }
         }
 
-        public int finalizarPedido(int idPedido)
+        public void InsertarProveedorxPedido(int IdPedido, int IdProveedor)
         {
-            SqlCommand comando = new SqlCommand("sp_finalizarPedido", con);
+            SqlCommand comando = new SqlCommand("SP_InsertarProveedorxPedido", con);
             comando.CommandType = CommandType.StoredProcedure;
-            comando.Parameters.AddWithValue("@idPedido", idPedido);
-            comando.Parameters.Add("@salida", SqlDbType.Int);
-            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
             con.Open();
             comando.ExecuteNonQuery();
             con.Close();
-            return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
+    
+
+        //public int finalizarPedido(int idPedido)
+        //{
+        //    SqlCommand comando = new SqlCommand("sp_finalizarPedido", con);
+        //    comando.CommandType = CommandType.StoredProcedure;
+        //    comando.Parameters.AddWithValue("@idPedido", idPedido);
+        //    comando.Parameters.Add("@salida", SqlDbType.Int);
+        //    comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+        //    con.Open();
+        //    comando.ExecuteNonQuery();
+        //    con.Close();
+        //    return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        //}
 
         public DataTable getPedido()
         {
@@ -113,7 +125,58 @@ namespace DAO
             mDa.Fill(mDs);
             return mDs.Tables[0];
         }
-        
+
+        public DataTable getProveedorxPedidos()
+        {
+
+            mDa = new SqlDataAdapter("sp_getProveedorxPedido", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            con.Open();
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getIdPedido()
+        {
+
+            mDa = new SqlDataAdapter("sp_getIdPedido", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getIdProveedor()
+        {
+
+            mDa = new SqlDataAdapter("sp_getIdProveedor", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getItemsDePedido(int IdPedido)
+        {
+            mDa = new SqlDataAdapter("sp_getItemsDePedido", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getAllProveedor(int IdProveedor)
+        {
+            mDa = new SqlDataAdapter("sp_getAllProveedor", con);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
         public DataTable deletePedido(int IdPedido)
         {
             try
@@ -121,6 +184,25 @@ namespace DAO
                 mDa = new SqlDataAdapter("sp_delete_Pedido", con);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable deleteProveedorxPedido(int IdPedido, int IdProveedor)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_DeleteProveedorxPedido", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+                con.Open();
                 mDs = new DataSet();
                 mDa.Fill(mDs);
                 return mDs.Tables[0];

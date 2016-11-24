@@ -26,7 +26,7 @@
                         <tr>
                             <td>Seleccionar Tipo de Movimiento</td>
                             <td>
-                                <asp:DropDownList ID="ddlTipoMov" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="itemSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="ddlTipoMov" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="itemSelected_SelectedIndexChanged" style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -49,6 +49,25 @@
             </div>
             </div>
                 </div>
+       <div class="row">
+        <div class="col-sm-12">
+            <div class="x_panel">
+             <div class="x_content">
+                    <asp:GridView runat="server" ID="dgvCompras" CssClass="gridview bordered table"  OnRowCommand="dgvCompras_RowCommand"
+                        DataKeyNames="IdComposicionxItem,IdItem,Nombre,Cantidad,Medida"
+                            AutoGenerateColumns="False" OnPageIndexChanging="dgvCompras_PageIndexChanging">
+                        <Columns>
+                                <asp:BoundField DataField="IdComposicionxItem" HeaderText="Id" Visible="false"/>
+                                <asp:BoundField DataField="IdItem" HeaderText="Id" Visible="false"/>
+                                <asp:BoundField DataField="Nombre" HeaderText="Composicion" />
+                                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad"        />
+                                <asp:BoundField DataField="Medida"      HeaderText="Medida"  />
+                           
+                            </Columns>
+                    </asp:GridView>
+                </div>
+             </div>
+          </div>
         </asp:panel>
 
         <asp:panel ID="PnlSalida" runat="server" visible="false">
@@ -90,7 +109,7 @@
                         <tr>
                             <td>BUSCAR PRODUCTOS POR MARCAS</td>
                             <td>
-                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="itemSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl"  style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -141,7 +160,7 @@
                         <tr>
                             <td>BUSCAR PRODUCTOS POR MARCAS</td>
                             <td>
-                                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" CssClass="ddl" onselectedindexchanged="itemSelected" style="margin-bottom: 0px" Width="150px">
+                                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" CssClass="ddl"  style="margin-bottom: 0px" Width="150px">
                                 </asp:DropDownList>
                             </td>
                         </tr>

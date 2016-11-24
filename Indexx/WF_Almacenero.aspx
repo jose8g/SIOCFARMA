@@ -12,10 +12,10 @@
         
         <script type="text/javascript" >
             jQuery(document).ready(function () {
-                jQuery(".opcion4").text("ContentAdministrarAlmacen");
+                jQuery(".opcion4").text("ContentAdministrarMovimientos");
 
                 jQuery(".opcion4").click(function () {
-                    jQuery("#ContentAdministrarAlmacen").fadeIn('slow');
+                    jQuery("#ContentAdministrarMovimientos").fadeIn('slow');
                 });
 
             });
@@ -23,7 +23,7 @@
 	</script>
     
 
-        <div id="ContentAdministrarAlmacen" style="display:;">
+        <div id="ContentAdministrarMovimientos" style="display:;">
             <uc1:WF_AdministrarMovimientos runat="server" ID="WF_AdministrarMovimientos" />
         </div>
     </form>

@@ -10,14 +10,17 @@ using System.Collections;
 
 namespace Indexx.pages.Estadisticos
 {
-    public partial class WebUserControl1 : System.Web.UI.UserControl
+    public partial class WF_Reportes : System.Web.UI.UserControl
     {
         DAO.DAO_Reportes daoReportes;
         protected void Page_Load(object sender, EventArgs e)
         {
-            daoReportes = new DAO.DAO_Reportes();
-            DataTable data = daoReportes.ventasXVendedor();
-            buildSeriesChart(data);
+            if (!Page.IsPostBack)
+            {
+                daoReportes = new DAO.DAO_Reportes();
+                DataTable data = daoReportes.ventasXVendedor();
+                buildSeriesChart(data);
+            }
         }
 
         public void buildSeriesChart(DataTable data)

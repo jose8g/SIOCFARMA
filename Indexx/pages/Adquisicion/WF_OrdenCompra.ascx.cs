@@ -144,7 +144,9 @@ namespace Indexx.pages
             }
             catch (Exception ex)
             {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
                 ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','"+ex.Message+"','error')", true);
+
             }
         }
 

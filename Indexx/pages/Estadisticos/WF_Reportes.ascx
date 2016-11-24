@@ -1,11 +1,11 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_Reportes.ascx.cs" Inherits="Indexx.pages.Estadisticos.WebUserControl1" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_Reportes.ascx.cs" Inherits="Indexx.pages.Estadisticos.WF_Reportes" %>
 
 <canvas id="barChart">
 
 </canvas>
 
 <script type="text/javascript">
-    function initBarChart(arrData1, arrData2, arrCate) {
+    function initBarChart(arrData1, arrData2, arrCate,value) {
         arrCate  = JSON.parse(arrCate);
         arrData1 = JSON.parse(arrData1);
         arrData2 = JSON.parse(arrData2);

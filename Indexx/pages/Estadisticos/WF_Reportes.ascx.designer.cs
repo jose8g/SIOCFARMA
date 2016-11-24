@@ -10,6 +10,6 @@
 namespace Indexx.pages.Estadisticos {
     
     
-    public partial class WebUserControl1 {
+    public partial class WF_Reportes {
     }
 }

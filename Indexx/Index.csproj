@@ -199,6 +199,8 @@
     <Content Include="js\pop3.js" />
     <Content Include="js\pop4.js" />
     <Content Include="js\pop5.js" />
+    <Content Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx" />
+    <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="pages\Seguridad\WF_AdministrarProveedores.ascx" />
     <Content Include="pages\Seguridad\WF_Configuracion_Almacen.ascx" />
     <Content Include="WF_Almacenero.aspx" />

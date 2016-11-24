@@ -95,11 +95,12 @@ namespace DAO
         {
             SqlCommand comando = new SqlCommand("SP_InsertarProveedorxPedido", con);
             comando.CommandType = CommandType.StoredProcedure;
-            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", IdPedido);
-            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", IdProveedor);
+            comando.Parameters.AddWithValue("@IdPedido", IdPedido);
+            comando.Parameters.AddWithValue("@IdProveedor", IdProveedor);
             con.Open();
             comando.ExecuteNonQuery();
             con.Close();
+        
         }
     
 

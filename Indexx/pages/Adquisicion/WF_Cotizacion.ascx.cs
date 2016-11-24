@@ -317,13 +317,13 @@ namespace Indexx.pages.Adquisicion
         {
             try
             {
-                C_Lote ctrl = new C_Lote();
-                DataTable dtPrioridad = ctrl.ListarMedidas();
-                ddlMedida.DataSource = dtPrioridad;
-                ddlMedida.DataTextField = "Medida";
-                ddlMedida.DataValueField = "IdLote";
-                ddlMedida.DataBind();
-                ddlMedida.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
+                //C_Lote ctrl = new C_Lote();
+                //DataTable dtPrioridad = ctrl.ListarMedidas();
+                //ddlMedida.DataSource = dtPrioridad;
+                //ddlMedida.DataTextField = "Medida";
+                //ddlMedida.DataValueField = "IdLote";
+                //ddlMedida.DataBind();
+                //ddlMedida.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
             }
             catch { }
         }

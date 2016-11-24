@@ -42,6 +42,18 @@
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\packages\AjaxControlToolkit.16.1.1.0\lib\net40\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.pdfa, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\itextsharp.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp.xtra, Version=5.5.10.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\itextsharp.xtra.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -151,10 +163,16 @@
     <Content Include="css\bootstrap-select.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\magnific-popup.css" />
+    <Content Include="css\normalize.css" />
     <Content Include="css\pop1.css" />
+    <Content Include="css\pop2.css" />
+    <Content Include="css\pop3.css" />
+    <Content Include="css\pop4.css" />
+    <Content Include="css\pop5.css" />
     <Content Include="css\PoPupAgregarMarca.css" />
     <Content Include="css\modal.css" />
     <Content Include="css\style.css" />
+    <Content Include="css\webflow.css" />
     <Content Include="documentation\css\animate.min.css" />
     <Content Include="documentation\css\bootstrap.min.css" />
     <Content Include="documentation\css\docs.min.css" />
@@ -174,6 +192,13 @@
     <Content Include="documentation\js\jquery.min.js" />
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
+    <Content Include="lib\itextsharp.dll" />
+    <Content Include="lib\itextsharp.pdfa.dll" />
+    <Content Include="lib\itextsharp.xtra.dll" />
+    <Content Include="js\pop2.js" />
+    <Content Include="js\pop3.js" />
+    <Content Include="js\pop4.js" />
+    <Content Include="js\pop5.js" />
     <Content Include="pages\Seguridad\WF_AdministrarProveedores.ascx" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="images\cotizar.png" />
@@ -3781,6 +3806,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.designer.cs">
+      <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Ventas\WF_Gestionar_Cliente.ascx.designer.cs">
+      <DependentUpon>WF_Gestionar_Cliente.ascx</DependentUpon>
     </Compile>
     <Compile Include="pages\Seguridad\WF_AdministrarProveedores.ascx.cs">
       <DependentUpon>WF_AdministrarProveedores.ascx</DependentUpon>

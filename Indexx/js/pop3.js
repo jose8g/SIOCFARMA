@@ -4,7 +4,7 @@
 
 } //checkHover
 
-function cliclBtnShowPopup() {
+function cliclBtnShowPopup3() {
     $(".btnCerrarSolicitud3").click(function () {
         mostrar();
     });

@@ -38,14 +38,5 @@ namespace Indexx {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Indexx.pages.Ventas.WF_Pedidos WF_Pedidos1;
-        
-        /// <summary>
-        /// WF_Cliente control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Indexx.pages.Ventas.WF_Gestionar_Cliente WF_Cliente;
     }
 }

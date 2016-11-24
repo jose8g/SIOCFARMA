@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexionBD.cs" />
+    <Compile Include="DAO_Almacen.cs" />
     <Compile Include="DAO_Composicion.cs" />
     <Compile Include="DAO_ComposicionxItem.cs" />
     <Compile Include="DAO_Compras.cs" />

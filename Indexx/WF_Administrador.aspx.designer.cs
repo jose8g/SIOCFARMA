@@ -29,5 +29,14 @@ namespace Indexx {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Indexx.pages.Adquisicion.WF_AsignarProveedoresAPedido WF_AsignarProveedoresAPedido;
+        
+        /// <summary>
+        /// WF_Configuracion_Almacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Indexx.pages.Seguridad.WebUserControl1 WF_Configuracion_Almacen;
     }
 }

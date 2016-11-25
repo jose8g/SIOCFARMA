@@ -5,20 +5,26 @@
 <%@ Register Src="~/pages/Seguridad/WF_AdministrarProveedores.ascx" TagPrefix="uc3" TagName="WF_AdministrarProveedores" %>
 
 
+
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
      <form runat="server">
         <asp:ScriptManager ID="ScriptManager2" runat="server">
         </asp:ScriptManager> 
          
           <script type="text/javascript" >
-              jQuery(document).ready(function ()
-              {
+            jQuery(document).ready(function ()
+            {
                   jQuery(".Opcion8").text("Asignar pedido a proveedor");
                   jQuery(".Opcion9").text("Configuracion Almacén");
                   jQuery(".Opcion10").text("Administrar proveedor");
+                
+                  jQuery(".opcion8").click(function () {
+                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                  });
 
-                  jQuery(".Opcion8").click(function () {
-                      jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
+                  jQuery(".opcion9").click(function () {
+                 jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
                       jQuery("#ContentConfigAlmacen").hide();
                       jQuery("#ContentAdministrarProveedor").hide();
                   });
@@ -31,10 +37,15 @@
                       jQuery("#ContentAdministrarProveedor").fadeIn('slow');
                       jQuery("#ContentAsignarProveedorAPedido").hide();
                       jQuery("#ContentConfigAlmacen").hide();
-                  });
-               });
+             });
+         });
 
 	</script>
+         
+        <div id="ContentAdministrarProveedor" style="display:;">
+            <uc3:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
+
+            </div>
     <div id="ContentAsignarProveedorAPedido" style="display:none;">
         <uc1:WF_AsignarProveedoresAPedido runat="server" id="WF_AsignarProveedoresAPedido" />
         </div>

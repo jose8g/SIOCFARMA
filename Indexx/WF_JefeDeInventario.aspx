@@ -45,7 +45,7 @@
             <uc2:WF_Cotizacion runat="server" ID="WF_Cotizacion" />
         </div>
         <div id="ContentEstadisticos" style="display:;">
-            <uc3:WF_Reportes runat="server" id="WF_Reportes3" />
+            <uc3:WF_Reportes runat="server" id="WF_Reportes" />
         </div>
 </form>
                    

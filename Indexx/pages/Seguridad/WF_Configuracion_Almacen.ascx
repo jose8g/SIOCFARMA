@@ -62,7 +62,7 @@
                     <asp:TextBox ID="txtResp" runat="server" ReadOnly="true"></asp:TextBox><br />
                     <asp:Label runat="server" id="lblCapac" >Capacidad :</asp:Label>
                     <asp:TextBox ID="txtCapac" runat="server" ReadOnly="true"></asp:TextBox><br /><br />
-                    <asp:Button ID="btn1" runat="server" Text="Guardar"  CssClass="btn btn-info btn-xs"/>
+                    <asp:Button ID="btn1" runat="server" Text="Guardar"  CssClass="btn btn-info btn-xs" OnClick="editarDatosAlmacen"/>
                 </div>
             </div>
         </div>
@@ -83,8 +83,8 @@
                     <asp:TextBox ID="txtResp2" runat="server" ReadOnly="true"></asp:TextBox><br />
                     <asp:Label runat="server" id="lblCapac2" >Capacidad :</asp:Label>
                     <asp:TextBox ID="txtCapac2" runat="server" ReadOnly="true"></asp:TextBox><br /><br />
-                    <asp:Button ID="btn2" runat="server" Text="Nuevo" CssClass="btn btn-info btn-xs"/>
-                    <asp:Button ID="btn3" runat="server" Text="Confirmar" CssClass="btn btn-info btn-xs"/>
+                    <asp:Button ID="btn2" runat="server" Text="Nuevo" CssClass="btn btn-info btn-xs" OnClick="habilitarNuevoAlmacen"/>
+                    <asp:Button ID="btn3" runat="server" Text="Confirmar" CssClass="btn btn-info btn-xs" OnClick="registrarAlmacen"/>
                 </div>
             </div>
         </div>

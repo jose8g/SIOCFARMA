@@ -36,5 +36,56 @@ namespace DAO
                 throw ex;
             }
         }
+        public void registrarAlmacen(String direccion, String responsable, int capacidad)
+        {
+            SqlCommand comando = new SqlCommand("sp_insertar_almacen", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@Direccion", direccion);
+            comando.Parameters.AddWithValue("@Responsable", responsable);
+            comando.Parameters.AddWithValue("@Capacidad", capacidad);
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+        public void editarDatosAlmacen(int idAlmacen, String direccion, String responsable, int capacidad)
+        {
+            SqlCommand comando = new SqlCommand("sp_editar_almacen", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdAlmacen", idAlmacen);
+            comando.Parameters.AddWithValue("@Direccion", direccion);
+            comando.Parameters.AddWithValue("@Responsable", responsable);
+            comando.Parameters.AddWithValue("@Capacidad", capacidad);
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+        public DataTable getDetalleAlmacen(int IdAlmacen)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getDetalleAlmacen", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void eliminarAlmacen(int idAlmacen)
+        {
+            SqlCommand comando = new SqlCommand("sp_deleteAlmacen", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdAlmacen", idAlmacen);
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
     }
 }

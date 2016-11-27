@@ -317,13 +317,13 @@ namespace Indexx.pages.Adquisicion
         {
             try
             {
-                //C_Lote ctrl = new C_Lote();
-                //DataTable dtPrioridad = ctrl.ListarMedidas();
-                //ddlMedida.DataSource = dtPrioridad;
-                //ddlMedida.DataTextField = "Medida";
-                //ddlMedida.DataValueField = "IdLote";
-                //ddlMedida.DataBind();
-                //ddlMedida.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
+                C_Lote ctrl = new C_Lote();
+                DataTable dtPrioridad = ctrl.ListarMedidas();
+                ddlMedida.DataSource = dtPrioridad;
+                ddlMedida.DataTextField = "Medida";
+                ddlMedida.DataValueField = "IdLote";
+                ddlMedida.DataBind();
+                ddlMedida.Items.Insert(0, new ListItem("---Seleccionar---", "0"));
             }
             catch { }
         }
@@ -337,11 +337,11 @@ namespace Indexx.pages.Adquisicion
                 //int cantM = 0;
                 switch (a)
                 {
-                    case 3:
+                    case 1:
                         //cantM = Convert.ToInt32(txtCantidad.Text)/12;
                         txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 12).ToString();
                         break;
-                    case 4:
+                    case 2:
                         //cantM = Convert.ToInt32(txtCantidad.Text) / 10;
                         txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 10).ToString();
                         break;

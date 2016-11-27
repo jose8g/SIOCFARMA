@@ -62,7 +62,7 @@ namespace DAO
         public DataTable getMarcasCreadas()
         {
 
-            mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+            mDa = new SqlDataAdapter("sp_getMarcas1", conexion);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDs = new DataSet();
             mDa.Fill(mDs);

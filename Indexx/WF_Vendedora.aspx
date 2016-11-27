@@ -3,6 +3,10 @@
 <%@ Register Src="~/pages/Ventas/WF_Pedidos.ascx" TagPrefix="uc2" TagName="WF_Pedidos" %>
 <%@ Register Src="~/pages/Ventas/WF_Gestionar_Cliente.ascx" TagPrefix="uc3" TagName="WF_Gestionar_Cliente" %>
 
+
+
+
+
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
     <form runat="server">
     <asp:ScriptManager ID="ScriptManager2" runat="server">

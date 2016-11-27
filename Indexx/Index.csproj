@@ -204,7 +204,6 @@
     <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="pages\Seguridad\WF_AdministrarProveedores.ascx" />
     <Content Include="pages\Seguridad\WF_Configuracion_Almacen.ascx" />
-    <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="WF_Almacenero.aspx" />
     <Content Include="images\cotizar.png" />
     <Content Include="js\bootstrap-select.js" />

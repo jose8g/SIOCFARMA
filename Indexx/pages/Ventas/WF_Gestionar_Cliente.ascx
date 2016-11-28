@@ -20,7 +20,7 @@
                         </ul>
                         <div class="clearfix"></div>
                     </div>
-                     <div class="x_content" style="text-align:center">
+                     <div class="x_content" style="text-align:left">
                          <td>Nombre de cliente</td><br />
                          <td><input id="NombreCliente" type="text" runat="server"/><br /><br />
                          <td>Dirección</td><br />

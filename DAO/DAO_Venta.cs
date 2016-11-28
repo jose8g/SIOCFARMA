@@ -216,28 +216,7 @@ namespace DAO
             conexion.Close();
             return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
-
-        public DataTable RegistrarCliente(string Nombre, string Direccion, int Telefono, string Correo, int Dni, string Empresa)
-        {
-            try
-            {
-                mDa = new SqlDataAdapter("SP_InsertarCliente", conexion);
-                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                mDa.SelectCommand.Parameters.AddWithValue("@Nombre", Nombre);
-                mDa.SelectCommand.Parameters.AddWithValue("@Direccion", Direccion);
-                mDa.SelectCommand.Parameters.AddWithValue("@Telefono", Telefono);
-                mDa.SelectCommand.Parameters.AddWithValue("@Correo", Correo);
-                mDa.SelectCommand.Parameters.AddWithValue("@Dni", Dni);
-                mDa.SelectCommand.Parameters.AddWithValue("@Empresa", Empresa);
-                mDs = new DataSet();
-                mDa.Fill(mDs);
-                return mDs.Tables[0];
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
         public DataTable getDetalleVenta(int IdVenta)
         {
             try

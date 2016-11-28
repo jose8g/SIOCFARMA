@@ -63,7 +63,7 @@ namespace Indexx.pages.Adquisicion
         public void buildListPedido()
         {
             ddlpedido.DataSource = obj.getIdPedido();
-            ddlpedido.DataTextField = "IdPedido";
+            ddlpedido.DataTextField = "NumeroPedido";
             ddlpedido.DataValueField = "IdPedido";
             ddlpedido.DataBind();
             ddlpedido.Items.Insert(0, new ListItem("Selec. Pedido", "0"));

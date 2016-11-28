@@ -37,11 +37,6 @@
          });
 
 	</script>
-         
-        <div id="ContentAdministrarProveedor" style="display:;">
-            <uc3:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
-
-            </div>
     <div id="ContentAsignarProveedorAPedido" style="display:none;">
         <uc1:WF_AsignarProveedoresAPedido runat="server" id="WF_AsignarProveedoresAPedido" />
         </div>

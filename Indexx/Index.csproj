@@ -192,9 +192,9 @@
     <Content Include="documentation\js\jquery.min.js" />
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
-    <Content Include="lib\itextsharp.dll" />
-    <Content Include="lib\itextsharp.pdfa.dll" />
-    <Content Include="lib\itextsharp.xtra.dll" />
+    <Content Include="js\lib\itextsharp.dll" />
+    <Content Include="js\lib\itextsharp.pdfa.dll" />
+    <Content Include="js\lib\itextsharp.xtra.dll" />
     <Content Include="js\pop2.js" />
     <Content Include="js\pop3.js" />
     <Content Include="js\pop4.js" />

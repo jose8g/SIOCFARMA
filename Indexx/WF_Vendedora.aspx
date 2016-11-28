@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="WF_Vendedora.aspx.cs" Inherits="Indexx.Formulario_web1" %>
 <%@ Register Src="~/pages/Ventas/WF_Ventas.ascx" TagPrefix="uc1" TagName="WF_Ventas" %>
 <%@ Register Src="~/pages/Ventas/WF_Pedidos.ascx" TagPrefix="uc2" TagName="WF_Pedidos" %>
-<%@ Register Src="~/pages/Ventas/WF_Gestionar_Cliente.ascx" TagPrefix="uc1" TagName="WF_Gestionar_Cliente" %>
+<%@ Register Src="~/pages/Ventas/WF_Gestionar_Cliente.ascx" TagPrefix="uc3" TagName="WF_Gestionar_Cliente" %>
+
+
+
 
 
 <asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
@@ -12,11 +15,11 @@
     
      <script type="text/javascript" >
          jQuery(document).ready(function () {
-             jQuery(".Opcion5").text("Gestionar Venta");
+             jQuery(".Opcion8").text("Gestionar Venta");
              jQuery(".Opcion6").text("Gestionar Pedidos");
              jQuery(".Opcion10").text("Gestionar Cliente");
 
-             jQuery(".Opcion5").click(function () {
+             jQuery(".Opcion8").click(function () {
                  jQuery("#ContentGestionarVenta").fadeIn('slow');
                  jQuery("#ContentGestionarPedido").hide();
                  jQuery("#ContentGestionarCliente").hide();
@@ -40,9 +43,9 @@
     <div id="ContentGestionarPedido" style="display:none;">
         <uc2:WF_Pedidos runat="server" ID="WF_Pedidos1" />
     </div>
-    
+
     <div id="ContentGestionarCliente" style="display:none;">
-        <uc1:WF_Gestionar_Cliente runat="server" id="WF_Cliente" />
+        <uc3:WF_Gestionar_Cliente runat="server" ID="WF_Gestionar_Cliente" />
     </div>
 
     </form>

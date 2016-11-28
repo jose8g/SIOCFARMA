@@ -34,19 +34,17 @@ namespace DAO
             return mDs.Tables[0];
         }
 
-        public void insertarProveedores(int CodigoProveedor, string nombre, string Direccion, int Telefono, int RUC, string Correo, string Responsable, string Estado)
+        public void insertarProveedores(string nombre, string Direccion, int Telefono, Int64 RUC, string Correo, string Responsable)
         {
             SqlCommand comando = new SqlCommand("SP_InsertarProveedores", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@CodigoProveedor", CodigoProveedor);
-            comando.Parameters.AddWithValue("@nombre", nombre);
-            comando.Parameters.AddWithValue("@Direccion", Direccion);
-            comando.Parameters.AddWithValue("@Telefono", Telefono);
-            comando.Parameters.AddWithValue("@RUC", RUC);
-            comando.Parameters.AddWithValue("@Correo", Correo);
-            comando.Parameters.AddWithValue("@Responsable", Responsable);
-            comando.Parameters.AddWithValue("@Estado", Estado);
+            mDa.SelectCommand.Parameters.AddWithValue("@Nombre", nombre);
+            mDa.SelectCommand.Parameters.AddWithValue("@Direccion", Direccion);
+            mDa.SelectCommand.Parameters.AddWithValue("@Telefono", Telefono);
+            mDa.SelectCommand.Parameters.AddWithValue("@RUC", RUC);
+            mDa.SelectCommand.Parameters.AddWithValue("@Correo", Correo);
+            mDa.SelectCommand.Parameters.AddWithValue("@Responsable", Responsable);
 
             conexion.Open();
             comando.ExecuteNonQuery();

@@ -144,13 +144,16 @@ namespace Indexx.pages
             }
             catch (Exception ex)
             {
+                Response.Write("<script>alert('" + ex.Message + "')</script>");
                 ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','"+ex.Message+"','error')", true);
+
             }
         }
 
         public void buildListCotizacion()
         {
             ddlPedido.DataSource     = daoCompras.GetCotizacionesCreadas();
+            //DataTable obj = daoCompras.GetCotizacionesCreadas();
             ddlPedido.DataTextField  = "FechaRegistro";
             ddlPedido.DataValueField = "IdPedido";
             ddlPedido.DataBind();

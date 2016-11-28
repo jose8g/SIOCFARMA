@@ -372,12 +372,26 @@ namespace Indexx.pages.Adquisicion
                 for(i=1; i<10; i++)
                 {
                     if(a == i)
-                    {
+                {
                         dgvLote.DataSource = objD_Lo.MostrarCantidadLote(a);
                         dgvLote.DataBind();
                         txtCantidadMpopup.Text = dgvLote.Rows[0].Cells[0].Text;
                         txtResulCantMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / Convert.ToInt32(txtCantidadMpopup.Text)).ToString();
                     }
+                    case 1:
+                        //cantM = Convert.ToInt32(txtCantidad.Text)/12;
+                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 12).ToString();
+                        break;
+                    case 2:
+                        //cantM = Convert.ToInt32(txtCantidad.Text) / 10;
+                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 10).ToString();
+                        break;
+                    case 5:
+                        //cantM = Convert.ToInt32(txtCantidad.Text) / 12;
+                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 12).ToString();
+                        break;
+                    default:
+                        break;
                 }
             }
             catch { }

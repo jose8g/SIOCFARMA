@@ -28,6 +28,15 @@ namespace Indexx {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::Indexx.pages.Seguridad.WF_AdministrarProveedores WF_AdministrarProveedores;
+        protected global::Indexx.pages.Adquisicion.WF_AsignarProveedoresAPedido WF_AsignarProveedoresAPedido;
+        
+        /// <summary>
+        /// WF_Configuracion_Almacen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Indexx.pages.Seguridad.WebUserControl1 WF_Configuracion_Almacen;
     }
 }

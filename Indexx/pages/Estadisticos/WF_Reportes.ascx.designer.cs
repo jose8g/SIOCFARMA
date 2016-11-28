@@ -7,45 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Indexx {
+namespace Indexx.pages.Estadisticos {
     
     
-    public partial class Formulario_web12 {
+    public partial class WF_Reportes {
         
         /// <summary>
-        /// ScriptManager2 control.
+        /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// WF_OrdenCompra control.
+        /// fecInicio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.WF_OrdenCompra WF_OrdenCompra;
+        protected global::System.Web.UI.WebControls.TextBox fecInicio;
         
         /// <summary>
-        /// WF_Cotizacion control.
+        /// fecFin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Adquisicion.WF_Cotizacion1 WF_Cotizacion;
+        protected global::System.Web.UI.WebControls.TextBox fecFin;
         
         /// <summary>
-        /// WF_Reportes control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Indexx.pages.Estadisticos.WF_Reportes WF_Reportes;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

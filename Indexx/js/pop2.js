@@ -1,11 +1,14 @@
 ﻿function mostrar() {
-
     $("#pop2").fadeIn('slow');
 
 } //checkHover
+function cerrar2() {
+    $("#pop2").fadeOut('slow');
 
+}
 function cliclBtnShowPopup2() {
     $(".btnCerrarSolicitud2").click(function () {
+        alert("llega");
         mostrar();
     });
 }
@@ -49,7 +52,9 @@ $(document).ready(function () {
     $("#cerrar2").click(function () {
         $("#pop2").fadeOut('slow');
     });
-
+    $("#HeadContent_WF_Ventas1_btnPdf").click(function () {
+        $("#pop2").fadeOut('slow');
+    });
 
 });
 function mostrarSub() {

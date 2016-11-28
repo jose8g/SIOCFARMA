@@ -40,7 +40,7 @@ namespace Indexx.pages.Adquision
                 buildListComposicion();
                 buildListProveedor();  
                 this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
-                this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar2();");
+                this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar3();");
                 this.btnNewProveedor1.Attributes.Add("OnClick", "javascript: return ocultar5();");
                 
             }
@@ -96,7 +96,15 @@ namespace Indexx.pages.Adquision
         }
         protected void AñadirProductos(object sender, EventArgs e)
         {
+            try
+            {
             obj.insertarItem(this.txtProducto.Text, this.txtPreVenta.Text, this.ddlEstado.SelectedValue, this.ddlTipo.SelectedValue, this.ddlMarca.SelectedValue);
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró con éxito.','success')", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
 
         protected void dgvProdictoComposicion_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -111,7 +119,9 @@ namespace Indexx.pages.Adquision
                     dgvProdictoComposicion.DataBind();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex) {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
         protected void dgvProdictoComposicion_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -129,71 +139,137 @@ namespace Indexx.pages.Adquision
         }
         protected void AgregarNewMarca(object sender, EventArgs e)
         {
+            try
+            {
             objm.insertarMarca(txtNombreMarca.Text, txtDescripcionMarca.Text);
             buildListMarcas();
             txtNombreMarca.Text = "";
             txtDescripcionMarca.Text = "";
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró con éxito.','success')", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
         protected void AgregarNewComposicion(object sender, EventArgs e)
         {
-            objcom.insertarComposicion(txtAgrNombre.Text, txtAgrRestriccion.Text);
+            try
+            {
+                objcom.insertarComposicion(txtAgrNombre.Text, txtAgrRestriccion.Text);
             buildListComposicion();
             txtAgrNombre.Text = "";
             txtAgrRestriccion.Text = "";
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró con éxito.','success')", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
         protected void AgregarComposicionItem(object sender, EventArgs e)
         {
+            try{
             DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
             int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
             objci.insertarComposicionxItem(txtMedidaComp.Text, Convert.ToInt32(txtCantidadComp.Text), codigo, Convert.ToInt32(ddlComposicion.SelectedValue));
             dgvProdictoComposicion.DataSource = objci.getComposicionesxItemCreadas(codigo);
             dgvProdictoComposicion.DataBind();
             Panel3.Visible = false;
-        }
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró con éxito.','success')", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
 
-        protected void AgregarProveedorItem(object sender, EventArgs e)
-        {
-            DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
-            int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
-            objpi.insertarProveedorxItem(Convert.ToInt32(ddlProveedor.SelectedValue), codigo, "1");
-            dgvProductoProveedor1.DataSource = objpi.getProveedoresxItemCreadas(codigo);
-            dgvProductoProveedor1.DataBind();
-            Panel4.Visible = false;  
         }
-
         protected void AgregarNewProveedor(object sender, EventArgs e)
         {
-            objp.insertarProveedores(Convert.ToInt32(txtAgrCodigo.Text), txtAgrNombrePro.Text, txtAgrDireccion.Text, Convert.ToInt32(txtAgrTelefono.Text), Convert.ToInt32(txtAgrRuc.Text), txtAgrCorreo.Text, txtAgrResponsable.Text, "1");
+            try { 
+            int AgrTelefono = Convert.ToInt32(txtAgrTelefono.Text);
+            Int64 AgrRuc = Convert.ToInt64(txtAgrRuc.Text);
+
+            if (txtAgrNombrePro.Text == "")
+            {
+                throw new Exception("Ingrese el nombre");
+            }
+            if (txtAgrDireccion.Text == "")
+            {
+                throw new Exception("Ingrese la dirección");
+            }
+            if (AgrTelefono.ToString() == null)
+            {
+                throw new Exception("Ingrese el teléfono");
+            }
+            if (AgrRuc.ToString() == null)
+            {
+                throw new Exception("Ingrese el ruc");
+            }
+            if (txtAgrCorreo.Text == "")
+            {
+                throw new Exception("Ingrese el correo");
+            }
+            if (txtAgrResponsable.Text == "")
+            {
+                throw new Exception("Ingrese el responsable");
+            }
+            if (AgrTelefono <= 10000000)
+            {
+                throw new Exception("El num. de teléfono debe ser mayor a 7 dígitos");
+            }
+
+            if (AgrRuc <= 10000000000)
+            {
+                throw new Exception("El num. de RUC debe ser de 11 dígitos");
+            }
+
+            objp.insertarProveedores(txtAgrNombrePro.Text, txtAgrDireccion.Text, AgrTelefono, AgrRuc, txtAgrCorreo.Text, txtAgrResponsable.Text);
             buildListProveedor();
-            txtAgrCodigo.Text = "";
             txtAgrNombrePro.Text = "";
             txtAgrDireccion.Text = "";
             txtAgrTelefono.Text = "";
             txtAgrRuc.Text = "";
             txtAgrCorreo.Text = "";
             txtAgrResponsable.Text = "";
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró con éxito.','success')", true);
+                }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
+
         protected void ddlComposicion_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try { 
             txtNombreComp.Text = Convert.ToString(ddlComposicion.SelectedItem);
             DataTable dgv = objcom.ConsultarCompSeleccionar(Convert.ToString(ddlComposicion.SelectedValue));
             txtRestricionComp.Text = Convert.ToString(dgv.Rows[0]["Restricciones"].ToString());
             Panel3.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
 
         }
 
         protected void ddlProveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtNombreComp.Text = Convert.ToString(ddlProveedor.SelectedItem);
-            DataTable dgv = objp.ConsultarProvSeleccionar(Convert.ToInt32(ddlProveedor.SelectedValue));
-            txtCodigoProv.Text = Convert.ToString(dgv.Rows[0]["CodigoProveedor"].ToString());
-            txtNombreProv.Text = Convert.ToString(dgv.Rows[0]["Nombre"].ToString());
-            txtDireccionProv.Text = Convert.ToString(dgv.Rows[0]["Direccion"].ToString());
-            txtTelefonoProv.Text = Convert.ToString(dgv.Rows[0]["Telefono"].ToString());
-            txtRucProv.Text = Convert.ToString(dgv.Rows[0]["RUC"].ToString());
-            txtCorreoProv.Text = Convert.ToString(dgv.Rows[0]["Correo"].ToString());
-            txtResponsableProv.Text = Convert.ToString(dgv.Rows[0]["Responsable"].ToString());
-            Panel4.Visible = true;         
+            try
+            { 
+            DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
+            objpi.insertarProveedorxItem(Convert.ToInt32(ddlProveedor.SelectedValue), codigo, "1");
+            dgvProductoProveedor1.DataSource = objpi.getProveedoresxItemCreadas(codigo);
+            dgvProductoProveedor1.DataBind();
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Proveedor Agregado','success')", true);
+}
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
        
     }

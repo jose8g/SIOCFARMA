@@ -35,6 +35,25 @@ namespace DAO
 
         }
 
+
+        public DataTable getCompras()
+        {
+            try
+            {
+                //mDa = new SqlDataAdapter("sp_lstConsultar_Categoria", con);
+                mDa = new SqlDataAdapter("sp_getCompras", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
+
         public DataTable GetProductosByCompra(int idCompra)
         {
             try
@@ -51,7 +70,24 @@ namespace DAO
                 throw ex;
 
             }
+        }
 
+        public DataTable ItemxCompras(int idCompra)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("SP_ItemxCompras", con);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdCompras", idCompra);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
         }
 
         public DataTable GetCotizacionesCreadas()
@@ -73,6 +109,17 @@ namespace DAO
             return mDs.Tables[0];
         }
 
+        public void ActualizarStockxMovimiento(String idCompra, int idItem, int cantidad)
+        {
+            mDa = new SqlDataAdapter("SP_ActualizarStockxMovimiento", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdCompra" , idCompra);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem"   , idItem);
+            mDa.SelectCommand.Parameters.AddWithValue("@Cantidad" , cantidad);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+        }
+        
         public DataTable InsertCompra(String idCompra, int idPedido, int idProveedor, int idItem, int cantidad)
         {
             mDa = new SqlDataAdapter("sp_insertCompra", con);

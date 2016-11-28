@@ -1,9 +1,14 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WF_GestionarProducto.ascx.cs" Inherits="Indexx.pages.Adquision.WF_GestionarProducto" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<link href="../../css/normalize.css" type="text/css" rel="stylesheet" />
+<link href="../../css/webflow.css" type="text/css" rel="stylesheet" />
+<link href="../../css/css-informacion/quitocom.webflow.css" rel="stylesheet"type="text/css" />
+<script src="../../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>
 
 <script src="../../js/pop1.js"></script>
 <link href="../../css/pop1.css" rel="stylesheet" />
-<script src="../../js/pop2.js"></script>
-<link href="../../css/pop2.css" rel="stylesheet" />
+<script src="../../js/pop3.js"></script>
+<link href="../../css/pop3.css" rel="stylesheet" />
 <script src="../../js/pop5.js"></script>
 <link href="../../css/pop5.css" rel="stylesheet" />
 
@@ -15,8 +20,8 @@
         $("#pop1").fadeIn('slow');
     }
 
-    function ocultar2() {
-        $("#pop2").fadeIn('slow');
+    function ocultar3() {
+        $("#pop3").fadeIn('slow');
     }
 
 
@@ -49,13 +54,12 @@ height: auto!important;}
             height: auto !important;
         }
 
-        #pop2
+        #pop3
        {
             top: 55px !important;
            padding: 15px !important;
     height: auto  !important;
-           }
-        #pop2
+           }3
         {
             padding: 15px !important;
             height: auto !important;
@@ -116,7 +120,7 @@ height: auto!important;}
                     </asp:DropDownList>
                     &nbsp;&nbsp;&nbsp;&nbsp;
                     <asp:Button ID="btnAgregarMarca" runat="server" 
-                  class="w-button btncontent btncontenthover btnCerrarSolicitud2" 
+                  class="btn btn-info btn-xs btnCerrarSolicitud2" 
                   Text="Nueva Marca" onclick="AgregarMarca" Width="119px" />
                    </div>
                 <div class="x_content">
@@ -128,7 +132,7 @@ height: auto!important;}
                     </asp:DropDownList>
                 </div>
                <div class="x_content">
-                    <asp:Button runat="server" Text="Agregar Producto" onclick="AñadirProductos" />
+                    <asp:Button runat="server" class="btn btn-info btn-xs " Text="Agregar Producto" onclick="AñadirProductos" />
                     </div> 
         </div>
     </div>
@@ -148,13 +152,13 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Composicion</label>
-                    <asp:DropDownList ID="ddlComposicion" CssClass="ddl btncontent btncontenthover" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlComposicion_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlComposicion" CssClass="ddl" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlComposicion_SelectedIndexChanged">
                         <asp:ListItem>Selec. Tipo</asp:ListItem>
                     </asp:DropDownList>
                 
                     &nbsp;&nbsp;&nbsp;&nbsp;
                    <asp:Button ID="btnNewComposicion" runat="server" 
-                  class=" btnCerrarSolicitud2" 
+                  class=" btn btn-info btn-xs  btnCerrarSolicitud3" 
                   Text="Nueva Composicion" onclick="AgregarComposicion" Width="119px" />
                   </div>
                 <asp:Panel runat="server" ID="Panel3" Visible="false">
@@ -186,7 +190,7 @@ height: auto!important;}
                         </div>
         <br>
         <br />
-        <asp:Button ID="btnAgrComposicion" runat="server" Height="42px" class="w-button btncontent btncontenthover" Text="Guardar" Width="229px" OnClick="AgregarComposicionItem"/>
+        <asp:Button ID="btnAgrComposicion" runat="server" Height="42px" class="btn btn-info btn-xs" Text="Guardar" Width="229px" OnClick="AgregarComposicionItem"/>
        
         </asp:Panel>
 
@@ -236,63 +240,12 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <label>Proveedor:</label>
-                    <asp:DropDownList ID="ddlProveedor" CssClass="ddl btncontent btncontenthover " runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged">
+                    <asp:DropDownList ID="ddlProveedor" CssClass="ddl" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlProveedor_SelectedIndexChanged">
                         <asp:ListItem>Selec. Proveedor</asp:ListItem>
                     </asp:DropDownList>
                 </div>
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    <asp:Button id="btnNewProveedor1" runat="server" Text="Nuevo Proveedor" class="w-button btncontent btncontenthover btnCerrarSolicitud5" OnClick="AgregarProveedor"/>
-
-                
-<asp:Panel runat="server" ID="Panel4" Visible="false">
-        <br>       
-        <br/>
-    <div class="x_content">
-        <label class="lblcampos" for="name">
-            Codigo Proveedor:</label>
-        <asp:TextBox ID="txtCodigoProv"   enable="false" CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-        </div>
-    <div class="x_content">
-        <label class="lblcampos" for="name">
-           Nombre Empresa:</label>
-           <asp:TextBox ID="txtNombreProv"  enable="false"  CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-        </div>
-        <div class="x_content">
-         <label class="lblcampos" for="name">
-           Direccion:</label>
-           <asp:TextBox ID="txtDireccionProv"   CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-            </div>
-    <div class="x_content">
-          <label class="lblcampos" for="name">
-           Telefono:</label>
-           <asp:TextBox ID="txtTelefonoProv"   CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-        </div>
-    <div class="x_content">
-          <label class="lblcampos" for="name">
-           RUC:</label>
-           <asp:TextBox ID="txtRucProv"  enable="false"  CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-        </div>
-        <div class="x_content">
-         <label class="lblcampos" for="name">
-           Correo:</label>
-           <asp:TextBox ID="txtCorreoProv"   CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-            </div>
-    <div class="x_content">
-          <label class="lblcampos" for="name">
-           Responsable:</label>
-           <asp:TextBox ID="txtResponsableProv"   CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-        </div>
-        <br>
-        <br />
-        <asp:Button ID="btnAgreProveedor" runat="server" Height="42px" class="w-button btncontent btncontenthover" Text="Guardar" Width="229px" OnClick="AgregarProveedorItem"/>
-       </asp:Panel>
+                    <asp:Button id="btnNewProveedor1" runat="server" Text="Nuevo Proveedor" class="btn btn-info btn-xs btnCerrarSolicitud5" OnClick="AgregarProveedor"/>
 <br>
         <br />
 
@@ -355,8 +308,8 @@ height: auto!important;}
        
         </div>
 
-    <div id="pop2" style="display:none; width: 60%; left: 100.5px; top: 660px;">
-        <div id="cerrar2">
+    <div id="pop3" style="display:none; width: 60%; left: 100.5px; top: 660px;">
+        <div id="cerrar3">
             X</div>
         <%--el boton para cerrar--%>
     <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
@@ -399,12 +352,6 @@ height: auto!important;}
         <asp:Label runat="server" id="Label4" >Agregar Nuevo Proveedor </asp:Label>
         <br>       
         <br/>
-                                    <div class="x_content">
-        <label class="lblcampos" for="name">
-            Codigo Proveedor:</label>
-        <asp:TextBox ID="txtAgrCodigo"   enable="false" CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server" ></asp:TextBox>
-                                        </div>
                                     <div class="x_content">
         <label class="lblcampos" for="name">
            Nombre Empresa:</label>

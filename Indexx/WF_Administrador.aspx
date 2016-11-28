@@ -17,22 +17,23 @@
                   jQuery(".Opcion8").text("Asignar pedido a proveedor");
                   jQuery(".Opcion9").text("Configuracion Almacén");
                   jQuery(".Opcion10").text("Administrar proveedor");
-
-                  jQuery(".opcion8").click(function () {
+                
+                  jQuery(".Opcion8").click(function () {
+                      jQuery("#ContentAdministrarProveedor").hide();
                       jQuery("#ContentAsignarProveedorAPedido").fadeIn('slow');
                       jQuery("#ContentConfigAlmacen").hide();
+                  });
+
+                  jQuery(".Opcion9").click(function () {
+                 jQuery("#ContentAsignarProveedorAPedido").hide();
+                 jQuery("#ContentConfigAlmacen").fadeIn('slow');
                       jQuery("#ContentAdministrarProveedor").hide();
                   });
-                  jQuery(".Opcion9").click(function (){
-                      jQuery("#ContentConfigAlmacen").fadeIn('slow');
-                      jQuery("#ContentAsignarProveedorAPedido").hide();
-                      jQuery("#ContentAdministrarProveedor").hide();
-                  });
-                  jQuery(".Opcion10").click(function () {
-                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
-                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                  jQuery(".Opcion10").click(function (){
                       jQuery("#ContentConfigAlmacen").hide();
-             });
+                      jQuery("#ContentAsignarProveedorAPedido").hide();
+                      jQuery("#ContentAdministrarProveedor").fadeIn('slow');
+                  });
          });
 
 	</script>
@@ -41,9 +42,6 @@
         </div>
     <div id="ContentConfigAlmacen" style="display:none;">
         <uc2:WF_Configuracion_Almacen runat="server" id="WF_Configuracion_Almacen" />
-    </div>
-    <div id="ContentAdministrarProveedor" style="display:none;">
-        <uc3:WF_AdministrarProveedores runat="server" id="WF_AdministrarProveedores" />
     </div>
      </form>
                    

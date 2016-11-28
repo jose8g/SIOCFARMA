@@ -49,6 +49,7 @@
     <Compile Include="C_PedidoxItem.cs" />
     <Compile Include="C_Proveedor.cs" />
     <Compile Include="C_TipoMovimiento.cs" />
+    <Compile Include="C_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

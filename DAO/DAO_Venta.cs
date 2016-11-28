@@ -60,23 +60,23 @@ namespace DAO
         {
         }
 
-        public DataTable GetMarcasCreadas()
-        {
-            mDa = new SqlDataAdapter("sp_getMarcas", conexion);
-            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-            mDs = new DataSet();
-            mDa.Fill(mDs);
-            return mDs.Tables[0];
-        }
+        //public DataTable GetMarcasCreadas()
+        //{
+        //    ////mDa = new SqlDataAdapter("sp_getMarcas", conexion);
+        //    ////mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+        //    ////mDs = new DataSet();
+        //    ////mDa.Fill(mDs);
+        //    ////return mDs.Tables[0];
+        //}
 
-        public DataTable GetTiposCreados()
-        {
-            mDa = new SqlDataAdapter("sp_getTipos", conexion);
-            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-            mDs = new DataSet();
-            mDa.Fill(mDs);
-            return mDs.Tables[0];
-        }
+        //public DataTable GetTiposCreados()
+        //{
+        //    mDa = new SqlDataAdapter("sp_getTipos", conexion);
+        //    mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+        //    mDs = new DataSet();
+        //    mDa.Fill(mDs);
+        //    return mDs.Tables[0];
+        //}
 
         public DataTable getItemsByMarca(int IdMarca)
         {

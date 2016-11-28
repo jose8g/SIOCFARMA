@@ -83,7 +83,7 @@ namespace Indexx.pages.Ventas
 
         public void buildListMarca()
         {
-            ddlMarca.DataSource     = obj.GetMarcasCreadas();
+            //ddlMarca.DataSource     = obj.GetMarcasCreadas();
             ddlMarca.DataTextField  = "Nombre";
             ddlMarca.DataValueField = "IdMarca";
             ddlMarca.DataBind();
@@ -92,7 +92,7 @@ namespace Indexx.pages.Ventas
 
         public void buildListTipo()
         {
-            ddlTipo.DataSource = obj.GetTiposCreados();
+            //ddlTipo.DataSource = obj.GetTiposCreados();
             ddlTipo.DataTextField = "Nombre";
             ddlTipo.DataValueField = "IdTipo";
             ddlTipo.DataBind();

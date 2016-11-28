@@ -41,7 +41,7 @@ namespace Indexx.pages.Adquision
                 buildListProveedor();  
                 this.btnAgregarMarca.Attributes.Add("OnClick", "javascript: return ocultar();");
                 this.btnNewComposicion.Attributes.Add("OnClick", "javascript: return ocultar2();");
-                this.btnNewProveedorq.Attributes.Add("OnClick", "javascript: return ocultar5();");
+                this.btnNewProveedor.Attributes.Add("OnClick", "javascript: return ocultar5();");
 
                 this.ddlComposicion.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar3();");
                 this.ddlProveedor.Attributes.Add("OnSelectedIndexChanged", "javascript: return ocultar4();");
@@ -126,7 +126,7 @@ namespace Indexx.pages.Adquision
 
         protected void dgvProductoProveedor_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvProductoProveedor.PageIndex = e.NewPageIndex;
+            //dgvProductoProveedor.PageIndex = e.NewPageIndex;
         }
         protected void AgregarNewMarca(object sender, EventArgs e)
         {
@@ -156,8 +156,8 @@ namespace Indexx.pages.Adquision
             DataTable dgv = obj.ConsultarItemcreado(txtProducto.Text);
             int codigo = Convert.ToInt32(dgv.Rows[0]["IdItem"].ToString());
             objpi.insertarProveedorxItem(Convert.ToInt32(ddlProveedor.SelectedValue), codigo, "1");
-            dgvProductoProveedor.DataSource = objpi.getProveedoresxItemCreadas(codigo);
-            dgvProductoProveedor.DataBind();
+            //dgvProductoProveedor.DataSource = objpi.getProveedoresxItemCreadas(codigo);
+            //dgvProductoProveedor.DataBind();
         }
 
         protected void AgregarNewProveedor(object sender, EventArgs e)

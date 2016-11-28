@@ -7,6 +7,8 @@
 <style type="text/css">
     .auto-style1 {
         width: 100%;
+        border: 10px solid white;
+        padding: 15px;
     }
     .bordered {}
     
@@ -16,6 +18,15 @@
         top: 55px !important;
         padding: 15px !important;
         height: auto  !important;
+    }
+    th, td {
+        padding: 2px;
+    }
+    
+    .auto-style2 {
+        width: 100%;
+        border-collapse: collapse;
+        border: solid white;
     }
 </style>
 <body>
@@ -31,36 +42,28 @@
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                    <table class="auto-style1">
+                <div class="x_content" >
+                    <table class="auto-style1" >
                         <tr>
-                            <td>BUSCAR PRODUCTOS POR NOMBRE</td>
-                            <td><input id="Text7" type="text" runat="server"/>
-                            </td>
+                            <td width="50%">Nombre</td>
+                            <td width="50%"><input id="Text7" type="text" runat="server"/></td>
                         </tr>
                         <tr>
-                            <td>BUSCAR PRODUCTOS POR MARCA</td>
-                            <td>
-                                <asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
-                                </asp:DropDownList>
-                            </td>
+                            <td width="50%">Marca</td>
+                            <td width="50%"><asp:DropDownList ID="ddlMarca" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
+                                </asp:DropDownList></td>
                         </tr>
                         <tr>
-                            <td>BUSCAR PRODUCTOS POR TIPO</td>
-                            <td>
-                                <asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
-                                </asp:DropDownList>
-                            </td>
+                            <td width="50%">Tipo</td>
+                            <td width="50%"><asp:DropDownList ID="ddlTipo" runat="server" AutoPostBack="True" CssClass="ddl" style="margin-bottom: 0px" Width="150px">
+                                </asp:DropDownList></td>
                         </tr>
+                    </table>
+                    <br />
+                    <table class="auto-style2">
                         <tr>
-                            <td>-</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>REALIZAR BUSQUEDA</td>
-                            <td>
-                                <asp:Button ID="Button1" runat="server" Text="Buscar" OnClick="getItemsByNombre" CssClass="btn btn-info btn-xs"/>
-                            </td>
+                            <td width="50%"><asp:Label runat="server" id="Label4" >Realizar búsqueda</asp:Label></td>
+                            <td width="50%"><asp:Button ID="Button2" runat="server" Text="Buscar" OnClick="getItemsByNombre" CssClass="btn btn-info btn-xs"/></td>
                         </tr>
                     </table>
                     <br />
@@ -82,7 +85,7 @@
                 </div>
                 <div class="x_content">
                     <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvItems_RowComand"
-                            DataKeyNames="IdItem,Nombre,PrecioVenta,Tipo" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
+                            DataKeyNames="IdItem,Nombre,PrecioVenta,Tipo,IdAlmacen" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
                             style="text-align:center" AllowPaging="True">
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
@@ -92,6 +95,8 @@
                             <asp:BoundField DataField ="Tipo"            HeaderText ="Tipo" />
                             <asp:BoundField DataField ="Marca"           HeaderText ="Marca" />
                             <asp:BoundField DataField ="Stock"           HeaderText ="Stock" />
+                            <asp:BoundField DataField ="Direccion"       HeaderText ="Sede" />
+                            <asp:BoundField DataField ="IdAlmacen"       HeaderText ="IdAlmacen" Visible="false" />
                             <asp:TemplateField HeaderText="Agregar Producto">
                                 <ItemTemplate>
                                     <asp:Button ID="btnAgregarProducto" runat="server"
@@ -168,7 +173,7 @@
                 </div>
                 <div class="x_content">
                     <asp:GridView ID="dgvVentas" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvVenta_RowComand"
-                            DataKeyNames="IdVenta, FechaRealizacion, NombreVendedor, PrecioTotal" AutoGenerateColumns="False"
+                            DataKeyNames="IdVenta, FechaRealizacion, NombreVendedor, PrecioTotal, IdAlmacen" AutoGenerateColumns="False"
                             style="text-align:center" AllowPaging="True" >
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
@@ -177,6 +182,7 @@
                             <asp:BoundField DataField ="NombreVendedor"    HeaderText ="Vendedor" />
                             <asp:BoundField DataField ="PrecioTotal"       HeaderText ="Precio Total" />
                             <asp:BoundField DataField ="Total"             HeaderText ="Total(+IGV)" />
+                            <asp:BoundField DataField ="IdAlmacen"           HeaderText ="Codigo de venta" Visible="false"/>
                             <asp:TemplateField HeaderText="Observacion" Visible="false">
                                 <ItemTemplate>
                                     <asp:TextBox ID="txtObservacion" Text='<%#Eval("Observacion") %>' runat="server"/>
@@ -215,14 +221,24 @@
     <%--    <h1 style="padding: 25px 1px 15px 1px; font-size: 1.2em;">
             </h1>--%>
         <asp:Label runat="server" id="lblTituloPopup" ><h2>GENERAR BOLETA DE VENTA</h2><br /></asp:Label>
-        <asp:Label runat="server" id="lblNombre" >NOMBRE    :</asp:Label>
-        <asp:TextBox ID="textNombre" runat="server"></asp:TextBox><br />
-        <asp:Label runat="server" id="lblDni" >DNI       :</></asp:Label>
-        <asp:TextBox ID="textDni" runat="server"></asp:TextBox><br />
-        <asp:Label runat="server" id="lblRuc" >RUC       :</asp:Label>
-        <asp:TextBox ID="textRuc" runat="server"></asp:TextBox><br />
-        <asp:Label runat="server" id="lblDirec" >Direccion :</asp:Label>
-        <asp:TextBox ID="textDirec" runat="server"></asp:TextBox><br />
+        <table class="table">
+            <tr>
+                <td><asp:Label runat="server" id="lblNombre" >NOMBRE</asp:Label></td>
+                <td><asp:TextBox ID="textNombre" runat="server"></asp:TextBox></td>
+            </tr>
+            <tr>
+                <td><asp:Label runat="server" id="lblDni" >DNI</></asp:Label></td>
+                <td><asp:TextBox ID="textDni" runat="server"></asp:TextBox><br /></td>
+            </tr>
+            <tr>
+                <td><asp:Label runat="server" id="lblRuc" >RUC</asp:Label></td>
+                <td><asp:TextBox ID="textRuc" runat="server"></asp:TextBox><br /></td>
+            </tr>
+            <tr>
+                <td><asp:Label runat="server" id="lblDirec" >Direccion</asp:Label></td>
+                <td><asp:TextBox ID="textDirec" runat="server"></asp:TextBox><br /></td>
+            </tr>
+        </table>
         <asp:Button ID="btnPdf" runat="server" BackColor="#0099FF" BorderColor="#3399FF" ForeColor="White" Text="Generar Boleta" Width="177px" OnClick="btnPdf_Click" />
     </div>
 </body>

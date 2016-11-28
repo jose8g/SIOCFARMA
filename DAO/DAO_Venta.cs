@@ -128,12 +128,13 @@ namespace DAO
             }
         }
 
-        public int updateCantidad(int idVenta, int idItem, int cantidad)
+        public int updateCantidad(int idVenta, int idAlmacen, int idItem, int cantidad)
         {
             SqlCommand comando = new SqlCommand("sp_editar_cantidadVenta", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            comando.Parameters.AddWithValue("@IdVenta",  idVenta);
+            comando.Parameters.AddWithValue("@IdVenta", idVenta);
+            comando.Parameters.AddWithValue("@IdAlmacen", idAlmacen);
             comando.Parameters.AddWithValue("@IdItem",   idItem);
             comando.Parameters.AddWithValue("@Cantidad", cantidad);
             comando.Parameters.Add("@salida", SqlDbType.Int);
@@ -145,13 +146,14 @@ namespace DAO
             return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
 
-        public DataTable deleteItemxVenta(int IdVenta, int IdItem)
+        public DataTable deleteItemxVenta(int IdVenta, int IdAlmacen, int IdItem)
         {
             try
             {
                 mDa = new SqlDataAdapter("sp_delete_VentaXItem", conexion);
                 mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
                 mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDa.SelectCommand.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
                 mDa.SelectCommand.Parameters.AddWithValue("@IdItem", IdItem);
                 mDs = new DataSet();
                 mDa.Fill(mDs);
@@ -178,11 +180,12 @@ namespace DAO
                 throw ex;
             }
         }
-        public void deleteVenta(int idVenta)
+        public void deleteVenta(int idVenta, int IdAlmacen)
         {
             SqlCommand comando = new SqlCommand("sp_delete_Venta", conexion);
             comando.CommandType = CommandType.StoredProcedure;
             comando.Parameters.AddWithValue("@IdVenta", idVenta);
+            comando.Parameters.AddWithValue("@IdAlmacen", IdAlmacen);
             conexion.Open();
             comando.ExecuteNonQuery();
             conexion.Close();
@@ -253,6 +256,36 @@ namespace DAO
             {
                 throw ex;
             }
+        }
+        public DataTable getItemsByVentaPDF(int IdVenta)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("sp_getItemsByVentaPDF", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdVenta", IdVenta);
+                mDs = new DataSet();
+                mDa.Fill(mDs);
+                return mDs.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int getAlmacenByVendedor(int IdVendedor)
+        {
+            SqlCommand comando = new SqlCommand("sp_getAlmacenByVendedor", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdVendedor", IdVendedor);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
         }
     }
 }

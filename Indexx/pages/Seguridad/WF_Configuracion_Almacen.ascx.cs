@@ -56,6 +56,11 @@ namespace Indexx.pages.Seguridad
                 }
                 else if (e.CommandName == "deleteAlmacen")
                 {
+                    int count = obj.countProductosAlmacen(IdAlmacen);
+                    if (count != 0)
+                    {
+                        throw new Exception("El almacén ya tiene productos configurados, no puede eliminarlo");
+                    }
                     obj.eliminarAlmacen(IdAlmacen);
                     textDirec.ReadOnly = true;
                     txtResp.ReadOnly = true;
@@ -81,27 +86,36 @@ namespace Indexx.pages.Seguridad
 
         protected void registrarAlmacen(object sender, EventArgs e)
         {
-            obj.registrarAlmacen(textDirec2.Text, txtResp2.Text, Convert.ToInt32(txtCapac2.Text));
-            buildTableAlmacenes();
-            textDirec.ReadOnly = true;
-            txtResp.ReadOnly = true;
-            txtCapac.ReadOnly = true;
-            textDirec2.ReadOnly = true;
-            txtResp2.ReadOnly = true;
-            txtCapac2.ReadOnly = true;
-            textDirec.Text = "";
-            txtResp.Text = "";
-            txtCapac.Text = "";
-            textDirec2.Text = "";
-            txtResp2.Text = "";
-            txtCapac2.Text = "";
-            Session["IdAlmacen"] = null;
+            try
+            {
+                if (textDirec2.Text.ToString() == "" || txtResp2.Text.ToString() == "" || txtCapac2.Text.ToString() == "")
+                {
+                    throw new Exception("Llene los datos del nuevo almacén");
+                }
+                obj.registrarAlmacen(textDirec2.Text, txtResp2.Text, Convert.ToInt32(txtCapac2.Text));
+                buildTableAlmacenes();
+                textDirec.ReadOnly = true;
+                txtResp.ReadOnly = true;
+                txtCapac.ReadOnly = true;
+                textDirec2.ReadOnly = true;
+                txtResp2.ReadOnly = true;
+                txtCapac2.ReadOnly = true;
+                textDirec.Text = "";
+                txtResp.Text = "";
+                txtCapac.Text = "";
+                textDirec2.Text = "";
+                txtResp2.Text = "";
+                txtCapac2.Text = "";
+                Session["IdAlmacen"] = null;
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
+            }
         }
 
         protected void habilitarNuevoAlmacen(object sender, EventArgs e)
         {
-            //obj.registrarAlmacen(textDirec2.Text, txtResp2.Text, Convert.ToInt32(txtCapac2.Text));
-            //buildTableAlmacenes();
             textDirec.ReadOnly = true;
             txtResp.ReadOnly = true;
             txtCapac.ReadOnly = true;
@@ -119,23 +133,44 @@ namespace Indexx.pages.Seguridad
 
         protected void editarDatosAlmacen(object sender, EventArgs e)
         {
-
-            if(Session["IdAlmacen"] != null){
-                obj.editarDatosAlmacen(Convert.ToInt32(Session["IdAlmacen"]), textDirec.Text, txtResp.Text, Convert.ToInt32(txtCapac.Text));
-                buildTableAlmacenes();
-                textDirec.ReadOnly = true;
-                txtResp.ReadOnly = true;
-                txtCapac.ReadOnly = true;
-                textDirec2.ReadOnly = true;
-                txtResp2.ReadOnly = true;
-                txtCapac2.ReadOnly = true;
-                textDirec.Text = "";
-                txtResp.Text = "";
-                txtCapac.Text = "";
-                textDirec2.Text = "";
-                txtResp2.Text = "";
-                txtCapac2.Text = "";
-                Session["IdAlmacen"] = null;
+            try
+            {
+                if (Session["IdAlmacen"] == null)
+                {
+                    throw new Exception("Seleccione el almacén que desea editar");
+                }
+                //Convert.ToString(textDirec.Text)
+                if (Convert.ToString(textDirec.Text)== "" || txtResp.Text.ToString() == "" || txtCapac.Text.ToString() == "")
+                {
+                    throw new Exception("Llene los datos del almacén que desea editar");
+                }
+                Convert.ToInt32(txtCapac.Text);
+                int stockActual = obj.countStockTotalAlmacen(Convert.ToInt32(Session["IdAlmacen"]));
+                if (Convert.ToInt32(txtCapac.Text) < stockActual)
+                {
+                    throw new Exception("La capacidad no puede ser menor a la actual");
+                }
+                if(Session["IdAlmacen"] != null){
+                    obj.editarDatosAlmacen(Convert.ToInt32(Session["IdAlmacen"]), textDirec.Text, txtResp.Text, Convert.ToInt32(txtCapac.Text));
+                    buildTableAlmacenes();
+                    textDirec.ReadOnly = true;
+                    txtResp.ReadOnly = true;
+                    txtCapac.ReadOnly = true;
+                    textDirec2.ReadOnly = true;
+                    txtResp2.ReadOnly = true;
+                    txtCapac2.ReadOnly = true;
+                    textDirec.Text = "";
+                    txtResp.Text = "";
+                    txtCapac.Text = "";
+                    textDirec2.Text = "";
+                    txtResp2.Text = "";
+                    txtCapac2.Text = "";
+                    Session["IdAlmacen"] = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
         }
     }

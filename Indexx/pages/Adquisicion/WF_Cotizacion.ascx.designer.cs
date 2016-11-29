@@ -128,6 +128,7 @@ namespace Indexx.pages.Adquisicion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvExistente;
+        protected global::System.Web.UI.WebControls.GridView dgvSubtotal;
         
         /// <summary>
         /// Control dgvLote.

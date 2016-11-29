@@ -105,36 +105,6 @@ namespace Indexx.pages.Ventas
             ddlTipo.Items.Insert(0, new ListItem("Selec. Tipo", "0"));
         }
 
-        protected void marcaSelected(object sender, EventArgs e)
-        {
-            int idMarca = Convert.ToInt32(ddlMarca.SelectedValue);
-            if (idMarca != 0)
-            {
-                dgvItems.DataSource = obj.getItemsByMarca(idMarca);
-                dgvItems.DataBind();
-            }
-            else
-            {
-                dgvItems.DataSource = null;
-                dgvItems.DataBind();
-            }
-        }
-
-        protected void tipoSelected(object sender, EventArgs e)
-        {
-            int idTipo = Convert.ToInt32(ddlTipo.SelectedValue);
-            if (idTipo != 0)
-            {
-                dgvItems.DataSource = obj.getItemsByMarca(idTipo);
-                dgvItems.DataBind();
-            }
-            else
-            {
-                dgvItems.DataSource = null;
-                dgvItems.DataBind();
-            }
-        }
-
         protected void gvCarrito_RowComand(object sender, GridViewCommandEventArgs e)
         {
             try

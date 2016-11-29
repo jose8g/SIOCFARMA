@@ -239,7 +239,7 @@ namespace Indexx.pages.Almacen
             }
         }
         
-        protected void AceptarMov(object sender, EventArgs e)
+        protected void AceptarMov_click(object sender, EventArgs e)
         {
             DataTable dv = dmov.ActualizarStockxAjustePositivo(Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(Session["iditem"]));
             txtnewStock.Text = Convert.ToString(dv.Rows[0]["stock"].ToString());
@@ -252,6 +252,10 @@ namespace Indexx.pages.Almacen
             txtRes.Text =""+w+" "+b+" "+c ;
             txtAuto.Text = "" + w + " " + b + " " + c;
             dmov.InsertarMoviminento(Convert.ToInt32(txtCantidad), txtRes.Text, txtObservacion.Text, txtAuto.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), Convert.ToInt32(Session["iditem"]));
+        }
+        protected void EliminarMov_click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
@@ -333,7 +337,7 @@ namespace Indexx.pages.Almacen
             }
         }
 
-        protected void AceptarMovn(object sender, EventArgs e)
+        protected void AceptarnMov_Click(object sender, EventArgs e)
         {
             DataTable dv = dmov.ActualizarStockxAjusteNegativo(Convert.ToInt32(txtCantidadn.Text), Convert.ToInt32(Session["iditem"]));
             txtnewStockn.Text = Convert.ToString(dv.Rows[0]["stock"].ToString());
@@ -346,6 +350,12 @@ namespace Indexx.pages.Almacen
             txtResn.Text = "" + w + " " + b + " " + c;
             txtAuton.Text = "" + w + " " + b + " " + c;
             dmov.InsertarMoviminentoneg(Convert.ToInt32(txtCantidadn.Text), txtResn.Text, txtObservacionn.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), Convert.ToInt32(Session["iditem"]));
+            
+        }
+
+        protected void EliminarnMov_Click(object sender, EventArgs e)
+        {
+
         }
         #endregion
 

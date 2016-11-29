@@ -220,9 +220,9 @@
                             <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                         </div>
                     </div>
-            <asp:Button ID="AceptarMov" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarMov" Width="172px" />
+            <asp:Button ID="AceptarMov" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarMov_click" Width="172px" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="EliminarMov" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarMov" Width="164px" />
+            <asp:Button ID="EliminarMov" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarMov_click" Width="164px" />
             <div class="x_content">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Nuevo Stock</label>
@@ -359,9 +359,9 @@
                             <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                         </div>
                     </div>
-            <asp:Button ID="AceptarMovn" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarMov" Width="172px" />
+            <asp:Button ID="AceptarMovn" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarnMov_Click" Width="172px" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="EliminarMovn" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarMov" Width="164px" />
+            <asp:Button ID="EliminarMovn" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarnMov_Click" Width="164px" />
             <div class="x_content">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Nuevo Stock</label>

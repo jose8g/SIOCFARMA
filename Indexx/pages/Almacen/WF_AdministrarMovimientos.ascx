@@ -168,11 +168,11 @@
                 </div>
                 <div class="x_content">
                     <asp:GridView ID="dgvItems" runat="server" CssClass="gridview bordered table text-center" OnRowCommand="gvItems_RowComand"
-                            DataKeyNames="IdItem,Nombre,PrecioVenta,Tipo" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
+                            DataKeyNames="IdItem,Nombre,PrecioVenta,Tipo,Marca,Stock" AutoGenerateColumns="False" OnPageIndexChanging="gvItems_PageIndexChanging"
                             style="text-align:center" AllowPaging="True">
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
-                            <asp:BoundField DataField ="IdItem"          HeaderText ="IdItem" Visible="false" />
+                            <asp:BoundField DataField ="IdItem"          HeaderText ="IdItem"  />
                             <asp:BoundField DataField ="Nombre"          HeaderText ="Nombre" />
                             <asp:BoundField DataField ="PrecioVenta"     HeaderText ="Precio unitario" Visible="false"/>
                             <asp:BoundField DataField ="Tipo"            HeaderText ="Tipo" />
@@ -222,7 +222,6 @@
                     </div>
             <asp:Button ID="AceptarMov" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarMov_click" Width="172px" />
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="EliminarMov" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarMov_click" Width="164px" />
             <div class="x_content">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Nuevo Stock</label>
@@ -268,7 +267,7 @@
                     <tr>
                         <td>BUSCAR PRODUCTOS POR NOMBRE</td>
                         <td><input id="Text7n" type="text" runat="server"/>
-                        <asp:Button ID="BuscarApn" runat="server" Text="Buscar" OnClick="buscaAP" />
+                        <asp:Button ID="BuscarApn" runat="server" Text="Buscar" OnClick="buscaAPn_click" />
                         </td>
                     </tr>
                     <caption>
@@ -311,7 +310,7 @@
                             style="text-align:center" AllowPaging="True">
                         <RowStyle HorizontalAlign="center"></RowStyle>
                         <Columns>
-                            <asp:BoundField DataField ="IdItem"          HeaderText ="IdItem" Visible="false" />
+                            <asp:BoundField DataField ="IdItem"          HeaderText ="IdItem" />
                             <asp:BoundField DataField ="Nombre"          HeaderText ="Nombre" />
                             <asp:BoundField DataField ="PrecioVenta"     HeaderText ="Precio unitario" Visible="false"/>
                             <asp:BoundField DataField ="Tipo"            HeaderText ="Tipo" />
@@ -320,7 +319,7 @@
                             <asp:TemplateField HeaderText="Ajustar Producto">
                                 <ItemTemplate>
                                     <asp:Button ID="btnAjustarProducto" runat="server"
-                                                CommandName="selecItem" CssClass="btn btn-info btn-xs"
+                                                CommandName="selecItem23" CssClass="btn btn-info btn-xs"
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                                 Text="Agregar"/>
                                 </ItemTemplate>
@@ -360,9 +359,8 @@
                         </div>
                     </div>
             <asp:Button ID="AceptarMovn" runat="server" class="btn btn-info btn-xs" Text="Aceptar Movimiento" onclick="AceptarnMov_Click" Width="172px" />
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="EliminarMovn" runat="server" class="btn btn-info btn-xs" Text="Eliminar Movimiento" onclick="EliminarnMov_Click" Width="164px" />
-            <div class="x_content">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                        <div class="x_content">
                     <div class="form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Nuevo Stock</label>
                         <div class="col-md-9 col-sm-9 col-xs-9">
@@ -376,15 +374,7 @@
                             <asp:TextBox ID="txtResn" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
                             <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
                         </div>
-                    </div>
-                <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-3" style="top:6px;">Autorizacion</label>
-                        <div class="col-md-9 col-sm-9 col-xs-9">
-                            <asp:TextBox ID="txtAuton" runat="server" CssClass="form-control" Enabled="False"></asp:TextBox>
-                            <span class="fa fa-calendar-o form-control-feedback right" aria-hidden="true"></span>
-                        </div>
-                    </div>
-                
+                    </div>                
                 </div>
         </div>
     </div>

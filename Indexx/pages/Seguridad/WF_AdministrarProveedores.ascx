@@ -115,7 +115,7 @@ height: auto!important;}
                                         <div class="text-center">
                                             <asp:ImageButton ID="ImageButton1" HeaderText="Eliminar" runat="server"
                                                 ImageUrl="../../images/icon4.png" CommandName="Eliminar" AllowPaging="True"
-                                                formnovalidate="" onclientclick="return confirm('¿Desea eliminar el item?');"
+                                                formnovalidate="" onclientclick="return confirm('¿Desea eliminar el proveedor?');"
                                                 CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                                         </div>
                                     </ItemTemplate>

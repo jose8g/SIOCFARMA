@@ -125,7 +125,8 @@ namespace Indexx.pages.Adquisicion
 
                     dgvProveedorxPedido.DataSource = obj.deleteProveedorxPedido(idPedido,idProveedor);
                     dgvProveedorxPedido.DataBind();
-                    throw new Exception("Se eliminó correctamente!");
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se elimino correctamente','success')", true);
+
                 }
             }
             catch (Exception ex)

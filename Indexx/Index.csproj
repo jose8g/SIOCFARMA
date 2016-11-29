@@ -194,6 +194,7 @@
     <Content Include="documentation\js\shCore.js" />
     <Content Include="Loginn.aspx" />
     <Content Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx" />
+    <Content Include="pages\Almacen\WF_AceptarAjustes.ascx" />
     <Content Include="pages\Estadisticos\WF_Reportes.ascx" />
     <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="WF_Proveedor.aspx" />
@@ -3822,6 +3823,13 @@
     </Compile>
     <Compile Include="Loginn.aspx.designer.cs">
       <DependentUpon>Loginn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Almacen\WF_AceptarAjustes.ascx.cs">
+      <DependentUpon>WF_AceptarAjustes.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Almacen\WF_AceptarAjustes.ascx.designer.cs">
+      <DependentUpon>WF_AceptarAjustes.ascx</DependentUpon>
     </Compile>
     <Compile Include="WF_Proveedor.aspx.cs">
       <DependentUpon>WF_Proveedor.aspx</DependentUpon>

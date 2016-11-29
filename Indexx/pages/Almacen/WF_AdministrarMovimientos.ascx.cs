@@ -143,7 +143,7 @@ namespace Indexx.pages.Almacen
                        int cantidad = Convert.ToInt32( row[7].ToString());
                         dcom.ActualizarStockxMovimiento(Convert.ToString(b), iditem, cantidad);
                     }
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','movimiento Realizado y Stock Actualizado','success')", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('ok','movimiento Realizado y Stock Actualizado','success')", true);
                 }
                 else
                 {
@@ -170,7 +170,7 @@ namespace Indexx.pages.Almacen
         {
             try
             {
-                if (e.CommandName == "verItems")
+                if (e.CommandName == "selecItem")
                 {
                     int index = Convert.ToInt32(e.CommandArgument);
                     int iditem = Convert.ToInt32(dgvItems.Rows[index].Cells[0].Text);
@@ -180,7 +180,7 @@ namespace Indexx.pages.Almacen
             }
             catch (Exception ex)
             {
-
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
         }
         public void buildListMarca()
@@ -241,21 +241,21 @@ namespace Indexx.pages.Almacen
         
         protected void AceptarMov_click(object sender, EventArgs e)
         {
-            DataTable dv = dmov.ActualizarStockxAjustePositivo(Convert.ToInt32(txtCantidad.Text), Convert.ToInt32(Session["iditem"]));
+            int id= Convert.ToInt32(Session["iditem"]);
+            DataTable dv = dmov.ActualizarStockxAjustePositivo(Convert.ToInt32(txtCantidad.Text), id);
             txtnewStock.Text = Convert.ToString(dv.Rows[0]["stock"].ToString());
             txtCantidad.Enabled = false;
-            int a = Convert.ToInt32(Session["IdUsuario"]);
+            txtObservacion.Enabled = false;
+            int a = Convert.ToInt32(Session["idUsuario"]);
             DataTable dv2 = dmov.TrabajadorXUsuario(a);
             string w= Convert.ToString(dv2.Rows[0]["Nombres"].ToString());
             string b= Convert.ToString(dv2.Rows[0]["ApellidosPaterno"].ToString());
             string c=Convert.ToString(dv2.Rows[0]["ApellidosMaternos"].ToString());
             txtRes.Text =""+w+" "+b+" "+c ;
             txtAuto.Text = "" + w + " " + b + " " + c;
-            dmov.InsertarMoviminento(Convert.ToInt32(txtCantidad), txtRes.Text, txtObservacion.Text, txtAuto.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), Convert.ToInt32(Session["iditem"]));
-        }
-        protected void EliminarMov_click(object sender, EventArgs e)
-        {
-
+            DataTable fr = dmov.InsertarMoviminento(Convert.ToInt32(txtCantidad.Text), txtRes.Text, txtObservacion.Text, txtAuto.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), id);
+            Session["IdMovimiento"] = Convert.ToString(fr.Rows[0]["IdMovimiento"].ToString());
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('ok','movimiento Realizado y Stock Actualizado','success')", true);
         }
         #endregion
 
@@ -268,7 +268,7 @@ namespace Indexx.pages.Almacen
         {
             try
             {
-                if (e.CommandName == "verItems")
+                if (e.CommandName == "selecItem23")
                 {
                     int index = Convert.ToInt32(e.CommandArgument);
                     int iditem = Convert.ToInt32(dgvItemsn.Rows[index].Cells[0].Text);
@@ -278,7 +278,7 @@ namespace Indexx.pages.Almacen
             }
             catch (Exception ex)
             {
-
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','" + ex.Message + "','error')", true);
             }
         }
         public void buildListMarcan()
@@ -298,7 +298,7 @@ namespace Indexx.pages.Almacen
             ddlTipon.DataBind();
             ddlTipon.Items.Insert(0, new ListItem("Selec. Tipo", "0"));
         }
-        protected void buscaAPn(object sender, EventArgs e)
+        protected void buscaAPn_click(object sender, EventArgs e)
         {
             int idMarca = Convert.ToInt32(ddlMarcan.SelectedValue);
             int idTipo = Convert.ToInt32(ddlTipon.SelectedValue);
@@ -339,23 +339,19 @@ namespace Indexx.pages.Almacen
 
         protected void AceptarnMov_Click(object sender, EventArgs e)
         {
-            DataTable dv = dmov.ActualizarStockxAjusteNegativo(Convert.ToInt32(txtCantidadn.Text), Convert.ToInt32(Session["iditem"]));
+            DataTable dv = dmov.VerStockxAjusteNegativo(Convert.ToInt32(txtCantidadn.Text), Convert.ToInt32(Session["iditem"]));
             txtnewStockn.Text = Convert.ToString(dv.Rows[0]["stock"].ToString());
             txtCantidadn.Enabled = false;
-            int a = Convert.ToInt32(Session["IdUsuario"]);
+            txtObservacionn.Enabled = false;
+            int a = Convert.ToInt32(Session["idUsuario"]);
             DataTable dv2 = dmov.TrabajadorXUsuario(a);
             string w = Convert.ToString(dv2.Rows[0]["Nombres"].ToString());
             string b = Convert.ToString(dv2.Rows[0]["ApellidosPaterno"].ToString());
             string c = Convert.ToString(dv2.Rows[0]["ApellidosMaternos"].ToString());
             txtResn.Text = "" + w + " " + b + " " + c;
-            txtAuton.Text = "" + w + " " + b + " " + c;
-            dmov.InsertarMoviminentoneg(Convert.ToInt32(txtCantidadn.Text), txtResn.Text, txtObservacionn.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), Convert.ToInt32(Session["iditem"]));
-            
-        }
-
-        protected void EliminarnMov_Click(object sender, EventArgs e)
-        {
-
+            DataTable fr = dmov.InsertarMoviminentoneg(Convert.ToInt32(txtCantidadn.Text), txtResn.Text, txtObservacionn.Text, Convert.ToInt32(ddlTipoMov.SelectedValue), Convert.ToInt32(Session["iditem"]));
+            ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('ok','Registro de Movimiento yStock Actualizado','success')", true);   
+         
         }
         #endregion
 

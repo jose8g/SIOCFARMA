@@ -33,9 +33,9 @@ namespace DAO
             return mDs.Tables[0];
         }
 
-        public DataTable ActualizarStockxAjusteNegativo(int Cantidad, int IdItem)
+        public DataTable VerStockxAjusteNegativo(int Cantidad, int IdItem)
         {
-            mDa = new SqlDataAdapter("SP_ActualizarStockxAjusteNegativo", conexion);
+            mDa = new SqlDataAdapter("SP_VerStockxAjusteNegativo", conexion);
             mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
             mDa.SelectCommand.Parameters.AddWithValue("@Cantidad", Cantidad);
             mDa.SelectCommand.Parameters.AddWithValue("@IdItem ", IdItem);
@@ -54,35 +54,65 @@ namespace DAO
             return mDs.Tables[0];
         }
 
-        public void InsertarMoviminento(int CantidadMovida, string Responsable, string Observacion, string ResAutorizacion, int TipoMov, int idItem)
+        public DataTable InsertarMoviminento(int CantidadMovida, string Responsable, string Observacion, string ResAutorizacion, int TipoMov, int idItem)
         {
             SqlCommand comando = new SqlCommand("SP_InsertarMoviminento", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            mDa.SelectCommand.Parameters.AddWithValue("@CantidadMovida", CantidadMovida);
-            mDa.SelectCommand.Parameters.AddWithValue("@Responsable", Responsable);
-            mDa.SelectCommand.Parameters.AddWithValue("@Observacion", Observacion);
-            mDa.SelectCommand.Parameters.AddWithValue("@ResAutorizacion", ResAutorizacion);
-            mDa.SelectCommand.Parameters.AddWithValue("@TipoMov", TipoMov);
-            mDa.SelectCommand.Parameters.AddWithValue("@idItem", idItem);
+            comando.Parameters.AddWithValue("@CantidadMovida", CantidadMovida);
+            comando.Parameters.AddWithValue("@Responsable", Responsable);
+            comando.Parameters.AddWithValue("@Observacion", Observacion);
+            comando.Parameters.AddWithValue("@ResAutorizacion", ResAutorizacion);
+            comando.Parameters.AddWithValue("@TipoMov", TipoMov);
+            comando.Parameters.AddWithValue("@idItem", idItem);
             conexion.Open();
-            comando.ExecuteNonQuery();
-            conexion.Close();
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
         }
 
-        public void InsertarMoviminentoneg(int CantidadMovida, string Responsable, string Observacion, int TipoMov, int idItem)
+        public DataTable InsertarMoviminentoneg(int CantidadMovida, string Responsable, string Observacion, int TipoMov, int idItem)
         {
             SqlCommand comando = new SqlCommand("SP_InsertarMoviminentoneg", conexion);
             comando.CommandType = CommandType.StoredProcedure;
 
-            mDa.SelectCommand.Parameters.AddWithValue("@CantidadMovida", CantidadMovida);
-            mDa.SelectCommand.Parameters.AddWithValue("@Responsable", Responsable);
-            mDa.SelectCommand.Parameters.AddWithValue("@Observacion", Observacion);
-            mDa.SelectCommand.Parameters.AddWithValue("@TipoMov", TipoMov);
-            mDa.SelectCommand.Parameters.AddWithValue("@idItem", idItem);
+            comando.Parameters.AddWithValue("@CantidadMovida", CantidadMovida);
+            comando.Parameters.AddWithValue("@Responsable", Responsable);
+            comando.Parameters.AddWithValue("@Observacion", Observacion);
+            comando.Parameters.AddWithValue("@TipoMov", TipoMov);
+            comando.Parameters.AddWithValue("@idItem", idItem);
             conexion.Open();
-            comando.ExecuteNonQuery();
-            conexion.Close();
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+        public DataTable getAjustesNegativos()
+        {
+            mDa = new SqlDataAdapter("sp_getAjustesNegativos", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable ActualizarStockxAjusteNegativo(int IdMovimiento)
+        {
+            mDa = new SqlDataAdapter("SP_ActualizarStockxAjusteNegativo", conexion);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDa.SelectCommand.Parameters.AddWithValue("@IdMovimiento", IdMovimiento);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
+
+        public DataTable getAprobarAjustesNegativos(int IdMovimiento)
+        {
+            SqlCommand comando = new SqlCommand("sp_getAprobarAjustesNegativos", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+            comando.Parameters.AddWithValue("@IdMovimiento", IdMovimiento);
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
         }
     }
 }

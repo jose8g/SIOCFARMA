@@ -175,15 +175,6 @@ namespace Indexx.pages.Almacen {
         protected global::System.Web.UI.WebControls.Button AceptarMov;
         
         /// <summary>
-        /// Control EliminarMov.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarMov;
-        
-        /// <summary>
         /// Control txtnewStock.
         /// </summary>
         /// <remarks>
@@ -301,15 +292,6 @@ namespace Indexx.pages.Almacen {
         protected global::System.Web.UI.WebControls.Button AceptarMovn;
         
         /// <summary>
-        /// Control EliminarMovn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EliminarMovn;
-        
-        /// <summary>
         /// Control txtnewStockn.
         /// </summary>
         /// <remarks>
@@ -326,14 +308,5 @@ namespace Indexx.pages.Almacen {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtResn;
-        
-        /// <summary>
-        /// Control txtAuton.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtAuton;
     }
 }

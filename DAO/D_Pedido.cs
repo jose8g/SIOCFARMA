@@ -36,5 +36,25 @@ namespace DAO
                 throw ex;
             }
         }
+
+        public void actualizarPedido(E_Pedido objE_Ped)
+        {
+            try
+            {
+                mCm = new SqlCommand("SP_ActualizarPedido", conexion);
+                mCm.CommandType = CommandType.StoredProcedure;
+                mCm.Parameters.AddWithValue("@IdPedido", objE_Ped.IdPedido1);
+                conexion.Open();
+                mCm.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
     }
 }

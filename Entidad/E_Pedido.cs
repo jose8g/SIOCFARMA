@@ -8,20 +8,22 @@ namespace Entidad
 {
     public class E_Pedido
     {
-        private int idPedido;
-        public int IdPedido
+        private int IdPedido;
+
+        public int IdPedido1
         {
             get { return IdPedido; }
             set { IdPedido = value; }
         }
 
+        private int NumeroPedido;
 
-        private int numeroPedido;
-        public int NumeroPedido
+        public int NumeroPedido1
         {
             get { return NumeroPedido; }
             set { NumeroPedido = value; }
         }
+  
 
 
         private char estado;

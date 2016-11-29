@@ -87,5 +87,35 @@ namespace DAO
             comando.ExecuteNonQuery();
             conexion.Close();
         }
+
+        public int countProductosAlmacen(int idAlmacen)
+        {
+            SqlCommand comando = new SqlCommand("sp_count_productosAlmacen", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdAlmacen", idAlmacen);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        }
+
+        public int countStockTotalAlmacen(int idAlmacen)
+        {
+            SqlCommand comando = new SqlCommand("sp_count_stockTotalAlmacen", conexion);
+            comando.CommandType = CommandType.StoredProcedure;
+
+            comando.Parameters.AddWithValue("@IdAlmacen", idAlmacen);
+            comando.Parameters.Add("@salida", SqlDbType.Int);
+            comando.Parameters["@salida"].Direction = ParameterDirection.Output;
+            conexion.Open();
+            comando.ExecuteNonQuery();
+            conexion.Close();
+
+            return Convert.ToInt32(comando.Parameters["@salida"].Value);
+        }
     }
 }

@@ -192,16 +192,21 @@
     <Content Include="documentation\js\jquery.min.js" />
     <Content Include="documentation\js\shBrushXml.js" />
     <Content Include="documentation\js\shCore.js" />
+    <Content Include="Loginn.aspx" />
+    <Content Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx" />
+    <Content Include="pages\Estadisticos\WF_Reportes.ascx" />
+    <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
+    <Content Include="WF_Proveedor.aspx" />
     <Content Include="lib\itextsharp.dll" />
     <Content Include="lib\itextsharp.pdfa.dll" />
     <Content Include="lib\itextsharp.xtra.dll" />
+    <Content Include="js\lib\itextsharp.dll" />
+    <Content Include="js\lib\itextsharp.pdfa.dll" />
+    <Content Include="js\lib\itextsharp.xtra.dll" />
     <Content Include="js\pop2.js" />
     <Content Include="js\pop3.js" />
     <Content Include="js\pop4.js" />
     <Content Include="js\pop5.js" />
-    <Content Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx" />
-    <Content Include="pages\Estadisticos\WF_Reportes.ascx" />
-    <Content Include="pages\Ventas\WF_Gestionar_Cliente.ascx" />
     <Content Include="pages\Seguridad\WF_AdministrarProveedores.ascx" />
     <Content Include="pages\Seguridad\WF_Configuracion_Almacen.ascx" />
     <Content Include="WF_Almacenero.aspx" />
@@ -3810,6 +3815,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Loginn.aspx.cs">
+      <DependentUpon>Loginn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Loginn.aspx.designer.cs">
+      <DependentUpon>Loginn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WF_Proveedor.aspx.cs">
+      <DependentUpon>WF_Proveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WF_Proveedor.aspx.designer.cs">
+      <DependentUpon>WF_Proveedor.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Adquisicion\WF_AsignarProveedoresAPedido.ascx.cs">
       <DependentUpon>WF_AsignarProveedoresAPedido.ascx</DependentUpon>

@@ -56,12 +56,20 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:Label runat="server" id="lblDirec" >Direccion :</asp:Label>
-                    <asp:TextBox ID="textDirec" runat="server" ReadOnly="true"></asp:TextBox><br />
-                    <asp:Label runat="server" id="lblResp" >Responsable :</asp:Label>
-                    <asp:TextBox ID="txtResp" runat="server" ReadOnly="true"></asp:TextBox><br />
-                    <asp:Label runat="server" id="lblCapac" >Capacidad :</asp:Label>
-                    <asp:TextBox ID="txtCapac" runat="server" ReadOnly="true"></asp:TextBox><br /><br />
+                    <table class="table">
+                        <tr>
+                            <td><asp:Label runat="server" id="lblDirec" >Direccion :</asp:Label></td>
+                            <td><asp:TextBox ID="textDirec" runat="server" ReadOnly="true"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" id="lblResp" >Responsable :</asp:Label></td>
+                            <td><asp:TextBox ID="txtResp" runat="server" ReadOnly="true"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" id="lblCapac" >Capacidad :</asp:Label></td>
+                            <td><asp:TextBox ID="txtCapac" runat="server" ReadOnly="true"></asp:TextBox><br /></td>
+                        </tr>
+                    </table>
                     <asp:Button ID="btn1" runat="server" Text="Guardar"  CssClass="btn btn-info btn-xs" OnClick="editarDatosAlmacen"/>
                 </div>
             </div>
@@ -77,12 +85,20 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <asp:Label runat="server" id="lblDirec2" >Direccion :</asp:Label>
-                    <asp:TextBox ID="textDirec2" runat="server" ReadOnly="true"></asp:TextBox><br />
-                    <asp:Label runat="server" id="lblResp2" >Responsable :</asp:Label>
-                    <asp:TextBox ID="txtResp2" runat="server" ReadOnly="true"></asp:TextBox><br />
-                    <asp:Label runat="server" id="lblCapac2" >Capacidad :</asp:Label>
-                    <asp:TextBox ID="txtCapac2" runat="server" ReadOnly="true"></asp:TextBox><br /><br />
+                    <table class="table">
+                        <tr>
+                            <td><asp:Label runat="server" id="lblDirec2" >Direccion :</asp:Label></td>
+                            <td><asp:TextBox ID="textDirec2" runat="server" ReadOnly="true"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" id="lblResp2" >Responsable :</asp:Label></td>
+                            <td><asp:TextBox ID="txtResp2" runat="server" ReadOnly="true"></asp:TextBox></td>
+                        </tr>
+                        <tr>
+                            <td><asp:Label runat="server" id="lblCapac2" >Capacidad :</asp:Label></td>
+                            <td><asp:TextBox ID="txtCapac2" runat="server" ReadOnly="true"></asp:TextBox><br /></td>
+                        </tr>
+                    </table>
                     <asp:Button ID="btn2" runat="server" Text="Nuevo" CssClass="btn btn-info btn-xs" OnClick="habilitarNuevoAlmacen"/>
                     <asp:Button ID="btn3" runat="server" Text="Confirmar" CssClass="btn btn-info btn-xs" OnClick="registrarAlmacen"/>
                 </div>

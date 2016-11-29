@@ -22,7 +22,7 @@ namespace Indexx.pages.Adquisicion
         {
             if (!Page.IsPostBack)
             {
-                txtIdProveedor.Attributes.Add("onKeyPress", "return SoloNumeros (event);");
+                CargarPedidosxProveedor();
                 txtDescuento.Attributes.Add("onKeyPress", "return SoloNumerosypunto (event);");
             }
 
@@ -48,6 +48,11 @@ namespace Indexx.pages.Adquisicion
             dgvPedidos.PageIndex = e.NewPageIndex;
         }
 
+        protected void dgvLote_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvLote.PageIndex = e.NewPageIndex;
+        }
+
         protected void dgvSubtotal_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             dgvSubtotal.PageIndex = e.NewPageIndex;
@@ -64,14 +69,18 @@ namespace Indexx.pages.Adquisicion
             {
                 if(e.CommandName=="Ver")
                 {
+                    int Usuario = Convert.ToInt32(Session["idUsuario"]);
+                    DAO.D_Proveedor objD_Pro = new D_Proveedor();
+                    DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+                    int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
                     int idPedido = Convert.ToInt32(dgvPedidos.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdPedido"].ToString());
                     Session["pedido"] = idPedido;
                     CargarItemsxPedido();
                     D_PedidoxCotizacion objD_PedC = new D_PedidoxCotizacion();
-                    dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(idPedido, Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                    dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(idPedido, codigo);
                     dgvPedidoC.DataBind();
 
-                    dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                    dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), codigo);
                     dgvSubtotal.DataBind();
                     camposCotVis();
                     camposCot2();
@@ -111,6 +120,10 @@ namespace Indexx.pages.Adquisicion
             {
                 if (e.CommandName == "Eliminar")
                 {
+                    int Usuario = Convert.ToInt32(Session["idUsuario"]);
+                    DAO.D_Proveedor objD_Pro = new D_Proveedor();
+                    DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+                    int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
                     D_PedidoxItem objD_PedI = new D_PedidoxItem();
                     D_PedidoxCotizacion objD_PedC = new D_PedidoxCotizacion();
 
@@ -121,13 +134,13 @@ namespace Indexx.pages.Adquisicion
                         throw new Exception("Acción no permitida");
                     }
 
-                    dgvPedidoC.DataSource = objD_PedC.eliminarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), Convert.ToInt32(txtIdProveedor.Text.Trim()), idItem);
+                    dgvPedidoC.DataSource = objD_PedC.eliminarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), codigo, idItem);
                     dgvPedidoC.DataBind();
 
-                    dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                    dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), codigo);
                     dgvItems.DataBind();
 
-                    dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                    dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), codigo);
                     dgvSubtotal.DataBind();
                     ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente el item','success')", true);
                 }
@@ -177,6 +190,12 @@ namespace Indexx.pages.Adquisicion
                 else if(e.CommandName == "Finalizar")
                 {  
                     D_Cotizacion objD_Cot = new D_Cotizacion();
+                    D_Pedido objD_Ped = new D_Pedido();
+                    E_Pedido objE_Ped = new E_Pedido();
+
+                    String idPedido = (Session["pedido"] == null) ? null : Session["pedido"].ToString();
+                    objE_Ped.IdPedido1 = Convert.ToInt32(Session["pedido"]);
+                    objD_Ped.actualizarPedido(objE_Ped);
 
                     dgvTotal.DataSource = objD_Cot.TotalCotizar();
                     dgvTotal.DataBind();
@@ -217,47 +236,61 @@ namespace Indexx.pages.Adquisicion
 
         private void CargarPedidosxProveedor()
         {
+            int Usuario = Convert.ToInt32(Session["idUsuario"]);
             DAO.D_Pedido objD_Ped = new D_Pedido();
-            int a = Convert.ToInt32(txtIdProveedor.Text.Trim());
-            dgvPedidos.DataSource = objD_Ped.ListarPedidosxProveedor(a);
+            DAO.D_Proveedor objD_Pro = new D_Proveedor();
+            DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
+            //a=ide proveedor
+            dgvPedidos.DataSource = objD_Ped.ListarPedidosxProveedor(codigo);
             dgvPedidos.DataBind();
         }
 
         private void CargarItemsxPedido()
         {
+            int Usuario = Convert.ToInt32(Session["idUsuario"]);
             C_PedidoxItem objC_PedxIt = new C_PedidoxItem();
+            DAO.D_Proveedor objD_Pro = new D_Proveedor();
+            DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
             String idPedido = (Session["pedido"] == null) ? null : Session["pedido"].ToString();
-            dgvItems.DataSource = objC_PedxIt.ListarItemsxPedido(Convert.ToInt32(Session["pedido"]),Convert.ToInt32(txtIdProveedor.Text.Trim()));
+            dgvItems.DataSource = objC_PedxIt.ListarItemsxPedido(Convert.ToInt32(Session["pedido"]),codigo);
             dgvItems.DataBind();
         }
 
         private void BuscarExistente()
         {
+            int Usuario = Convert.ToInt32(Session["idUsuario"]);
+            DAO.D_Proveedor objD_Pro = new D_Proveedor();
+            DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
             C_PedidoxCotizacion objC_PedC = new C_PedidoxCotizacion();
             String idPedido = (Session["pedido"] == null) ? null : Session["pedido"].ToString();
             String idItem = (Session["item"] == null) ? null : Session["item"].ToString();
-            int b = Convert.ToInt32(txtIdProveedor.Text.Trim());
-            dgvExistente.DataSource = objC_PedC.BuscarExistente(Convert.ToInt32(Session["pedido"]), b, Convert.ToInt32(Session["item"]));
+            dgvExistente.DataSource = objC_PedC.BuscarExistente(Convert.ToInt32(Session["pedido"]), codigo, Convert.ToInt32(Session["item"]));
             dgvExistente.DataBind();
             txtEx.Text = dgvExistente.Rows[0].Cells[0].Text;
         }
 
         private void MostrarPedidoxCotizacion()
         {
+            int Usuario = Convert.ToInt32(Session["idUsuario"]);
+            DAO.D_Proveedor objD_Pro = new D_Proveedor();
+            DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+            int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
             C_PedidoxCotizacion objC_PedC = new C_PedidoxCotizacion();
             String idPedido = (Session["pedido"] == null) ? null : Session["pedido"].ToString();
-            int b = Convert.ToInt32(txtIdProveedor.Text.Trim());
             String idItem = (Session["item"] == null) ? null : Session["item"].ToString();
-            dgvPedidoC.DataSource = objC_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), b);
+            dgvPedidoC.DataSource = objC_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), codigo);
             dgvPedidoC.DataBind();
         }
 
         protected void btnVer_Click(object sender, EventArgs e)
         {
-            txtIdProveedor.Visible = true;
         }
 
         protected void btnBuscarProveedor_Click(object sender, EventArgs e)
+        
         {
             CargarPedidosxProveedor();
         }
@@ -332,25 +365,19 @@ namespace Indexx.pages.Adquisicion
         {
             try
             {
+                D_Lote objD_Lo = new D_Lote();
+                int i;
                 int a = Convert.ToInt16(ddlMedida.SelectedValue.ToString());
                 txtIdDDL.Text = a.ToString();
-                //int cantM = 0;
-                switch (a)
+                for(i=1; i<10; i++)
                 {
-                    case 1:
-                        //cantM = Convert.ToInt32(txtCantidad.Text)/12;
-                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 12).ToString();
-                        break;
-                    case 2:
-                        //cantM = Convert.ToInt32(txtCantidad.Text) / 10;
-                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 10).ToString();
-                        break;
-                    case 5:
-                        //cantM = Convert.ToInt32(txtCantidad.Text) / 12;
-                        txtCantidadMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / 12).ToString();
-                        break;
-                    default:
-                        break;
+                    if(a == i)
+                    {
+                        dgvLote.DataSource = objD_Lo.MostrarCantidadLote(a);
+                        dgvLote.DataBind();
+                        txtCantidadMpopup.Text = dgvLote.Rows[0].Cells[0].Text;
+                        txtResulCantMpopup.Text = (Convert.ToInt32(txtCantidadpopup.Text) / Convert.ToInt32(txtCantidadMpopup.Text)).ToString();
+                    }
                 }
             }
             catch { }
@@ -365,6 +392,10 @@ namespace Indexx.pages.Adquisicion
         {
             try
             {
+                int Usuario = Convert.ToInt32(Session["idUsuario"]);
+                DAO.D_Proveedor objD_Pro = new D_Proveedor();
+                DataTable dgv = objD_Pro.BuscarProveedor(Usuario); ;
+                int codigo = Convert.ToInt32(dgv.Rows[0]["IdProveedor"].ToString());
                 E_PedidoxCotizacion objE_PedC = new E_PedidoxCotizacion();
                 C_PedidoxCotizacion objC_PedC = new C_PedidoxCotizacion();
                 D_PedidoxCotizacion objD_PedC = new D_PedidoxCotizacion();
@@ -377,10 +408,10 @@ namespace Indexx.pages.Adquisicion
                 {
                     case 0:
                         objE_PedC.IdPedido1 = Convert.ToInt32(Session["pedido"]);
-                        objE_PedC.IdProveedor1 = Convert.ToInt32(txtIdProveedor.Text);
+                        objE_PedC.IdProveedor1 = codigo;
                         objE_PedC.IdLote1 = Convert.ToInt32(txtIdDDL.Text);
                         objE_PedC.IdItem1 = Convert.ToInt32(Session["item"]);
-                        objE_PedC.Cantidad1 = Convert.ToInt32(txtCantidadMpopup.Text.Trim());
+                        objE_PedC.Cantidad1 = Convert.ToInt32(txtResulCantMpopup.Text.Trim());
                         objE_PedC.PrecioUnitario1 = Convert.ToDouble(txtPreciopopup.Text);
 
                         if (idPedido == null || idItem == null)
@@ -388,12 +419,11 @@ namespace Indexx.pages.Adquisicion
                             throw new Exception("No se puede registrar el item");
                         }
                         objC_PedC.insertarPedidoxCotizacion(objE_PedC);
-                        dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]),
-                            Convert.ToInt32(txtIdProveedor.Text));
+                        dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), codigo);
                         dgvPedidoC.DataBind();
-                        dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                        dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), codigo);
                         dgvItems.DataBind();
-                        dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                        dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), codigo);
                         dgvSubtotal.DataBind();
                         ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se ingresaron los datos correctamente','success')", true);
 
@@ -401,10 +431,10 @@ namespace Indexx.pages.Adquisicion
 
                     case 1:
                         objE_PedC.IdPedido1 = Convert.ToInt32(Session["pedido"]);
-                        objE_PedC.IdProveedor1 = Convert.ToInt32(txtIdProveedor.Text);
+                        objE_PedC.IdProveedor1 = codigo;
                         objE_PedC.IdLote1 = Convert.ToInt32(txtIdDDL.Text);
                         objE_PedC.IdItem1 = Convert.ToInt32(Session["item"]);
-                        objE_PedC.Cantidad1 = Convert.ToInt32(txtCantidadMpopup.Text.Trim());
+                        objE_PedC.Cantidad1 = Convert.ToInt32(txtResulCantMpopup.Text.Trim());
                         objE_PedC.PrecioUnitario1 = Convert.ToDouble(txtPreciopopup.Text);
 
                         if (idPedido == null || idItem == null)
@@ -413,12 +443,11 @@ namespace Indexx.pages.Adquisicion
                         }
 
                         objC_PedC.actualizarPedidoxCotizacion(objE_PedC);
-                        dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]),
-                            Convert.ToInt32(txtIdProveedor.Text));
+                        dgvPedidoC.DataSource = objD_PedC.MostrarPedidoxCotizacion(Convert.ToInt32(Session["pedido"]), codigo);
                         dgvPedidoC.DataBind();
-                        dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                        dgvItems.DataSource = objD_PedI.ListarItemsxPedido(Convert.ToInt32(idPedido), codigo);
                         dgvItems.DataBind();
-                        dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), Convert.ToInt32(txtIdProveedor.Text.Trim()));
+                        dgvSubtotal.DataSource = objD_PedC.subTotalCotizar(Convert.ToInt32(idPedido), codigo);
                         dgvSubtotal.DataBind();
                         ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se guardaron los cambios correctamente','success')", true);
 

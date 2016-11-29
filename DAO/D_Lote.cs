@@ -36,5 +36,22 @@ namespace DAO
                 throw ex;
             }
         }
+
+        public DataTable MostrarCantidadLote(int IdLote)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("SP_MostrarCantidadLote", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdLote", IdLote);
+                mdd = new DataSet();
+                mDa.Fill(mdd);
+                return mdd.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

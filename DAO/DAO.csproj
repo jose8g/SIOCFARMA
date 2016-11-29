@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ConexionBD.cs" />
     <Compile Include="DAO_Almacen.cs" />
+    <Compile Include="DAO_Cliente.cs" />
     <Compile Include="DAO_Composicion.cs" />
     <Compile Include="DAO_ComposicionxItem.cs" />
     <Compile Include="DAO_Compras.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="D_PedidoxCotizacion.cs" />
     <Compile Include="D_PedidoxItem.cs" />
     <Compile Include="D_Proveedor.cs" />
+    <Compile Include="D_Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

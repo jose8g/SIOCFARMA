@@ -48,6 +48,7 @@
     <Compile Include="E_TipoMovimiento.cs" />
     <Compile Include="E_PedidoxCotizacion.cs" />
     <Compile Include="E_PedidoxItem.cs" />
+    <Compile Include="E_Usuario.cs" />
     <Compile Include="E_Venta.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

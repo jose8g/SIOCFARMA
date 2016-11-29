@@ -71,7 +71,7 @@ height: auto!important;}
 </script>
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                 <ContentTemplate>
-    <div class="row">
+<%--    <div class="row">
         <div class="col-sm-12">
             <div class="x_panel">
                 <div class="x_title">
@@ -89,7 +89,7 @@ height: auto!important;}
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div class="row">
         <div class="col-sm-12">
@@ -182,7 +182,7 @@ height: auto!important;}
                 </div>
                 <div class="x_content">
                     <asp:GridView runat="server" ID="dgvPedidoC" CssClass="gridview bordered table" OnRowCommand="dgvPedidoC_RowComand"
-                        DataKeyNames="IdItem,IdPedido,Nombre, Medida, Farmaco, Cantidad, PrecioUnitario, Total"
+                        DataKeyNames="IdItem,IdPedido,Nombre, Medida, Farmaco, CantidadLote, Cantidad, PrecioUnitario, Total"
                         AutoGenerateColumns="False" OnPageIndexChanging="dgvPedidoC_PageIndexChanging" AllowPaging="True">
                         <Columns>
                             <asp:BoundField DataField="IdItem" HeaderText="IdItem" Visible="false" />
@@ -190,6 +190,7 @@ height: auto!important;}
                             <asp:BoundField DataField="Nombre" HeaderText="Proveedor" />
                             <asp:BoundField DataField="Medida" HeaderText="Medida" />
                             <asp:BoundField DataField="Farmaco" HeaderText="Farmaco" />
+                            <asp:BoundField DataField="CantidadLote" HeaderText="Cant. Lote" />
                             <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                             <asp:BoundField DataField="PrecioUnitario" HeaderText="Precio" />
                             <asp:BoundField DataField="Total" HeaderText="Total" />
@@ -301,6 +302,19 @@ height: auto!important;}
                 <SortedDescendingCellStyle BorderColor="blue" BorderStyle="Solid" ForeColor="blue"  HorizontalAlign="Center" VerticalAlign="Middle"/>
         </asp:GridView>
 
+        <asp:GridView ID="dgvLote" runat="server" CssClass="gridview bordered table" 
+            AutoGenerateColumns="False" OnPageIndexChanging="dgvLote_PageIndexChanging"
+            DataKeyNames="Cantidad"
+            AllowPaging="True" PageSize="8" Height="161px" 
+            Width="856px" BorderColor="Black" BorderStyle="Solid" ForeColor="Black" Visible="False" >
+            <Columns>
+                <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
+            </Columns>
+                <EditRowStyle BorderColor="Black" BorderStyle="Solid" Font-Size="Larger" HorizontalAlign="Center" VerticalAlign="Middle" />
+                <HeaderStyle BorderColor="Black" BorderStyle="Solid" ForeColor="Black" HorizontalAlign="Center" />
+                <SortedDescendingCellStyle BorderColor="blue" BorderStyle="Solid" ForeColor="blue"  HorizontalAlign="Center" VerticalAlign="Middle"/>
+        </asp:GridView>
+
     </div>
                                     </ContentTemplate>
         </asp:UpdatePanel>
@@ -333,7 +347,9 @@ height: auto!important;}
         <label class="lblcampos" for="name">
            Cantidad de Medida:</label>
         <asp:TextBox ID="txtCantidadMpopup"   CssClass="w-input txtcampos areadescriptionpopUp"
-            runat="server"></asp:TextBox>
+            runat="server" Visible="false"></asp:TextBox>
+        <asp:TextBox ID="txtResulCantMpopup"   CssClass="w-input txtcampos areadescriptionpopUp"
+            runat="server" Visible="false"></asp:TextBox>
         <label class="lblcampos" for="name">
            Precio:</label>
         <asp:TextBox ID="txtPreciopopup"   CssClass="w-input txtcampos areadescriptionpopUp"

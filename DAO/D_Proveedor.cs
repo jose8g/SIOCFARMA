@@ -91,5 +91,22 @@ namespace DAO
                 throw ex;
             }
         }
+
+        public DataTable BuscarProveedor(int IdUsuario)
+        {
+            try
+            {
+                mDa = new SqlDataAdapter("SP_BuscarProveedor", conexion);
+                mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+                mDa.SelectCommand.Parameters.AddWithValue("@IdUsuario", IdUsuario);
+                mdd = new DataSet();
+                mDa.Fill(mdd);
+                return mdd.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

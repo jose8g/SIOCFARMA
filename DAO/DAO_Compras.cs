@@ -201,6 +201,18 @@ namespace DAO
             mDa.Fill(mDs);
             return mDs.Tables[0];
         }
+
+        public DataTable CompareIfExistsProductoCotizado(int idPedido, int idProveedor, int idItem)
+        {
+            mDa = new SqlDataAdapter("sp_validateItemCotizado", con);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdPedido", idPedido);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdProveedor", idProveedor);
+            mDa.SelectCommand.Parameters.AddWithValue("@IdItem", idItem);
+            mDa.SelectCommand.CommandType = CommandType.StoredProcedure;
+            mDs = new DataSet();
+            mDa.Fill(mDs);
+            return mDs.Tables[0];
+        }
     }
 }
 

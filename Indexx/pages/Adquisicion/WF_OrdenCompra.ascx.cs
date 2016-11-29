@@ -56,7 +56,7 @@ namespace Indexx.pages
                 {
                     int idItem      = Convert.ToInt32(dgvProductPedido.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
                     int idPedido    = Convert.ToInt32(Session["pedido"].ToString());//Convert.ToInt32(ddlPedido.SelectedValue);
-                    int idProveedor = Convert.ToInt32(Session["proveedor"].ToString());//Convert.ToInt32(ddlProveedores.SelectedValue);
+                    int idProveedor = Convert.ToInt32(ddlProveedores.SelectedValue);//Convert.ToInt32(Session["proveedor"].ToString());
                     GridViewRow row = (GridViewRow)(((Button)e.CommandSource).NamingContainer);
                     int cantidad    = Convert.ToInt32(((TextBox)row.FindControl("cantCompra")).Text);
                     if (idProveedor.ToString() == null)
@@ -76,6 +76,11 @@ namespace Indexx.pages
                         throw new Exception("No puedes cambiar de proveedor para esta compra");
                     }
                     String idCompra      = (Session["compra"] == null) ? null : Session["compra"].ToString();
+                    DataRow rowValidate = daoCompras.CompareIfExistsProductoCotizado(idPedido, idProveedor, idItem).Rows[0];
+                    if (Convert.ToInt32(rowValidate["cuenta"]) == 0)
+                    {
+                        throw new Exception("Este producto no ha sido cotizado");
+                    }
                     Session["compra"]    = Convert.ToInt32(daoCompras.InsertCompra(idCompra, idPedido, idProveedor, idItem, cantidad).Rows[0]["IdCompra"].ToString());
                     Session["proveedor"] = idProveedor;
                     Session["pedido"]    = idPedido;
@@ -90,7 +95,7 @@ namespace Indexx.pages
                     dgvProductPedido.DataSource = daoCompras.GetProductosByPedido(idPedido);
                     dgvProductPedido.DataBind();
                     //CONFIRMACION
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se registró correctamente','success')", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text5", "Notificacion('Ok','Se registró correctamente','success')", true);
                 } else if (e.CommandName == "editar") {
                     String idCompra = (Session["compra"] == null) ? null : Session["compra"].ToString();
                     int idItem      = Convert.ToInt32(dgvProductoCompra.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdItem"].ToString());
@@ -104,7 +109,7 @@ namespace Indexx.pages
                     }
                     daoCompras.UpdateItemByCompra(idCompra, idItem,cantidad);
                     //CONFIRMACION
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se editó correctamente','success')", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text6", "Notificacion('Ok','Se editó correctamente','success')", true);
                 } else if (e.CommandName == "eliminar") {
                     String idCompra = (Session["compra"] == null) ? null : Session["compra"].ToString();
                     String idPedido = (Session["pedido"] == null) ? null : Session["pedido"].ToString();
@@ -124,10 +129,13 @@ namespace Indexx.pages
                     //REEMPLAZA ID COMPRA
                     Session["compra"] = ((Convert.ToInt32(daoCompras.VerifyIfCompraExists(idCompra).Rows[0]["existe"].ToString())) == 0) ? null : Session["compra"];
                     //CONFIRMACION
-                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Ok','Se eliminó correctamente','success')", true);
+                    ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text7", "Notificacion('Ok','Se eliminó correctamente','success')", true);
                 } else if(e.CommandName == "editarCompra") {
                     int idCompra = Convert.ToInt32(dgvComprasList.DataKeys[Convert.ToInt32(e.CommandArgument)].Values["IdCompras"].ToString());
                     DataRow row = daoCompras.GetDataCompra(idCompra.ToString()).Rows[0];
+                    if(Convert.ToInt32(row["Estado"]) == 2){
+                        throw new Exception("Esta compra ya fue enviada y no se puede editar");
+                    }
                     Session["proveedor"] = row["IdProveedor"];
                     Session["pedido"]    = row["IdPedido"];
                     String pedidoAux = row["IdPedido"].ToString();
@@ -144,9 +152,7 @@ namespace Indexx.pages
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "')</script>");
-                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "Notificacion('Error','"+ex.Message+"','error')", true);
-
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text8", "Notificacion('Error','"+ex.Message+"','error')", true);
             }
         }
 
@@ -193,7 +199,7 @@ namespace Indexx.pages
             try
             {
                 int idProveedor   = Convert.ToInt32(ddlProveedores.SelectedValue);
-                Session["proveedor"] = idProveedor;
+                //Session["proveedor"] = idProveedor;
             }
             catch (Exception ex)
             {
@@ -218,6 +224,7 @@ namespace Indexx.pages
                 dgvComprasList.DataBind();
                 containterItemsPedido.Visible = false;
                 containerItemsCompra.Visible  = false;
+                contentProductCompra.Visible  = false;
             } catch(Exception ex){
                 Response.Write("<script>alert('asdas')</script>");
             }
